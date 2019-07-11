@@ -43,6 +43,7 @@ docker-compose up -d
 #### Run website locally
 
 ```
+source env/bin/activate
 export $(cat .env)
 cd helpdesk
 python manage.py migrate

@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from django.urls import reverse_lazy
+
+env = os.environ
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authbroker_client',
 ]
 
 MIDDLEWARE = [
@@ -61,9 +65,20 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+
+    # 'authbroker_client.middleware.ProtectAllViewsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'authbroker_client.backends.AuthbrokerBackend',
+]
+
+LOGIN_URL = reverse_lazy('authbroker_client:login')
+LOGIN_REDIRECT_URL = '/'
 ROOT_URLCONF = 'helpdesk.urls'
+
+WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy('authbroker_client:login')
 
 TEMPLATES = [
     {
@@ -85,17 +100,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'helpdesk.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'CONN_MAX_AGE': 0,
+        'NAME': env['POSTGRES_DB'],
+        'USER': env['POSTGRES_USER'],
+        'PASSWORD': env['POSTGRES_PASSWORD'],
+        'HOST': env['POSTGRES_HOST'],
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -115,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -128,7 +144,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -153,7 +168,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "helpdesk"
@@ -161,3 +175,7 @@ WAGTAIL_SITE_NAME = "helpdesk"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+AUTHBROKER_URL = env['AUTHBROKER_URL']
+AUTHBROKER_CLIENT_ID = env['AUTHBROKER_CLIENT_ID']
+AUTHBROKER_CLIENT_SECRET = env['AUTHBROKER_CLIENT_SECRET']
