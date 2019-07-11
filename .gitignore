@@ -72,3 +72,4 @@ Temporary Items
 # Project specific
 ssl.key
 ssl.crt
+db.sqlite3
