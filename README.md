@@ -40,6 +40,14 @@ from project root
 docker-compose up -d
 ```
 
+#### Run website locally
 
+```
+export $(cat .env)
+cd helpdesk
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
 
 
