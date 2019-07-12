@@ -1,0 +1,23 @@
+{
+  "name": "data-hub-helpdesk",
+  "version": "1.0.0",
+  "description": "simple helpdesk cms for datahub",
+  "main": "index.js",
+  "repository": "git@github.com:uktrade/data-hub-helpdesk.git",
+  "author": "mark.higham@digital.trade.gov.uk",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "govuk-frontend": "^2.13.0"
+  },
+  "devDependencies": {
+    "del": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "scripts": {
+    "frontend": "gulp",
+    "watch": "gulp sass:watch"
+  }
+}

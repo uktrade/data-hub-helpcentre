@@ -1,21 +1,68 @@
 {% extends "base.html" %}
-{% load static %}
+
+{% load wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-{% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-{% endblock extra_css %}
-
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+    <div class="govuk-width-container">
 
-{% endblock content %}
+        <main class="govuk-main-wrapper" id="main-content">
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+
+
+                    <form class="search-form">
+                        <input class="govuk-input search-form__input" id="search-text" name="search-text" type="text"
+                               placeholder="Search text and press enter" spellcheck="false"/>
+
+                        <button class="search-form__button" type="submit"></button>
+                    </form>
+
+                </div>
+                <div class="govuk-grid-column-one-third">
+                    {% for post in page.get_children %}
+                        <a class="govuk-link" href="{% pageurl post %}">{{ post.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="govuk-grid-row govuk-!-margin-top-8">
+                <div class="govuk-grid-column-one-half">
+                    <h2 class="govuk-heading-m">How to articles</h2>
+                </div>
+                <div class="govuk-grid-column-one-half">
+                    <h2 class="govuk-heading-m">Updates</h2>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row govuk-!-margin-top-8">
+                <div class="govuk-grid-column-full">
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                    <h2 class="govuk-heading-m">
+                        Recent activity
+                    </h2>
+                    <div class="article-list__item">
+                        <h4 class="govuk-heading-s article-list__title">{% lorem 3 w random %}</h4>
+                        <p class="govuk-body article-list__short-description">
+                            {% lorem %}
+                        </p>
+                        <div class="article-list__publish-info">
+                            <p class="govuk-body">
+                            Date published etc
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+
