@@ -2,12 +2,29 @@
 
 ## Getting started
 
-## Local Development
+## Local Development using containers
+
+## Local Development (macOS)
 
 Pre-requisites
 - python3
 - pip
 - docker
+- homebrew
+
+### Animated gif support
+
+The Wand pip package requires `imagemagick` to be installed for animated gif support
+
+http://docs.wand-py.org/en/0.4.2/guide/install.html
+
+https://github.com/wagtail/wagtail/issues/2505
+
+MacOS
+
+```bash
+brew install imagemagick
+```
 
 #### Restore dependencies
 
@@ -33,35 +50,29 @@ AUTHBROKER_CLIENT_SECRET=from_webopp
 AUTHBROKER_URL=if_you_have_access
 ```
 
-#### Start docker containers
+### Start the database container
 
-from project root
-```
-docker-compose up -d
+
+```bash
+docker-compose up -d postgres
 ```
 
 #### Run website locally
 
-```
+```bash
 source env/bin/activate
+
 export $(cat .env)
+
 cd helpdesk
+
 python manage.py migrate
 python manage.py createsuperuser
+
 python manage.py runserver
 ```
 
-### Animated gif support
 
-The Wand pip package requires `imagemagick` to be installed for animated gif support
-
-http://docs.wand-py.org/en/0.4.2/guide/install.html
-
-https://github.com/wagtail/wagtail/issues/2505
-
-```
-brew install imagemagick
-```
 
 # Issues with local dev
 
