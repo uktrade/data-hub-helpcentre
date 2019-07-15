@@ -20,8 +20,6 @@ http://docs.wand-py.org/en/0.4.2/guide/install.html
 
 https://github.com/wagtail/wagtail/issues/2505
 
-MacOS
-
 ```bash
 brew install imagemagick
 ```
