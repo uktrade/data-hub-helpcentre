@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authbroker_client',
+
+    'article',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +68,7 @@ MIDDLEWARE = [
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
-    # 'authbroker_client.middleware.ProtectAllViewsMiddleware',
+    'authbroker_client.middleware.ProtectAllViewsMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

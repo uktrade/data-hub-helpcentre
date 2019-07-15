@@ -4,6 +4,8 @@ $govuk-assets-path: '/static/assets/';
 
 @import '../../node_modules/govuk-frontend/all.scss';
 
+@import "richtext";
+
 .search-form {
   border: $govuk-border-width-form-element solid $govuk-input-border-colour;
   width: 500px;

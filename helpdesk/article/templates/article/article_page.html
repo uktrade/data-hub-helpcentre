@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-articlepage{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-width-container">
+
+        <main class="govuk-main-wrapper" id="main-content">
+            <h1 class="govuk-heading-l">{{ page.title }}</h1>
+            <p class="govuk-body">{{ page.date }}</p>
+
+            <p class="govuk-body-lead">{{ page.intro }}</p>
+
+            {{ page.body }}
+
+            <p class="govuk-body"><a class="govuk-link" href="{{ page.get_parent.url }}">Return to blog</a></p>
+
+        </main>
+    </div>
+
+{% endblock %}

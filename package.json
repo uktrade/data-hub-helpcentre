@@ -17,7 +17,7 @@
     "gulp-sourcemaps": "^2.6.5"
   },
   "scripts": {
-    "frontend": "gulp",
-    "watch": "gulp sass:watch"
+    "sass": "gulp",
+    "sass:watch": "gulp sass:watch"
   }
 }

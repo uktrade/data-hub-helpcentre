@@ -68,7 +68,11 @@
 
             <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link govuk-header__link--service-name">
                 {% with self.get_site.site_name as site_name %}
-                    {{ site_name }}
+                    {% if site_name %}
+                        {{ site_name }}
+                    {% else %}
+                        Site name is missing!!!
+                    {% endif %}
                 {% endwith %}
             </a>
             {#            <button type="button" role="button" class="govuk-header__menu-button js-header-toggle"#}

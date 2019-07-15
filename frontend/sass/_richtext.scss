@@ -1,0 +1,33 @@
+.rich-text {
+
+  p {
+    @extend .govuk-body;
+  }
+
+  h2 {
+    @extend .govuk-heading-m;
+  }
+
+  h3, h4 {
+    @extend .govuk-heading-s;
+  }
+
+  ul {
+    @extend .govuk-list;
+    // this basically hardcodes all lists made in the rich-text editor to be bulletted
+    @extend .govuk-list--bullet;
+  }
+
+  ol {
+    @extend .govuk-list;
+    @extend .govuk-list--number;
+  }
+
+  hr {
+    @extend .govuk-section-break;
+    @extend .govuk-section-break--visible;
+  }
+
+}
+
+

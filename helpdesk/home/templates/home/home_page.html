@@ -30,7 +30,11 @@
                 </div>
                 <div class="govuk-grid-column-one-third">
                     {% for post in page.get_children %}
-                        <a class="govuk-link" href="{% pageurl post %}">{{ post.title }}</a>
+                        {% if post.live %}
+                            <div>
+                                <a class="govuk-link" href="{% pageurl post %}">{{ post.title }}</a>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -56,7 +60,7 @@
                         </p>
                         <div class="article-list__publish-info">
                             <p class="govuk-body">
-                            Date published etc
+                                Date published etc
                             </p>
                         </div>
                     </div>
