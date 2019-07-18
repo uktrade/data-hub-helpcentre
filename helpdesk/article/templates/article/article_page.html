@@ -9,6 +9,9 @@
     <div class="govuk-width-container">
 
         <main class="govuk-main-wrapper" id="main-content">
+{#            {% if perms.change_articlepage %}#}
+{#            <h1>Oh my </h1>#}
+{#            {% endif %}#}
             <h1 class="govuk-heading-l">{{ page.title }}</h1>
             <p class="govuk-body">{{ page.date }}</p>
 

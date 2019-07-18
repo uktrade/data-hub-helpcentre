@@ -1,0 +1,5 @@
+---
+applications:
+- name: datahub-helpdesk-dev
+  memory: 512M
+  buildpack: python_buildpack

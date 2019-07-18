@@ -7,6 +7,8 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from authbroker_client import urls as authbroker_client_urls
+
 from search import views as search_views
 
 urlpatterns = [
@@ -17,7 +19,7 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
 
-    path('auth/', include('authbroker_client.urls')),
+    path('auth/', include(authbroker_client_urls)),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

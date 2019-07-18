@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 from django.urls import reverse_lazy
 
@@ -68,7 +69,7 @@ MIDDLEWARE = [
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
-    'authbroker_client.middleware.ProtectAllViewsMiddleware',
+    # 'authbroker_client.middleware.ProtectAllViewsMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -105,16 +106,19 @@ WSGI_APPLICATION = 'helpdesk.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'CONN_MAX_AGE': 0,
-        'NAME': env['POSTGRES_DB'],
-        'USER': env['POSTGRES_USER'],
-        'PASSWORD': env['POSTGRES_PASSWORD'],
-        'HOST': env['POSTGRES_HOST'],
-    },
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'CONN_MAX_AGE': 0,
+#         'NAME': env['POSTGRES_DB'],
+#         'USER': env['POSTGRES_USER'],
+#         'PASSWORD': env['POSTGRES_PASSWORD'],
+#         'HOST': env['POSTGRES_HOST'],
+#     },
+# }
+
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
