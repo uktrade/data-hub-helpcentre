@@ -19,7 +19,6 @@ $govuk-assets-path: '/static/assets/';
 }
 
 .search-form__button {
-
   position: absolute;
   top: 0;
   right: 0;
@@ -32,6 +31,12 @@ $govuk-assets-path: '/static/assets/';
   //background-color: $govuk-button-colour;
 }
 
+.article-summary-link {
+  //text-align: center;
+  //border: solid 1px;
+  //background-color: govuk-colour("green");
+}
+
 .article-list {
 
 }
@@ -41,7 +46,10 @@ $govuk-assets-path: '/static/assets/';
 }
 
 .article-list__title {
-  text-transform: capitalize;
+  //@include govuk-font($size: 19);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .article-list__short-description {
@@ -49,7 +57,12 @@ $govuk-assets-path: '/static/assets/';
 }
 
 .article-list__publish-info {
-  position: absolute;
-  top: 0;
-  right: 0;
+  //@include govuk-font($size: 16);
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  color: govuk-colour("black");
+  //position: absolute;
+  //top: 0;
+  //right: 0;
 }

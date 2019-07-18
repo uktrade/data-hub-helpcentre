@@ -19,7 +19,7 @@ class ArticleIndexPage(Page):
 
 class ArticlePage(Page):
     date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
+    intro = models.CharField(max_length=250, blank=True, null=True)
     # body = RichTextField(blank=True)
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),

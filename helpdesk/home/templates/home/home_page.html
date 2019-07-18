@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load wagtailcore_tags %}
+{% load home_extras %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -11,58 +12,58 @@
         <main class="govuk-main-wrapper" id="main-content">
 
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-full">
-                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
-                </div>
-            </div>
-
-            <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
-
-
                     <form class="search-form">
                         <input class="govuk-input search-form__input" id="search-text" name="search-text" type="text"
                                placeholder="Search text and press enter" spellcheck="false"/>
-
                         <button class="search-form__button" type="submit"></button>
                     </form>
 
-                </div>
-                <div class="govuk-grid-column-one-third">
-                    {% for post in page.get_children %}
-                        {% if post.live %}
-                            <div>
-                                <a class="govuk-link" href="{% pageurl post %}">{{ post.title }}</a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="govuk-grid-row govuk-!-margin-top-8">
-                <div class="govuk-grid-column-one-half">
-                    <h2 class="govuk-heading-m">How to articles</h2>
-                </div>
-                <div class="govuk-grid-column-one-half">
-                    <h2 class="govuk-heading-m">Updates</h2>
-                </div>
-            </div>
+                    <div class="govuk-!-margin-top-8">
+                        {#                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">#}
+                        <h2 class="govuk-heading-m">
+                            Recent activity
+                        </h2>
 
-            <div class="govuk-grid-row govuk-!-margin-top-8">
-                <div class="govuk-grid-column-full">
-                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-                    <h2 class="govuk-heading-m">
-                        Recent activity
-                    </h2>
-                    <div class="article-list__item">
-                        <h4 class="govuk-heading-s article-list__title">{% lorem 3 w random %}</h4>
-                        <p class="govuk-body article-list__short-description">
-                            {% lorem %}
-                        </p>
-                        <div class="article-list__publish-info">
-                            <p class="govuk-body">
-                                Date published etc
+                        {% for post in page.get_children.specific %}
+                            <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
+                                <a class="govuk-link"
+                                   href="{% pageurl post %}">{{ post.title }}</a>
+                            </h4>
+                            <p class="govuk-body-s govuk-!-margin-bottom-1">
+                                {{ post.date|date:"d/m/Y" }}
                             </p>
-                        </div>
+                            {% if post.intro %}
+                                <p class="govuk-body article-list__short-description">
+                                    {{ post.intro }}
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="govuk-grid-column-one-third govuk-!-padding-left-7">
+                    <div class="article-summary-link">
+                        <h2 class="govuk-heading-s">
+                            <a href="#" class="govuk-link--no-visited-state"
+                               onclick="javascript:alert('not implemented yet')">
+                                How to articles</a>
+                            <br>
+                        </h2>
+                        <p class="govuk-body">
+                            Articles providing guidance and tips for using Data Hub.
+                            'How to' guides</p>
+                    </div>
+                    <div class="article-summary-link">
+                        <h2 class="govuk-heading-s">
+                            <a href="#" class="govuk-link--no-visited-state"
+                               onclick="javascript:alert('not implemented yet')">
+                                Updates
+                            </a>
+                        </h2>
+                        <p class="govuk-body">
+                            Announcements, updates, release notes and roadmap from the Data Hub team
+                        </p>
                     </div>
                 </div>
             </div>
