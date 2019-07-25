@@ -4,23 +4,78 @@
 
 {% block body_class %}template-articlepage{% endblock %}
 
+{% block breadcrumbs %}{% endblock %}
+
 {% block content %}
 
-    <div class="govuk-width-container">
+    <div class="govuk-width-container" style="width:80%;">
 
         <main class="govuk-main-wrapper" id="main-content">
-{#            {% if perms.change_articlepage %}#}
-{#            <h1>Oh my </h1>#}
-{#            {% endif %}#}
-            <h1 class="govuk-heading-l">{{ page.title }}</h1>
-            <p class="govuk-body">{{ page.date }}</p>
 
-            <p class="govuk-body-lead">{{ page.intro }}</p>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-quarter">
+                    <h2 class="govuk-heading-s">Articles in this section</h2>
+                    <ul class="govuk-dit-sidenav">
+                        <li>
+                            <a href="/hc/en-gb/articles/360002062918-Calendar-integration-with-Data-Hub-test-users-wanted"
+                               class="sidenav-item ">Calendar integration with Data Hub - test users wanted</a>
+                        </li>
 
-            {{ page.body }}
+                        <li>
+                            <a href="/hc/en-gb/articles/360002032477-Upcoming-Changes-to-Data-Hub-Services"
+                               class="sidenav-item ">Upcoming Changes to Data Hub Services</a>
+                        </li>
 
-            <p class="govuk-body"><a class="govuk-link" href="{{ page.get_parent.url }}">Return to blog</a></p>
+                        <li>
+                            <a href="/hc/en-gb/articles/360002025697-Data-Hub-What-s-New-Webinar" class="sidenav-item ">Data
+                                Hub: What's New Webinar</a>
+                        </li>
 
+                        <li>
+                            <a href="/hc/en-gb/articles/360001995758-Follow-up-to-Adding-more-activity-to-company-pages-"
+                               class="sidenav-item ">Follow up to "Adding more activity to company pages"</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001972997-Data-Hub-What-s-New-Webinar-11-July-2019-"
+                               class="sidenav-item ">Data Hub - What's New? Webinar - 11 July 2019.</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001933977-Data-Hub-June-Survey-What-Next-"
+                               class="sidenav-item ">Data Hub June Survey - What Next?</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001844497-Using-Sectors-in-the-Find-Exporters-Tool"
+                               class="sidenav-item ">Using Sectors in the Find Exporters Tool</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001834238-Adding-more-activity-to-company-pages"
+                               class="sidenav-item ">Adding more activity to company pages</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001808498-Datahub-Survey-Closing-Date-21-June-2019"
+                               class="sidenav-item current-article">Datahub Survey- Closing Date 21 June 2019</a>
+                        </li>
+
+                        <li>
+                            <a href="/hc/en-gb/articles/360001782898-A-second-follow-up-to-Improvements-to-company-data-in-Data-Hub-April-2019-"
+                               class="sidenav-item ">A second follow up to "Improvements to company data in Data Hub -
+                                April 2019"</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="govuk-grid-column-three-quarters">
+                    <h1 class="govuk-heading-m">{{ page.title }}</h1>
+                    <p class="govuk-body">{{ page.authors }} {{ page.date }}</p>
+                    <p class="govuk-body-lead">{{ page.intro }}</p>
+                    {{ page.body }}
+                </div>
         </main>
     </div>
 

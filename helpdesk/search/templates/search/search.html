@@ -6,33 +6,54 @@
 {% block title %}Search{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
 
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+      <div class="govuk-dit-hero-container">
+        <div class="govuk-width-container">
+            <div class="govuk-main-wrapper">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        {% include 'search_partial.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
+    <div class="govuk-width-container">
+        <main class="govuk-main-wrapper" id="main-content">
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-l">Results</h1>
+
+                    {% if search_results %}
+                        <ul class="govuk-list">
+                            {% for result in search_results %}
+                                <li>
+                                    <h4>
+                                        <a class="govuk-link" href="{% pageurl result %}">{{ result }}</a>
+                                    </h4>
+                                    {% if result.search_description %}
+                                        {{ result.search_description }}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% if search_results.has_previous %}
+                            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        {% if search_results.has_next %}
+                            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+                        {% endif %}
+                    {% elif search_query %}
+                        No results found
                     {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+                </div>
+            </div>
+        </main>
+    </div>
 
-        {% if search_results.has_previous %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-        {% endif %}
 
-        {% if search_results.has_next %}
-            <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-        {% endif %}
-    {% elif search_query %}
-        No results found
-    {% endif %}
 {% endblock %}

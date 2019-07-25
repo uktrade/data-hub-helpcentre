@@ -1,45 +1,47 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
+    <div class="govuk-dit-hero-container">
+        <div class="govuk-width-container">
+            <div class="govuk-main-wrapper">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        {% include 'search_partial.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="govuk-width-container">
 
         <main class="govuk-main-wrapper" id="main-content">
-
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-two-thirds">
-                    <form class="search-form">
-                        <input class="govuk-input search-form__input" id="search-text" name="search-text" type="text"
-                               placeholder="Search text and press enter" spellcheck="false"/>
-                        <button class="search-form__button" type="submit"></button>
-                    </form>
 
-                    <div class="govuk-!-margin-top-8">
-                        {#                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">#}
-                        <h2 class="govuk-heading-m">
-                            Recent activity
-                        </h2>
+                    <h2 class="govuk-heading-m">
+                        Recent activity
+                    </h2>
 
-                        {% for post in page.get_children.specific %}
-                            <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
-                                <a class="govuk-link"
-                                   href="{% pageurl post %}">{{ post.title }}</a>
-                            </h4>
-                            <p class="govuk-body-s govuk-!-margin-bottom-1">
-                                {{ post.date|date:"d/m/Y" }}
+                    {% for post in page.get_children.specific %}
+                        <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
+                            <a class="govuk-link"
+                               href="{% pageurl post %}">{{ post.title }}</a>
+                        </h4>
+                        <p class="govuk-body-s govuk-!-margin-bottom-1">
+                            {{ post.date|date:"d/m/Y" }}
+                        </p>
+                        {% if post.intro %}
+                            <p class="govuk-body article-list__short-description">
+                                {{ post.intro }}
                             </p>
-                            {% if post.intro %}
-                                <p class="govuk-body article-list__short-description">
-                                    {{ post.intro }}
-                                </p>
-                            {% endif %}
-                        {% endfor %}
+                        {% endif %}
+                    {% endfor %}
 
-                    </div>
                 </div>
                 <div class="govuk-grid-column-one-third govuk-!-padding-left-7">
                     <div class="article-summary-link">
