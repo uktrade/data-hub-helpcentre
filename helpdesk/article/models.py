@@ -19,11 +19,27 @@ class ArticleIndexPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(ArticleIndexPage, self).get_context(request, *args, **kwargs)
 
-        children = ArticlePage.objects.live().descendant_of(self).not_type(ArticleIndexPage).order_by('-date')
+        children = ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by('-date')
         siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by('title')
+
+        child_groups = ArticleIndexPage.objects.live().child_of(self).type(ArticleIndexPage).order_by('title')
+
+        child_groups_for_layout = []
+        row = []
+        offset = 0
+        for group in child_groups:
+            row.append(group)
+
+            offset += 1
+            if offset % 3 == 0:
+                child_groups_for_layout.append(row)
+                row = []
+
+        child_groups_for_layout.append(row)
 
         context['children'] = children
         context['siblings'] = siblings
+        context['child_groups'] = child_groups_for_layout
 
         return context
 

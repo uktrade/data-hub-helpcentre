@@ -2,6 +2,10 @@ from django import template
 
 from wagtail.core.models import Page
 
+from article.models import (
+    ArticlePage,
+)
+
 register = template.Library()
 
 
@@ -20,6 +24,15 @@ def breadcrumbs(context):
     return {
         'ancestors': ancestors,
         'request': context['request'],
+    }
+
+
+@register.inclusion_tag('tags/order_article_list.html', takes_context=True)
+def ordered_article_list(context, parent_object):
+    children = ArticlePage.objects.live().child_of(parent_object)
+
+    return {
+        'children': children
     }
 
 
