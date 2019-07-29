@@ -56,7 +56,10 @@ $govuk-page-width: 1160px;
 }
 
 .article-list__short-description {
-  width: 80%;
+  //width: 80%;
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .article-date {
@@ -86,7 +89,7 @@ $govuk-page-width: 1160px;
 
 .hero-container--search {
   width: 80%;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
 $featured-fg-colour: $govuk-secondary-text-colour;
@@ -100,7 +103,7 @@ $featured-bg-colour: #efefef;
   box-sizing: border-box;
 
   padding: 1rem 1rem 0.5rem 1rem;
-  min-height:9rem;
+  min-height: 9rem;
 
   $border-color: darken($featured-bg-colour, 10%);
   border: solid 1px $border-color;

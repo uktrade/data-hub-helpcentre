@@ -10,6 +10,8 @@ def breadcrumbs(context):
     self = context.get('self')
     if self is None or self.depth <= 2:
         # When on the home page, displaying breadcrumbs is irrelevant.
+        print('none or less than 2')
+        print(self)
         ancestors = ()
     else:
         ancestors = Page.objects.ancestor_of(

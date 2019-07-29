@@ -5,48 +5,58 @@
 {% block body_class %}template-articlepage{% endblock %}
 
 {% block breadcrumbs %}
-    {% breadcrumbs %}
+{% breadcrumbs %}
 {% endblock %}
 
 {% block content %}
 
-    <div class="govuk-width-container">
+<div class="govuk-width-container">
 
-        <main class="govuk-main-wrapper" id="main-content">
+    <main class="govuk-main-wrapper" id="main-content">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <h1 class="govuk-heading-l">{{ page.title }}</h1>
+            </div>
+        </div>
 
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-one-quarter">
-                    <h2 class="govuk-heading-s">Articles in this section</h2>
 
-                    <ul class="govuk-dit-sidenav">
-                        {% for sibling in siblings %}
-                            <li>
-                                {% if page.url == sibling.url %}
-                                    {{ sibling.title }}
-                                {% else %}
-                                    <a href="{{ sibling.url }}">{{ sibling.title }}</a>
-                                {% endif %}
-                            </li>
+        <div class="govuk-grid-row">
 
-                        {% endfor %}
-                    </ul>
 
-                </div>
+            <div class="govuk-grid-column-three-quarters">
 
-                <div class="govuk-grid-column-three-quarters">
-                    <h1 class="govuk-heading-m">{{ page.title }}</h1>
-                    <p class="govuk-body">
+                <p class="govuk-body">
                         <span class="article-date">
                         Last updated {{ page.date|date:"j N Y" }}
                         </span>
 
-                        <span class="article-author">
+                    <span class="article-author">
                         by {% article_author %}
                         </span>
-                    </p>
-                    {{ page.body }}
-                </div>
-        </main>
-    </div>
+                </p>
+                {{ page.body }}
+            </div>
+
+            <div class="govuk-grid-column-one-quarter">
+                {% if siblings %}
+                <h2 class="govuk-heading-s">Articles in this section</h2>
+                {% endif %}
+                <ul class="govuk-dit-sidenav">
+                    {% for sibling in siblings %}
+                    <li>
+                        {% if page.url == sibling.url %}
+                        {{ sibling.title }}
+                        {% else %}
+                        <a href="{{ sibling.url }}">{{ sibling.title }}</a>
+                        {% endif %}
+                    </li>
+
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+    </main>
+</div>
 
 {% endblock %}

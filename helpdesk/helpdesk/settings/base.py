@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import environ
+
 import dj_database_url
 
 from django.urls import reverse_lazy
 
-env = os.environ
+env = environ.Env()
+env.read_env()
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -56,6 +59,7 @@ INSTALLED_APPS = [
     'authbroker_client',
 
     'article',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -158,15 +162,13 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # Javascript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
-# Wagtail settings
 
 WAGTAIL_SITE_NAME = "helpdesk"
 
@@ -174,6 +176,26 @@ WAGTAIL_SITE_NAME = "helpdesk"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
 
-AUTHBROKER_URL = env['AUTHBROKER_URL']
-AUTHBROKER_CLIENT_ID = env['AUTHBROKER_CLIENT_ID']
-AUTHBROKER_CLIENT_SECRET = env['AUTHBROKER_CLIENT_SECRET']
+AUTHBROKER_URL = env.str('AUTHBROKER_URL')
+AUTHBROKER_CLIENT_ID = env.str('AUTHBROKER_CLIENT_ID')
+AUTHBROKER_CLIENT_SECRET = env.str('AUTHBROKER_CLIENT_SECRET')
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+VCAP_SERVICES = env.json('VCAP_SERVICES', {})
+
+AWS_DEFAULT_ACL = None
+
+if 'aws-s3-bucket' in VCAP_SERVICES:
+    s3 = VCAP_SERVICES['aws-s3-bucket'][0]['credentials']
+    AWS_STORAGE_BUCKET_NAME = s3['bucket_name']
+    AWS_ACCESS_KEY_ID = s3['aws_access_key_id']
+    AWS_SECRET_ACCESS_KEY = s3['aws_secret_access_key']
+else:
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
