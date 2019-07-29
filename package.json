@@ -18,6 +18,6 @@
   },
   "scripts": {
     "sass": "gulp",
-    "sass:watch": "gulp sass:watch"
+    "sass:watch": "gulp && gulp sass:watch"
   }
 }

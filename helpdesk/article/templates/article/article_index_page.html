@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="govuk-width-container">
 
         <main class="govuk-main-wrapper" id="main-content">
@@ -34,19 +33,25 @@
                 </div>
 
                 <div class="govuk-grid-column-three-quarters">
-                    <h1 class="govuk-heading-m">{{ page.title }}</h1>
-                    <p class="govuk-body">
-                        <span class="article-date">
-                        Last updated {{ page.date|date:"j N Y" }}
-                        </span>
-
-                        <span class="article-author">
-                        by {% article_author %}
-                        </span>
-                    </p>
-                    {{ page.body }}
+                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
+                    {% for post in page.get_children.live.specific %}
+                        <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
+                            <a class="govuk-link"
+                               href="{% pageurl post %}">{{ post.title }}</a>
+                        </h4>
+                        <p class="govuk-body-s govuk-!-margin-bottom-1">
+                            {{ post.date|date:"d/m/Y" }}
+                        </p>
+                        {% if post.intro %}
+                            <p class="govuk-body article-list__short-description">
+                                {{ post.intro }}
+                            </p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
+            </div>
+
+
         </main>
     </div>
-
 {% endblock %}

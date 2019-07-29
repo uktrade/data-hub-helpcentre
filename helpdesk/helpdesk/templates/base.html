@@ -27,10 +27,8 @@
     <link rel="apple-touch-icon" href="/assets/images/govuk-apple-touch-icon.png">
 
 
-    {# Global stylesheets #}
     <link rel="stylesheet" type="text/css" href="{% static 'css/helpdesk.css' %}">
     <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
-
 
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -81,7 +79,7 @@
 {#            <div style="float:right;" class="govuk-!-margin-bottom-2">#}
             {#                {% include "search_partial.html" %}#}
             {#            </div>#}
-            <nav>
+{#            <nav>#}
 
                 {#                            <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">#}
                 {#                                <li class="govuk-header__navigation-item govuk-header__navigation-item--active">#}
@@ -95,14 +93,13 @@
                 {#                                    </a>#}
                 {#                                </li>#}
                 {#                            </ul>#}
-            </nav>
+{#            </nav>#}
         </div>
     </div>
 </header>
 
 
 <div class="govuk-width-container">
-
     <div class="govuk-phase-banner">
         <p class="govuk-phase-banner__content">
             <strong class="govuk-tag govuk-phase-banner__content__tag ">
@@ -112,18 +109,9 @@
                 This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
             </span>
         </p>
-
     </div>
 
-    {% block breadcrumbs %}
-        <div class="govuk-breadcrumbs">
-            <ol class="govuk-breadcrumbs__list">
-                <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="/">Home</a>
-                </li>
-            </ol>
-        </div>
-    {% endblock %}
+    {% block breadcrumbs %}{% endblock %}
 </div>
 
 

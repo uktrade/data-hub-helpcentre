@@ -1,0 +1,21 @@
+{% load wagtailcore_tags %}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+
+        {% for ancestor in ancestors|slice:"1:" %}
+            {% if forloop.last %}
+                <li class="govuk-breadcrumbs__list-item active" aria-level="{{ ancestors|length }}">
+                    {{ ancestor }}
+                </li>
+            {% else %}
+                <li class="govuk-breadcrumbs__list-item">
+                    <a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+</div>

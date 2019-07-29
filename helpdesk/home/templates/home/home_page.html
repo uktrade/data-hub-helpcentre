@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
-{% load wagtailcore_tags %}
+{% load navigation_tags wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
+
+
 {% block content %}
-    <div class="govuk-dit-hero-container">
+    <div class="hero-container">
         <div class="govuk-width-container">
             <div class="govuk-main-wrapper">
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full">
-                        {% include 'search_partial.html' %}
+                        <div class="hero-container--search">
+                            {% include 'search_partial.html' %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -20,20 +24,43 @@
     <div class="govuk-width-container">
 
         <main class="govuk-main-wrapper" id="main-content">
+
             <div class="govuk-grid-row">
+                {% for category in child_categories %}
+                    <div class="{{ featured_column_classname }}">
+                        <a class="featured-container" href="{{ category.url }}">
+                            <h2 class="govuk-heading-s">
+                                {{ category.title }}
+                            </h2>
+                            <p class="govuk-body">
+                                {{ category.intro }}
+                            </p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="govuk-grid-row govuk-!-margin-top-8">
+
                 <div class="govuk-grid-column-two-thirds">
 
                     <h2 class="govuk-heading-m">
                         Recent activity
                     </h2>
 
-                    {% for post in page.get_children.specific %}
-                        <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
+                    {% for post in recent %}
+                        <h4 class="govuk-heading-s govuk-!-margin-bottom-1 article-list__title">
                             <a class="govuk-link"
                                href="{% pageurl post %}">{{ post.title }}</a>
                         </h4>
                         <p class="govuk-body-s govuk-!-margin-bottom-1">
-                            {{ post.date|date:"d/m/Y" }}
+                            <span class="article-date">
+                                {{ post.date|date:"d/m/Y" }}
+                            </span>
+                            <span class="article-author">
+                                {% article_author post %}
+                            </span>
+
                         </p>
                         {% if post.intro %}
                             <p class="govuk-body article-list__short-description">
@@ -43,30 +70,7 @@
                     {% endfor %}
 
                 </div>
-                <div class="govuk-grid-column-one-third govuk-!-padding-left-7">
-                    <div class="article-summary-link">
-                        <h2 class="govuk-heading-s">
-                            <a href="#" class="govuk-link--no-visited-state"
-                               onclick="javascript:alert('not implemented yet')">
-                                How to articles</a>
-                            <br>
-                        </h2>
-                        <p class="govuk-body">
-                            Articles providing guidance and tips for using Data Hub.
-                            'How to' guides</p>
-                    </div>
-                    <div class="article-summary-link">
-                        <h2 class="govuk-heading-s">
-                            <a href="#" class="govuk-link--no-visited-state"
-                               onclick="javascript:alert('not implemented yet')">
-                                Updates
-                            </a>
-                        </h2>
-                        <p class="govuk-body">
-                            Announcements, updates, release notes and roadmap from the Data Hub team
-                        </p>
-                    </div>
-                </div>
+
             </div>
         </main>
     </div>
