@@ -1,9 +1,5 @@
 # data-hub-helpcentre
 
-## Getting started
-
-## Local Development using containers
-
 ## Local Development (macOS)
 
 Pre-requisites
@@ -60,14 +56,12 @@ docker-compose up -d postgres
 ```bash
 source env/bin/activate
 
-export $(cat .env)
+# export $(cat .env)
 
-cd helpdesk
+python manage.py app/migrate
+python manage.py app/createsuperuser
 
-python manage.py migrate
-python manage.py createsuperuser
-
-python manage.py runserver
+python manage.py app/runserver
 ```
 
 
