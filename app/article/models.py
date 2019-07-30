@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
@@ -38,11 +39,21 @@ class ArticleIndexPage(Page):
 class ArticlePage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250, blank=True, null=True)
-    # body = RichTextField(blank=True)
+
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
     ], null=True, blank=True)
+
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        editable=True,
+        on_delete=models.SET_NULL,
+        related_name='authored_pages',
+        help_text='Choose from the list or create a new user'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -53,6 +64,7 @@ class ArticlePage(Page):
         FieldPanel('date'),
         FieldPanel('intro'),
         StreamFieldPanel('body'),
+        FieldPanel('author'),
     ]
 
     def get_context(self, request, *args, **kwargs):

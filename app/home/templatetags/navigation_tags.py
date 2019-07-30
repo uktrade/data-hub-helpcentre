@@ -59,11 +59,9 @@ def article_author(context, authored_object=None):
     if page is None:
         return model
 
-    if page.owner is None:
-        return model
+    if page.author:
+        return {
+            'name': f'{page.author.first_name} {page.author.last_name}'
+        }
 
-    name = f'{page.owner.first_name} {page.owner.last_name}'
-
-    return {
-        'name': name
-    }
+    return model
