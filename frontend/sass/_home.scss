@@ -1,0 +1,41 @@
+
+.hero-container {
+  // nb this just returns standard govuk- blue unless websafe is false
+  background-color: govuk-organisation-colour("department-for-international-trade", true);
+}
+
+.hero-container--search {
+  width: 80%;
+  margin: 0 auto;
+}
+
+$featured-fg-colour: $govuk-secondary-text-colour;
+$featured-bg-colour: #efefef;
+
+.featured-container {
+  display: block;
+  color: $featured-fg-colour;
+  background-color: $featured-bg-colour;
+  box-sizing: border-box;
+
+  padding: 1rem 1rem 0.5rem 1rem;
+  min-height: 9rem;
+
+  $border-color: darken($featured-bg-colour, 10%);
+  border: solid 1px $border-color;
+
+  overflow: hidden;
+  text-decoration: none;
+
+  &:hover {
+    color: $featured-bg-colour;
+    background-color: white;
+  }
+}
+
+// To remove the border from the phase banner
+.template-homepage, .template-searchresults {
+  .govuk-phase-banner {
+    border-bottom: none;
+  }
+}

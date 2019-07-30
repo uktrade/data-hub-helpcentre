@@ -4,8 +4,6 @@
 
 {% block body_class %}template-homepage{% endblock %}
 
-
-
 {% block content %}
     <div class="hero-container">
         <div class="govuk-width-container">
@@ -13,7 +11,7 @@
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full">
                         <div class="hero-container--search">
-                            {% include 'search_partial.html' %}
+                            {% search_box %}
                         </div>
                     </div>
                 </div>
@@ -25,20 +23,25 @@
 
         <main class="govuk-main-wrapper" id="main-content">
 
-            <div class="govuk-grid-row">
-                {% for category in child_categories %}
-                    <div class="{{ featured_column_classname }}">
-                        <a class="featured-container" href="{{ category.url }}">
-                            <h2 class="govuk-heading-s">
-                                {{ category.title }}
-                            </h2>
-                            <p class="govuk-body">
-                                {{ category.intro }}
-                            </p>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+            {% for row in child_categories %}
+                <div class="govuk-grid-row">
+                    {% for category in row %}
+                        <div class="{{ featured_column_classname }}">
+                            <a class="featured-container" href="{{ category.url }}">
+                                <h2 class="govuk-heading-s">
+                                    {{ category.title }}
+                                </h2>
+                                {% if category.intro %}
+                                    <p class="govuk-body">
+                                        {{ category.intro }}
+                                    </p>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
 
             <div class="govuk-grid-row govuk-!-margin-top-8">
 

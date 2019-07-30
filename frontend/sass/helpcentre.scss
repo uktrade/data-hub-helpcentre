@@ -1,0 +1,46 @@
+$govuk-assets-path: '/static/assets/';
+$govuk-page-width: 1160px;
+
+@import '../../node_modules/govuk-frontend/all.scss';
+
+@import "home";
+@import "richtext";
+@import "article";
+@import "search";
+
+.article-list__item {
+  position: relative;
+}
+
+.article-list__title {
+  //@include govuk-font($size: 19);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-list__short-description {
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.article-date {
+  color: $govuk-secondary-text-colour;
+}
+
+.article-author {
+  color: $govuk-secondary-text-colour;
+}
+
+.govuk-dit-sidenav {
+  @extend .govuk-list;
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    @extend .govuk-link;
+  }
+}

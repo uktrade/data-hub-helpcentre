@@ -8,6 +8,8 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail.search import index
 
+from helpcentre.utils import convert_list_to_matrix
+
 
 class ArticleIndexPage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
@@ -24,18 +26,7 @@ class ArticleIndexPage(Page):
 
         child_groups = ArticleIndexPage.objects.live().child_of(self).type(ArticleIndexPage).order_by('title')
 
-        child_groups_for_layout = []
-        row = []
-        offset = 0
-        for group in child_groups:
-            row.append(group)
-
-            offset += 1
-            if offset % 3 == 0:
-                child_groups_for_layout.append(row)
-                row = []
-
-        child_groups_for_layout.append(row)
+        child_groups_for_layout = convert_list_to_matrix(child_groups)
 
         context['children'] = children
         context['siblings'] = siblings

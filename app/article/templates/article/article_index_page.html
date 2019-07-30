@@ -2,83 +2,83 @@
 
 {% load navigation_tags wagtailcore_tags %}
 
-{% block body_class %}template-articlepage{% endblock %}
+{% block body_class %}template-articleindexpage{% endblock %}
 
 {% block breadcrumbs %}
-{% breadcrumbs %}
+    {% breadcrumbs %}
 {% endblock %}
 
 {% block content %}
-<div class="govuk-width-container">
+    <div class="govuk-width-container">
 
-    <main class="govuk-main-wrapper" id="main-content">
+        <main class="govuk-main-wrapper" id="main-content">
 
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-full">
-                <h1 class="govuk-heading-l">{{ page.title }}</h1>
-            </div>
-        </div>
-
-        {% if children %}
-        <div class="govuk-grid-row govuk-!-margin-bottom-7">
-            <div class="govuk-grid-column-three-quarters">
-                {% for post in children %}
-                <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
-                    <a class="govuk-link"
-                       href="{% pageurl post %}">{{ post.title }}</a>
-                </h4>
-                <p class="govuk-body-s govuk-!-margin-bottom-1">
-                   <span class="article-date">
-                                {{ post.date|date:"d/m/Y" }}
-                            </span>
-                    <span class="article-author">
-                                {% article_author post %}
-                    </span>
-                </p>
-                {% if post.intro %}
-                <p class="govuk-body article-list__short-description">
-                    {{ post.intro }}
-                </p>
-                {% endif %}
-                {% endfor %}
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
+                </div>
             </div>
 
-            <div class="govuk-grid-column-one-quarter">
-                <h2 class="govuk-heading-m">Related sections</h2>
+            {% if children %}
+                <div class="govuk-grid-row govuk-!-margin-bottom-7">
+                    <div class="govuk-grid-column-three-quarters">
+                        {% for post in children %}
+                            <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
+                                <a class="govuk-link"
+                                   href="{% pageurl post %}">{{ post.title }}</a>
+                            </h4>
+                            <p class="govuk-body-s govuk-!-margin-bottom-1">
+                                <span class="article-date">
+                                    {{ post.date|date:"d/m/Y" }}
+                                </span>
+                                <span class="article-author">
+                                    {% article_author post %}
+                                </span>
+                            </p>
+                            {% if post.intro %}
+                                <p class="govuk-body article-list__short-description">
+                                    {{ post.intro }}
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
 
-                <ul class="govuk-dit-sidenav">
-                    {% for sibling in siblings %}
-                    <li>
-                        {% if page.url == sibling.url %}
-                        {{ sibling.title }}
-                        {% else %}
-                        <a href="{{ sibling.url }}">{{ sibling.title }}</a>
-                        {% endif %}
-                    </li>
+                    <div class="govuk-grid-column-one-quarter">
+                        <h2 class="govuk-heading-m">Related sections</h2>
 
+                        <ul class="govuk-dit-sidenav">
+                            {% for sibling in siblings %}
+                                <li>
+                                    {% if page.url == sibling.url %}
+                                        {{ sibling.title }}
+                                    {% else %}
+                                        <a href="{{ sibling.url }}">{{ sibling.title }}</a>
+                                    {% endif %}
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+
+                </div>
+            {% endif %}
+
+            {% for row in child_groups %}
+                <div class="govuk-grid-row govuk-!-margin-bottom-7">
+                    {% for post in row %}
+                        <div class="govuk-grid-column-one-third">
+                            <h2 class="govuk-heading-m ordered-article-list_title">
+                                <a href="{{ post.url }}" class="govuk-link">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
+                            {% ordered_article_list post %}
+                        </div>
                     {% endfor %}
-                </ul>
-
-            </div>
-
-        </div>
-        {% endif %}
-
-
-        {% for row in child_groups %}
-        <div class="govuk-grid-row">
-            {% for post in row %}
-            <div class="govuk-grid-column-one-third">
-                <a href="{{post.url}}">
-                    <h2 class="govuk-heading-m">{{ post.title}}</h2>
-                </a>
-                {% ordered_article_list post %}
-            </div>
+                </div>
             {% endfor %}
-        </div>
-        {% endfor %}
 
-
-    </main>
-</div>
+        </main>
+    </div>
 {% endblock %}

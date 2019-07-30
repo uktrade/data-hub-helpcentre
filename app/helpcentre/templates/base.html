@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon" href="/assets/images/govuk-apple-touch-icon.png">
 
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/helpdesk.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/helpcentre.css' %}">
     <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
 
     {% block extra_css %}
@@ -63,7 +63,7 @@
             </a>
         </div>
         <div class="govuk-header__content">
-
+            {% block header_search_container %}{% endblock %}
             <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link govuk-header__link--service-name">
                 {% with self.get_site.site_name as site_name %}
                     {% if site_name %}

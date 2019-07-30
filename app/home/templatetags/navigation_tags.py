@@ -36,6 +36,15 @@ def ordered_article_list(context, parent_object):
     }
 
 
+@register.inclusion_tag('tags/search.html')
+def search_box(placeholder='Type your search phrase and click the magnifying glass. Or press the enter key',
+               query_text=''):
+    return {
+        'placeholder': placeholder,
+        'query_text': query_text
+    }
+
+
 @register.inclusion_tag('tags/author.html', takes_context=True)
 def article_author(context, authored_object=None):
     if authored_object is None:

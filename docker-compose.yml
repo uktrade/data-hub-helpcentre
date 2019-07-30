@@ -2,9 +2,9 @@ version: "3"
 services:
 #  wagtail:
 #    build:
-#      context: helpdesk
+#      context: app
 #      dockerfile: Dockerfile
-#    env_file: .env
+#    env_file: app/.env
 #    links:
 #      - "postgres"
 #    image: data-hub-helpdesk
