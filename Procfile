@@ -1,1 +1,1 @@
-web: python helpdesk/manage.py migrate && python helpdesk/manage.py runserver 0.0.0.0:$PORT
+web: python app/manage.py migrate && python app/manage.py runserver 0.0.0.0:$PORT
