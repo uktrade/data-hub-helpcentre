@@ -65,7 +65,7 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_URL = reverse_lazy('authbroker_client:login')
 LOGIN_REDIRECT_URL = '/'
-ROOT_URLCONF = 'helpdesk.urls'
+ROOT_URLCONF = 'helpcentre.urls'
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy('authbroker_client:login')
 
@@ -87,13 +87,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'helpdesk.wsgi.application'
+WSGI_APPLICATION = 'helpcentre.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {'default': dj_database_url.config(
-    default='postgres://postgres:postgres@localhost:5432/helpdesk'
+    default='postgres://postgres:postgres@localhost:5432/helpcentre'
 )}
 
 # Password validation
