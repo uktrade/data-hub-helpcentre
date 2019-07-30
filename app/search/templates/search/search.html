@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags navigation_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
@@ -11,7 +11,7 @@
             <div class="govuk-main-wrapper">
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full">
-                        {% include 'search_partial.html' %}
+                        {% search_box 'Type your search phrase and click the magnifying glass. Or press the enter key' search_query %}
                     </div>
                 </div>
             </div>
