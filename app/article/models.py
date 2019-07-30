@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
@@ -16,16 +16,21 @@ class ArticleIndexPage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
+        FieldPanel('intro', classname='full')
     ]
 
     def get_context(self, request, *args, **kwargs):
-        context = super(ArticleIndexPage, self).get_context(request, *args, **kwargs)
+        context = super(ArticleIndexPage, self)\
+            .get_context(request, *args, **kwargs)
 
-        children = ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by('-date')
-        siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by('title')
+        children = ArticlePage.objects.live()\
+            .child_of(self).not_type(ArticleIndexPage).order_by('-date')
 
-        child_groups = ArticleIndexPage.objects.live().child_of(self).type(ArticleIndexPage).order_by('title')
+        siblings = ArticleIndexPage.objects.live()\
+            .sibling_of(self).order_by('title')
+
+        child_groups = ArticleIndexPage.objects.live()\
+            .child_of(self).type(ArticleIndexPage).order_by('title')
 
         child_groups_for_layout = convert_list_to_matrix(child_groups)
 
@@ -37,7 +42,7 @@ class ArticleIndexPage(Page):
 
 
 class ArticlePage(Page):
-    date = models.DateField("Post date")
+    date = models.DateField('Post date')
     intro = models.CharField(max_length=250, blank=True, null=True)
 
     body = StreamField([
@@ -68,8 +73,10 @@ class ArticlePage(Page):
     ]
 
     def get_context(self, request, *args, **kwargs):
-        context = super(ArticlePage, self).get_context(request, *args, **kwargs)
+        context = super(ArticlePage, self)\
+            .get_context(request, *args, **kwargs)
 
-        context['siblings'] = ArticlePage.objects.live().sibling_of(self, inclusive=False).order_by('title')
+        context['siblings'] = ArticlePage.objects.live()\
+            .sibling_of(self, inclusive=False).order_by('title')
 
         return context

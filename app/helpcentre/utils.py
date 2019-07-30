@@ -7,12 +7,12 @@ def get_row_size(count):
 
 def get_featured_column_classname(count):
     if count % 3 == 0:
-        return "govuk-grid-column-one-third"
+        return 'govuk-grid-column-one-third'
 
     if count % 2 == 0:
-        return "govuk-grid-column-one-half"
+        return 'govuk-grid-column-one-half'
 
-    return "govuk-grid-column-full"
+    return 'govuk-grid-column-full'
 
 
 def convert_list_to_matrix(items, row_length=3):
