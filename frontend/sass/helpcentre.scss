@@ -8,41 +8,7 @@ $govuk-page-width: 1160px;
 
 @import "richtext";
 @import "article";
-
-.search-form {
-  border: $govuk-border-width-form-element solid $govuk-input-border-colour;
-  width: 100%;
-  position: relative;
-}
-
-.search-form__input {
-  padding-right: 3rem;
-  margin: 0;
-  border: none;
-}
-
-.search-form__button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 40px;
-  border: 0;
-  border-left: $govuk-border-width-form-element solid $govuk-input-border-colour;
-  background: govuk-colour("blue") url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='40' height='40'%3E%3Cpath d='M25.7 24.8L21.9 21c.7-1 1.1-2.2 1.1-3.5 0-3.6-2.9-6.5-6.5-6.5S10 13.9 10 17.5s2.9 6.5 6.5 6.5c1.6 0 3-.6 4.1-1.5l3.7 3.7 1.4-1.4zM12 17.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z' fill='white'%3E%3C/path%3E%3C/svg%3E") no-repeat top left;
-  color: govuk-colour("white")
-  //background-color: $govuk-button-colour;
-}
-
-.article-summary-link {
-  //text-align: center;
-  //border: solid 1px;
-  //background-color: govuk-colour("green");
-}
-
-.article-list {
-
-}
+@import "search";
 
 .article-list__item {
   position: relative;
@@ -56,7 +22,6 @@ $govuk-page-width: 1160px;
 }
 
 .article-list__short-description {
-  //width: 80%;
   overflow:hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -84,7 +49,7 @@ $govuk-page-width: 1160px;
 
 .hero-container {
   // nb this just returns standard govuk- blue unless websafe is false
-  background-color: govuk-organisation-colour("department-for-international-trade", true);
+  background-color: govuk-organisation-colour("department-for-international-trade", false);
 }
 
 .hero-container--search {
