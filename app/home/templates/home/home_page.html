@@ -23,20 +23,25 @@
 
         <main class="govuk-main-wrapper" id="main-content">
 
-            <div class="govuk-grid-row">
-                {% for category in child_categories %}
-                    <div class="{{ featured_column_classname }}">
-                        <a class="featured-container" href="{{ category.url }}">
-                            <h2 class="govuk-heading-s">
-                                {{ category.title }}
-                            </h2>
-                            <p class="govuk-body">
-                                {{ category.intro }}
-                            </p>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+            {% for row in child_categories %}
+                <div class="govuk-grid-row">
+                    {% for category in row %}
+                        <div class="{{ featured_column_classname }}">
+                            <a class="featured-container" href="{{ category.url }}">
+                                <h2 class="govuk-heading-s">
+                                    {{ category.title }}
+                                </h2>
+                                {% if category.intro %}
+                                    <p class="govuk-body">
+                                        {{ category.intro }}
+                                    </p>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
 
             <div class="govuk-grid-row govuk-!-margin-top-8">
 

@@ -68,9 +68,11 @@
                 <div class="govuk-grid-row govuk-!-margin-bottom-7">
                     {% for post in row %}
                         <div class="govuk-grid-column-one-third">
-                            <a href="{{ post.url }}">
-                                <h2 class="govuk-heading-m article-group--title">{{ post.title }}</h2>
-                            </a>
+                            <h2 class="govuk-heading-m ordered-article-list_title">
+                                <a href="{{ post.url }}" class="govuk-link">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
                             {% ordered_article_list post %}
                         </div>
                     {% endfor %}
