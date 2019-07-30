@@ -1,4 +1,4 @@
-# data-hub-helpdesk
+# data-hub-helpcentre
 
 ## Getting started
 
