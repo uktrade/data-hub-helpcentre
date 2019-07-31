@@ -167,9 +167,3 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
     MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
-# else:
-#     AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
-#     AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-#     AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
-
-
