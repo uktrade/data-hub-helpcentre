@@ -9,6 +9,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from authbroker_client import urls as authbroker_client_urls
 
+from article import urls as article_urls
+
 from search import views as search_views
 
 urlpatterns = [
@@ -21,14 +23,13 @@ urlpatterns = [
 
     path('auth/', include(authbroker_client_urls)),
 
+    path('api/feeds/', include(article_urls)),
+
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
     url(r'', include(wagtail_urls)),
 
-    # Alternatively, if you want Wagtail pages to be served from a subpath
-    # of your site, rather than the site root:
-    #    url(r'^pages/', include(wagtail_urls)),
 ]
 
 if settings.DEBUG:
