@@ -82,6 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'helpcentre.context.shared_settings',
             ],
         },
     },
@@ -167,3 +168,5 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
     MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
+
+FEEDBACK_URL = env.str('FEEDBACK_URL', '/')
