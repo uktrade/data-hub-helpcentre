@@ -167,5 +167,3 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
     MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
-
-FEED_API_TOKEN = env.str('FEED_API_TOKEN')
