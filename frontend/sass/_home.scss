@@ -1,7 +1,9 @@
 
+$datahub-gray: #dee0e2;
+
 .hero-container {
   // nb this just returns standard govuk- blue unless websafe is false
-  background-color: govuk-organisation-colour("department-for-international-trade", true);
+  background-color: $datahub-gray;
 }
 
 .hero-container--search {
@@ -9,33 +11,37 @@
   margin: 0 auto;
 }
 
-$featured-fg-colour: $govuk-secondary-text-colour;
-$featured-bg-colour: #efefef;
+$featured-fg-colour: white;
+$featured-bg-colour: govuk-organisation-colour("department-for-international-trade", true);
 
 .featured-container {
   display: block;
   color: $featured-fg-colour;
+
+  a, h2, p {
+    color: $featured-fg-colour;
+  }
+
   background-color: $featured-bg-colour;
   box-sizing: border-box;
 
   padding: 1rem 1rem 0.5rem 1rem;
   min-height: 9rem;
 
-  $border-color: darken($featured-bg-colour, 10%);
-  border: solid 1px $border-color;
+  //$border-color: darken($featured-bg-colour, 10%);
+  //border: solid 1px $border-color;
 
   overflow: hidden;
   text-decoration: none;
 
   &:hover {
-    color: $featured-bg-colour;
-    background-color: white;
+    background-color: desaturate($featured-bg-colour, 100%);
   }
 }
 
-// To remove the border from the phase banner
+// To remove the border from the phase banner - horrible hack
 .template-homepage, .template-searchresults {
   .govuk-phase-banner {
-    border-bottom: none;
+    border-bottom-color: white;
   }
 }
