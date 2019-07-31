@@ -4,7 +4,6 @@ import environ
 import dj_database_url
 
 from django.urls import reverse_lazy
-from django.core.exceptions import ImproperlyConfigured
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -170,4 +169,3 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
     MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
 
 FEED_API_TOKEN = env.str('FEED_API_TOKEN')
-
