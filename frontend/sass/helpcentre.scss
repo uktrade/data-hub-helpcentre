@@ -1,7 +1,7 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
-@import '../../node_modules/govuk-frontend/all.scss';
+@import '../../node_modules/govuk-frontend/govuk/all.scss';
 
 @import "home";
 @import "richtext";

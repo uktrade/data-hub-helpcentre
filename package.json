@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^2.13.0"
+    "govuk-frontend": "^3.0.0"
   },
   "devDependencies": {
     "del": "^5.0.0",
