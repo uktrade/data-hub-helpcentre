@@ -24,19 +24,15 @@
                 </div>
             </div>
 
-
             <div class="govuk-grid-row">
-
-
                 <div class="govuk-grid-column-three-quarters">
-
                     <p class="govuk-body">
                         <span class="article-date">
-                        Last updated {{ page.date|date:"j N Y" }}
+                        {{ page.date|date:"j N Y" }}
                         </span>
 
                         <span class="article-author">
-                        by {% article_author %}
+                        {% article_author %}
                         </span>
                     </p>
                     {{ page.body }}
@@ -46,6 +42,7 @@
                     {% if siblings %}
                         <h2 class="govuk-heading-s">Articles in this section</h2>
                     {% endif %}
+
                     <ul class="govuk-dit-sidenav">
                         {% for sibling in siblings %}
                             <li>
@@ -55,12 +52,11 @@
                                     <a href="{{ sibling.url }}">{{ sibling.title }}</a>
                                 {% endif %}
                             </li>
-
                         {% endfor %}
                     </ul>
 
                 </div>
-
+            </div>
         </main>
     </div>
 
