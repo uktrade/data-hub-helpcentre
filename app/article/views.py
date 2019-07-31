@@ -1,12 +1,25 @@
-from django.http import JsonResponse, HttpResponseBadRequest
+import logging
+
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
+from django.conf import settings
 
 from .models import (
     ArticlePage,
 )
 
+logger = logging.getLogger('app')
+
 
 def recent_article_feed(request):
     limit_query = request.GET.get('limit', 10)
+
+    if not settings.DEBUG:
+        expected_token = f'Bearer {settings.FEED_API_TOKEN}'
+        auth_token = request.META.get('HTTP_AUTHORIZATION', '')
+
+        if not expected_token == auth_token:
+            logger.error(f'Bad api token {auth_token}')
+            return HttpResponseForbidden('Bad or missing token')
 
     try:
         limit = int(limit_query)
