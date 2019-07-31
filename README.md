@@ -81,5 +81,3 @@ writing manifest file 'pip-egg-info/psycopg2.egg-info/SOURCES.txt'
 Try 
 
     brew install postgresql
-
-

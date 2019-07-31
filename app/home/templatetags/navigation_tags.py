@@ -37,8 +37,10 @@ def ordered_article_list(context, parent_object):
 
 
 @register.inclusion_tag('tags/search.html')
-def search_box(placeholder='Type your search phrase and click the magnifying glass. Or press the enter key',
-               query_text=''):
+def search_box(
+        placeholder='Type your search phrase and click the magnifying glass. '
+                    'Or press the enter key',
+        query_text=''):
     return {
         'placeholder': placeholder,
         'query_text': query_text
@@ -59,11 +61,9 @@ def article_author(context, authored_object=None):
     if page is None:
         return model
 
-    if page.owner is None:
-        return model
+    if page.author:
+        return {
+            'name': f'{page.author.first_name} {page.author.last_name}'
+        }
 
-    name = f'{page.owner.first_name} {page.owner.last_name}'
-
-    return {
-        'name': name
-    }
+    return model
