@@ -140,37 +140,36 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend'),
 ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-WAGTAIL_SITE_NAME = 'helpdesk'
+WAGTAIL_SITE_NAME = 'helpcentre'
 
-BASE_URL = 'http://helpdesk.datahub.gov.uk'
+BASE_URL = 'http://helpcentre.datahub.gov.uk'
 
 AUTHBROKER_URL = env.str('AUTHBROKER_URL')
 AUTHBROKER_CLIENT_ID = env.str('AUTHBROKER_CLIENT_ID')
 AUTHBROKER_CLIENT_SECRET = env.str('AUTHBROKER_CLIENT_SECRET')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
 VCAP_SERVICES = env.json('VCAP_SERVICES', {})
 
-AWS_DEFAULT_ACL = None
-
 if 'aws-s3-bucket' in VCAP_SERVICES:
+    AWS_DEFAULT_ACL = None
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
     s3 = VCAP_SERVICES['aws-s3-bucket'][0]['credentials']
     AWS_STORAGE_BUCKET_NAME = s3['bucket_name']
     AWS_ACCESS_KEY_ID = s3['aws_access_key_id']
     AWS_SECRET_ACCESS_KEY = s3['aws_secret_access_key']
-else:
-    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
-    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
+# else:
+#     AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+#     AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+#     AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
 
-MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
+
