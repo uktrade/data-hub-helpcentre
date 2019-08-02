@@ -1,6 +1,6 @@
 ---
 applications:
-- name: datahub-helpdesk-dev
+- name: datahub-helpcentre-dev
   memory: 512M
   buildpacks:
     - python_buildpack
