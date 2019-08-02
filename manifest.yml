@@ -1,6 +1,4 @@
 ---
 applications:
-- name: datahub-helpcentre-dev
-  memory: 512M
-  buildpacks:
-    - python_buildpack
+- buildpack: https://github.com/cloudfoundry/python-buildpack.git#v1.6.35
+  stack: cflinuxfs3
