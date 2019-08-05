@@ -23,7 +23,8 @@ const sassOptions = {
 
 
 gulp.task('clean', function () {
-    return del([CSS_FILES, CSS_MAPS]);
+    const fonts = `${ASSETS_DEST}/fonts`;
+    return del([CSS_FILES, CSS_MAPS, fonts]);
 });
 
 gulp.task('copy-govuk-assets', function () {
