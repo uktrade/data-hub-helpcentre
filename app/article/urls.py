@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 
-from .views import  (
-    recent_article_feed,
+from .views import (
+    child_article_feed,
 )
 
 urlpatterns = [
-    url(r'^recent/$', recent_article_feed, name='recent_article_feed'),
+    path('<slug:slug>', child_article_feed, name='child_article_feed'),
 ]
