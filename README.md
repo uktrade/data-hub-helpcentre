@@ -26,7 +26,6 @@ brew install imagemagick
 python3 -m venv env
 source env/bin/activate
 
-cd helpdesk
 pip install -r requirements.txt
 ```
 

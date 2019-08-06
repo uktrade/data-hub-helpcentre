@@ -1,9 +1,9 @@
 {
-  "name": "data-hub-helpdesk",
+  "name": "data-hub-helpcentre",
   "version": "1.0.0",
-  "description": "simple helpdesk cms for datahub",
+  "description": "simple helpcentre cms for datahub",
   "main": "index.js",
-  "repository": "git@github.com:uktrade/data-hub-helpdesk.git",
+  "repository": "git@github.com:uktrade/data-hub-helpcentre.git",
   "author": "mark.higham@digital.trade.gov.uk",
   "license": "MIT",
   "private": true,
