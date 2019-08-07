@@ -1,8 +1,7 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
-$govuk-font-family-gds-transport: monospace;
-//$govuk-font-family: monospace;
+$govuk-font-family: Arial, "Helvetica Neue", sans-serif !important;
 
 @import '../../node_modules/govuk-frontend/govuk/all.scss';
 
@@ -23,7 +22,7 @@ $govuk-font-family-gds-transport: monospace;
 }
 
 .article-list__short-description {
-  overflow:hidden;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -48,6 +47,3 @@ $govuk-font-family-gds-transport: monospace;
   }
 }
 
-* {
-  font-family: Arial, "Helvetica Neue", sans-serif !important;
-}
