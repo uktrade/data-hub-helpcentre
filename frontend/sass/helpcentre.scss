@@ -1,6 +1,9 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
+$govuk-font-family-gds-transport: monospace;
+//$govuk-font-family: monospace;
+
 @import '../../node_modules/govuk-frontend/govuk/all.scss';
 
 @import "home";
@@ -43,4 +46,8 @@ $govuk-page-width: 1160px;
   a {
     @extend .govuk-link;
   }
+}
+
+* {
+  font-family: "Open Sans", Arial, "Helvetica Neue", sans-serif !important;
 }
