@@ -19,14 +19,15 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-    <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="{% static 'assets/images/favicon.ico' %}" type="image/x-icon"/>
+    <link rel="shortcut icon" sizes="16x16 32x32 48x48" href="{% static 'assets/images/favicon.ico' %}"
+          type="image/x-icon"/>
     <link rel="mask-icon" href="{% static 'assets/images/govuk-mask-icon.svg' %}" color="#0b0c0c">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/govuk-apple-touch-icon-180x180.png' %}">
     <link rel="apple-touch-icon" sizes="167x167" href="{% static 'assets/images/govuk-apple-touch-icon-167x167.png' %}">
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/images/govuk-apple-touch-icon-152x152.png' %}">
     <link rel="apple-touch-icon" href="{% static 'assets/images/govuk-apple-touch-icon.png' %}">
 
-    {#    <link href="https://fonts.googleapis.com/css?family=Lato|PT+Sans|Roboto&display=swap" rel="stylesheet">#}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/helpcentre.css' %}">
     <meta property="og:image" content="{% static 'assets/images/govuk-opengraph-image.png' %}">
 
@@ -47,7 +48,7 @@
     <div class="govuk-header__container govuk-width-container">
 
         <div class="govuk-header__logo">
-              <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link  govuk-header__link--homepage">
+            <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link  govuk-header__link--homepage">
                 {% with self.get_site.site_name as site_name %}
                     {% if site_name %}
                         {{ site_name }}
@@ -107,11 +108,11 @@
                href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
           </span>
             </div>
-{#            <div class="govuk-footer__meta-item">#}
-{#                <a class="govuk-footer__link govuk-footer__copyright-logo"#}
-{#                   href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">©#}
-{#                    Crown copyright</a>#}
-{#            </div>#}
+                        <div class="govuk-footer__meta-item">
+                            <a class="govuk-footer__link govuk-footer__copyright-logo"
+                               href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">©
+                                Crown copyright</a>
+                        </div>
         </div>
     </div>
 </footer>
