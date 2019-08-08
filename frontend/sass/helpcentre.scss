@@ -1,9 +1,21 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
-$govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
+//$govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
 
 @import '../../node_modules/govuk-frontend/govuk/all.scss';
+
+// Following the great.gov.uk styles body text is Roboto and Headings are Overpass
+// There is no simple way (that I've found) to set heading font family via sass variables
+
+//.govuk-heading-xl, .govuk-heading-l, .govuk-heading-m, .govuk-heading-s {
+//  font-family: 'Overpass', sans-serif;
+//
+//  a {
+//    font-family: 'Overpass', sans-serif;
+//  }
+//}
+
 
 @import "home";
 @import "richtext";
