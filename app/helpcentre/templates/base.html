@@ -48,7 +48,7 @@
     <div class="govuk-header__container govuk-width-container">
 
         <div class="govuk-header__logo">
-            <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link  govuk-header__link--homepage">
+              <a href="{% url 'wagtail_serve' '' %}" class="govuk-header__link  govuk-header__link--homepage">
                 {% with self.get_site.site_name as site_name %}
                     {% if site_name %}
                         {{ site_name }}
