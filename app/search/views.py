@@ -1,5 +1,6 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from article.models import (
     ArticlePage,
@@ -8,7 +9,7 @@ from article.models import (
 from wagtail.core.models import Page
 from wagtail.search.models import Query
 
-
+@login_required
 def search(request):
     search_query = request.GET.get('query', None)
     page = request.GET.get('page', 1)
