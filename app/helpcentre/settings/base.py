@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'article',
     'storages',
+    'wagtail.contrib.settings',
+#    'wagtail.contrib.styleguide',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'helpcentre.context.shared_settings',
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
