@@ -54,12 +54,27 @@ docker-compose up -d
 #### Run website locally
 
 ```bash
-source env/bin/activate
+$ source env/bin/activate
 
-python app/manage.py migrate
-python app/manage.py createsuperuser
+$ python app/manage.py migrate
 
-python app/manage.py runserver
+    # ... migrations happen
+
+$ python app/manage.py createsuperuser
+
+    # ... prompts for superuser. Name, email password etc
+
+$ python app/manage.py runserver 0.0.0.0:8000 
+
+    Watching for file changes with StatReloader
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    August 22, 2019 - 13:23:29
+    Django version 2.2.4, using settings 'helpcentre.settings.dev'
+    Starting development server at http://0.0.0.0:8000/
+    Quit the server with CONTROL-C.
+
 ```
 
 
