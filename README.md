@@ -6,7 +6,6 @@ Pre-requisites
 - python3
 - pip
 - docker
-- homebrew
 
 #### Animated gif support on macOS
 
