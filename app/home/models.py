@@ -1,4 +1,6 @@
+from django.db import models
 from wagtail.core.models import Page
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 from article.models import (
     ArticlePage,
@@ -11,6 +13,13 @@ from helpcentre.utils import (
     get_row_size,
 )
 
+@register_setting(icon='site')
+class GoogleAnalyticsSettings(BaseSetting):
+    tracking_code = models.CharField(max_length=50, help_text='Your GA tracking code')
+    is_enabled = models.BooleanField(default=False, help_text='When checked the GA tracking code will appear on all frontend pages')
+
+    class Meta:
+        verbose_name = 'Google Analytics'
 
 class HomePage(Page):
 
