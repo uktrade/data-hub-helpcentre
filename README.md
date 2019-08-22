@@ -1,6 +1,6 @@
 # data-hub-helpcentre
 
-## Local Development (macOS)
+## Local Development
 
 Pre-requisites
 - python3
@@ -8,7 +8,7 @@ Pre-requisites
 - docker
 - homebrew
 
-### Animated gif support
+#### Animated gif support on macOS
 
 The Wand pip package requires `imagemagick` to be installed for animated gif support
 
@@ -20,19 +20,20 @@ https://github.com/wagtail/wagtail/issues/2505
 brew install imagemagick
 ```
 
-#### Restore dependencies
+Configure Python Dev Environment
 
 ```
 python3 -m venv env
 source env/bin/activate
 
+pip install -U pip
 pip install -r requirements.txt
 ```
 
 ### Create a local env file
 
 ```
-cp sample.env .env
+cp app/sample.env app/.env
 ```
 
 Fill in the blanks for `AUTHBROKER`
@@ -47,7 +48,7 @@ AUTHBROKER_URL=if_you_have_access
 
 
 ```bash
-docker-compose up -d postgres
+docker-compose up -d
 ```
 
 #### Run website locally
@@ -55,19 +56,19 @@ docker-compose up -d postgres
 ```bash
 source env/bin/activate
 
-# export $(cat .env)
+python app/manage.py migrate
+python app/manage.py createsuperuser
 
-python manage.py app/migrate
-python manage.py app/createsuperuser
-
-python manage.py app/runserver
+python app/manage.py runserver
 ```
 
 
 
 # Issues with local dev
 
-## Unable to install pip dependencies
+## macOs
+
+### Unable to install pip dependencies
 
 ```
 writing manifest file 'pip-egg-info/psycopg2.egg-info/SOURCES.txt'
