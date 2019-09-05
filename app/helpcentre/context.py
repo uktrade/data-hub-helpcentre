@@ -5,5 +5,6 @@ from django.conf import (
 
 def shared_settings(request):
     return {
-        'feedback_url': settings.FEEDBACK_URL
+        'feedback_url': settings.FEEDBACK_URL,
+        'git_commit' : settings.GIT_COMMIT,
     }
