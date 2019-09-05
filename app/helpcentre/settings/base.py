@@ -153,6 +153,8 @@ WAGTAIL_SITE_NAME = 'helpcentre'
 
 BASE_URL = 'http://helpcentre.datahub.gov.uk'
 
+GIT_COMMIT = env.str('GIT_COMMIT', '')
+
 AUTHBROKER_URL = env.str('AUTHBROKER_URL')
 AUTHBROKER_CLIENT_ID = env.str('AUTHBROKER_CLIENT_ID')
 AUTHBROKER_CLIENT_SECRET = env.str('AUTHBROKER_CLIENT_SECRET')
