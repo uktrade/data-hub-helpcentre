@@ -15,3 +15,6 @@ try:
     from .local import *  # noqa: F403, F401
 except ImportError:
     pass
+
+MIDDLEWARE.append('helpcentre.middlewares.RedirectDomainMiddleware')
+
