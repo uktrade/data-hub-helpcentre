@@ -7,8 +7,8 @@ class RedirectDomainMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.META['HTTP_HOST'].endswith('help.datahub.trade.gov.uk'):
-            return HttpResponseRedirect('http://help.datahub.trade.gov.uk' + request.path)
+        if request.META['HTTP_HOST'].endswith('datahub-helpcentre.london.cloudapps.digital'):
+            return HttpResponseRedirect('https://help.datahub.trade.gov.uk' + request.path)
 
         response = self.get_response(request)
 
