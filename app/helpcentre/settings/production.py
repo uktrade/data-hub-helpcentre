@@ -16,4 +16,4 @@ try:
 except ImportError:
     pass
 
-MIDDLEWARE.append('helpcentre.middlewares.RedirectDomainMiddleware')
+#MIDDLEWARE.append('helpcentre.middlewares.RedirectDomainMiddleware')
