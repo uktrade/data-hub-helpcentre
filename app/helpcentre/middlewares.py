@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 
+
 # redirect requests from datahub-helpcentre.london.cloudapps.digital to help.datahub.trade.gov.uk, except API calls
 class RedirectDomainMiddleware(object):
 
