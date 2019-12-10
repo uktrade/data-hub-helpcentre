@@ -30,7 +30,7 @@ class ArticleIndexPage(Page):
             .sibling_of(self).order_by('title')
 
         child_groups = ArticleIndexPage.objects.live()\
-            .child_of(self).type(ArticleIndexPage).order_by('title')
+            .child_of(self).type(ArticleIndexPage).order_by('-date')
 
         child_groups_for_layout = convert_list_to_matrix(child_groups)
 
