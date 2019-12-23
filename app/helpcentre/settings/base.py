@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'article',
     'storages',
     'wagtail.contrib.settings',
-#    'wagtail.contrib.styleguide',
+    #    'wagtail.contrib.styleguide',
 ]
 
 MIDDLEWARE = [
@@ -174,3 +174,11 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
     MEDIA_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
 
 FEEDBACK_URL = env.str('FEEDBACK_URL', '/')
+
+SENTRY_DSN = env.str('SENTRY_DSN', None)
+
+if SENTRY_DSN:
+    RAVEN_CONFIG = {
+        "dsn": SENTRY_DSN
+    }
+    INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
