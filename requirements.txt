@@ -7,11 +7,11 @@ chardet==3.0.4
 dj-database-url==0.5.0
 Django==2.2.8
 django-environ==0.4.5
-django-modelcluster==4.4
+django-modelcluster==5.0
 django-oauth-toolkit==1.2.0
 django-staff-sso-client==1.0.0
 django-storages==1.7.1
-django-taggit==0.24.0
+django-taggit>=1.0
 django-treebeard==4.3
 djangorestframework==3.10.2
 docutils==0.14
@@ -33,9 +33,9 @@ six==1.12.0
 sqlparse==0.3.0
 Unidecode==1.1.1
 urllib3==1.25.3
-wagtail==2.6.1
+wagtail==2.8
 waitress==1.4.2
 Wand==0.5.5
 webencodings==0.5.1
 whitenoise==1.0.6
-Willow==1.1
+Willow>=1.3
