@@ -182,3 +182,6 @@ if SENTRY_DSN:
         "dsn": SENTRY_DSN
     }
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
+
+SHOW_ENV_BANNER = env.bool('SHOW_ENV_BANNER', False)
+ENV_NAME = env.str('ENV_NAME', '')
