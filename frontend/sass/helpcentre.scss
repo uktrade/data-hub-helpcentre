@@ -46,26 +46,6 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Ro
   color: $govuk-secondary-text-colour;
 }
 
-
-.article-tags {
-
-  .article-tags__tag {
-      background-color: darken($govuk-body-background-colour, 10%);
-
-    opacity: 0.2;
-    margin-right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    cursor:pointer;
-  }
-
-  &:hover {
-    .article-tags__tag {
-      opacity: 1;
-    }
-  }
-
-}
-
 .govuk-dit-sidenav {
   @extend .govuk-list;
 
