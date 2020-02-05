@@ -76,5 +76,4 @@ db.sqlite3
 node_modules
 media
 datadump
-helpcentre/static
 .vscode
