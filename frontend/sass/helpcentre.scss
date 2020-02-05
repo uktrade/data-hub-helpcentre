@@ -1,11 +1,11 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
-$govuk-font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+$govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 @import '../../node_modules/govuk-frontend/govuk/all.scss';
 
- //Following the great.gov.uk styles body text is Roboto and Headings are Overpass
- //There is no simple way (that I've found) to set heading font family via sass variables
+//Following the great.gov.uk styles body text is Roboto and Headings are Overpass
+//There is no simple way (that I've found) to set heading font family via sass variables
 
 .govuk-heading-xl, .govuk-heading-l, .govuk-heading-m, .govuk-heading-s {
   font-family: $govuk-font-family;
@@ -44,6 +44,26 @@ $govuk-font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto
 
 .article-author {
   color: $govuk-secondary-text-colour;
+}
+
+
+.article-tags {
+
+  .article-tags__tag {
+      background-color: darken($govuk-body-background-colour, 10%);
+
+    opacity: 0.2;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    cursor:pointer;
+  }
+
+  &:hover {
+    .article-tags__tag {
+      opacity: 1;
+    }
+  }
+
 }
 
 .govuk-dit-sidenav {
