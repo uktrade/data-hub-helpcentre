@@ -7,7 +7,7 @@ const del = require('del');
 
 const PROJECT_DIR = path.resolve(__dirname);
 const SASS_FILES = `${PROJECT_DIR}/frontend/sass/**/*.scss`;
-const STATIC_DIR = `${PROJECT_DIR}/helpcentre/static`;
+const STATIC_DIR = `${PROJECT_DIR}/static`;
 const CSS_DIR = `${STATIC_DIR}/css`;
 const CSS_FILES = `${CSS_DIR}/**/*.css`;
 const CSS_MAPS = `${CSS_DIR}/**/*.css.map`;
