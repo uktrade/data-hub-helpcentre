@@ -77,4 +77,5 @@ node_modules
 app/media
 datadump
 app/static
+static
 .vscode
