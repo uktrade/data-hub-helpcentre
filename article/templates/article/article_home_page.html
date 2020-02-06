@@ -7,11 +7,22 @@
     {% breadcrumbs %}
 {% endblock %}
 
-{% block header_search_container %}
-    <div class="top-search">{% search_box 'Search ...' %}</div>
-{% endblock %}
-
 {% block content %}
+     <div class="hero-container">
+        <div class="govuk-width-container">
+            <div class="govuk-main-wrapper govuk-main-wrapper--auto-spacing">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div class="hero-container--search">
+                            {% search_box %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="govuk-width-container">
         <main class="govuk-main-wrapper" id="main-content">
             <div class="govuk-grid-row">
