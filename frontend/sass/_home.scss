@@ -24,20 +24,23 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
   box-sizing: border-box;
 
   padding: 1rem 1rem 0.5rem 1rem;
-  min-height: 9rem;
+  margin-bottom: 1rem;
 
-  $border-color: darken($featured-bg-colour, 10%);
-  border: solid 1px $border-color;
+  min-height: 9rem;
 
   overflow: hidden;
   text-decoration: none;
 
   &:hover {
+    transition: all 0.2s ease-in-out;
     background-color: desaturate($featured-bg-colour, 100%);
+    //border: solid 1px desaturate($border-color, 100%);
+    //box-shadow: 0px 5px 2px #ccc;
   }
 
   &.featured-container__article-index-page {
     //text-align: center;
+
   }
 
   &.featured-container__article-home-page {

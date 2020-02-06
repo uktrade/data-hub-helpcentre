@@ -26,7 +26,7 @@
                 <div class="govuk-grid-row">
                     {% for category in row %}
                         <div class="{{ featured_column_classname }}">
-                            <a class="featured-container featured-container__article-index-page" href="{{ category.url }}">
+                            <a class="featured-container featured-container__article-home-page" href="{{ category.url }}">
                                 <h2 class="govuk-heading-m">
                                     {{ category.title }}
                                 </h2>
@@ -40,7 +40,6 @@
                     {% endfor %}
                 </div>
             {% endfor %}
-
             {% for row in child_index_pages %}
                 <div class="govuk-grid-row">
                     {% for category in row %}
@@ -61,16 +60,7 @@
             {% endfor %}
 
 
-            {% if recent %}
-                <div class="govuk-grid-row govuk-!-margin-top-8">
-                    <div class="govuk-grid-column-full">
-                        <h2 class="govuk-heading-l">
-                            Recent activity
-                        </h2>
-                        {% recent_articles_list recent %}
-                    </div>
-                </div>
-            {% endif %}
+
         </main>
     </div>
 {% endblock %}
