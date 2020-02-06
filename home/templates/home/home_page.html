@@ -53,7 +53,6 @@
 
                     {% for post in recent %}
                         <div class="recent-container govuk-!-padding-bottom-4 govuk-!-padding-top-4">
-
                             <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
                                 <a class="govuk-link"
                                    href="{% pageurl post %}">{{ post.title }}</a>
@@ -71,13 +70,7 @@
                                 <p class="govuk-body article-list__short-description govuk-!-padding-bottom-0 govuk-!-margin-bottom-0">
                                     {{ post.intro }}
                                 </p>
-
                             {% endif %}
-                            <p class="article-tags govuk-body govuk-!-margin-top-3 govuk-!-margin-bottom-0">
-                                <span class="article-tags__tag">How To Articles</span>
-                                <span class="article-tags__tag">Company</span>
-                            </p>
-
                         </div>
                     {% endfor %}
 
