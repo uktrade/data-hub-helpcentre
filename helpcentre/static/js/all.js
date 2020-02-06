@@ -1361,19 +1361,107 @@ Button.prototype.init = function () {
 var KEY_ENTER = 13;
 var KEY_SPACE$1 = 32;
 
-// Create a flag to know if the browser supports navtive details
-var NATIVE_DETAILS = typeof document.createElement('details').open === 'boolean';
-
 function Details ($module) {
   this.$module = $module;
 }
+
+Details.prototype.init = function () {
+  if (!this.$module) {
+    return
+  }
+
+  // If there is native details support, we want to avoid running code to polyfill native behaviour.
+  var hasNativeDetails = typeof this.$module.open === 'boolean';
+
+  if (hasNativeDetails) {
+    return
+  }
+
+  this.polyfillDetails();
+};
+
+Details.prototype.polyfillDetails = function () {
+  var $module = this.$module;
+
+  // Save shortcuts to the inner summary and content elements
+  var $summary = this.$summary = $module.getElementsByTagName('summary').item(0);
+  var $content = this.$content = $module.getElementsByTagName('div').item(0);
+
+  // If <details> doesn't have a <summary> and a <div> representing the content
+  // it means the required HTML structure is not met so the script will stop
+  if (!$summary || !$content) {
+    return
+  }
+
+  // If the content doesn't have an ID, assign it one now
+  // which we'll need for the summary's aria-controls assignment
+  if (!$content.id) {
+    $content.id = 'details-content-' + generateUniqueID();
+  }
+
+  // Add ARIA role="group" to details
+  $module.setAttribute('role', 'group');
+
+  // Add role=button to summary
+  $summary.setAttribute('role', 'button');
+
+  // Add aria-controls
+  $summary.setAttribute('aria-controls', $content.id);
+
+  // Set tabIndex so the summary is keyboard accessible for non-native elements
+  //
+  // We have to use the camelcase `tabIndex` property as there is a bug in IE6/IE7 when we set the correct attribute lowercase:
+  // See http://web.archive.org/web/20170120194036/http://www.saliences.com/browserBugs/tabIndex.html for more information.
+  $summary.tabIndex = 0;
+
+  // Detect initial open state
+  var openAttr = $module.getAttribute('open') !== null;
+  if (openAttr === true) {
+    $summary.setAttribute('aria-expanded', 'true');
+    $content.setAttribute('aria-hidden', 'false');
+  } else {
+    $summary.setAttribute('aria-expanded', 'false');
+    $content.setAttribute('aria-hidden', 'true');
+    $content.style.display = 'none';
+  }
+
+  // Bind an event to handle summary elements
+  this.polyfillHandleInputs($summary, this.polyfillSetAttributes.bind(this));
+};
+
+/**
+* Define a statechange function that updates aria-expanded and style.display
+* @param {object} summary element
+*/
+Details.prototype.polyfillSetAttributes = function () {
+  var $module = this.$module;
+  var $summary = this.$summary;
+  var $content = this.$content;
+
+  var expanded = $summary.getAttribute('aria-expanded') === 'true';
+  var hidden = $content.getAttribute('aria-hidden') === 'true';
+
+  $summary.setAttribute('aria-expanded', (expanded ? 'false' : 'true'));
+  $content.setAttribute('aria-hidden', (hidden ? 'false' : 'true'));
+
+  $content.style.display = (expanded ? 'none' : '');
+
+  var hasOpenAttr = $module.getAttribute('open') !== null;
+  if (!hasOpenAttr) {
+    $module.setAttribute('open', 'open');
+  } else {
+    $module.removeAttribute('open');
+  }
+
+  return true
+};
 
 /**
 * Handle cross-modal click events
 * @param {object} node element
 * @param {function} callback function
 */
-Details.prototype.handleInputs = function (node, callback) {
+Details.prototype.polyfillHandleInputs = function (node, callback) {
   node.addEventListener('keypress', function (event) {
     var target = event.target;
     // When the key gets pressed - check if it is enter or space
@@ -1406,104 +1494,12 @@ Details.prototype.handleInputs = function (node, callback) {
   node.addEventListener('click', callback);
 };
 
-Details.prototype.init = function () {
-  var $module = this.$module;
-
-  if (!$module) {
-    return
-  }
-
-  // Save shortcuts to the inner summary and content elements
-  var $summary = this.$summary = $module.getElementsByTagName('summary').item(0);
-  var $content = this.$content = $module.getElementsByTagName('div').item(0);
-
-  // If <details> doesn't have a <summary> and a <div> representing the content
-  // it means the required HTML structure is not met so the script will stop
-  if (!$summary || !$content) {
-    return
-  }
-
-  // If the content doesn't have an ID, assign it one now
-  // which we'll need for the summary's aria-controls assignment
-  if (!$content.id) {
-    $content.id = 'details-content-' + generateUniqueID();
-  }
-
-  // Add ARIA role="group" to details
-  $module.setAttribute('role', 'group');
-
-  // Add role=button to summary
-  $summary.setAttribute('role', 'button');
-
-  // Add aria-controls
-  $summary.setAttribute('aria-controls', $content.id);
-
-  // Set tabIndex so the summary is keyboard accessible for non-native elements
-  //
-  // We have to use the camelcase `tabIndex` property as there is a bug in IE6/IE7 when we set the correct attribute lowercase:
-  // See http://web.archive.org/web/20170120194036/http://www.saliences.com/browserBugs/tabIndex.html for more information.
-  if (!NATIVE_DETAILS) {
-    $summary.tabIndex = 0;
-  }
-
-  // Detect initial open state
-  var openAttr = $module.getAttribute('open') !== null;
-  if (openAttr === true) {
-    $summary.setAttribute('aria-expanded', 'true');
-    $content.setAttribute('aria-hidden', 'false');
-  } else {
-    $summary.setAttribute('aria-expanded', 'false');
-    $content.setAttribute('aria-hidden', 'true');
-    if (!NATIVE_DETAILS) {
-      $content.style.display = 'none';
-    }
-  }
-
-  // Bind an event to handle summary elements
-  this.handleInputs($summary, this.setAttributes.bind(this));
-};
-
-/**
-* Define a statechange function that updates aria-expanded and style.display
-* @param {object} summary element
-*/
-Details.prototype.setAttributes = function () {
-  var $module = this.$module;
-  var $summary = this.$summary;
-  var $content = this.$content;
-
-  var expanded = $summary.getAttribute('aria-expanded') === 'true';
-  var hidden = $content.getAttribute('aria-hidden') === 'true';
-
-  $summary.setAttribute('aria-expanded', (expanded ? 'false' : 'true'));
-  $content.setAttribute('aria-hidden', (hidden ? 'false' : 'true'));
-
-  if (!NATIVE_DETAILS) {
-    $content.style.display = (expanded ? 'none' : '');
-
-    var hasOpenAttr = $module.getAttribute('open') !== null;
-    if (!hasOpenAttr) {
-      $module.setAttribute('open', 'open');
-    } else {
-      $module.removeAttribute('open');
-    }
-  }
-  return true
-};
-
-/**
-* Remove the click event from the node element
-* @param {object} node element
-*/
-Details.prototype.destroy = function (node) {
-  node.removeEventListener('keypress');
-  node.removeEventListener('keyup');
-  node.removeEventListener('click');
-};
-
 function CharacterCount ($module) {
   this.$module = $module;
   this.$textarea = $module.querySelector('.govuk-js-character-count');
+  if (this.$textarea) {
+    this.$countMessage = $module.querySelector('[id=' + this.$textarea.id + '-info]');
+  }
 }
 
 CharacterCount.prototype.defaults = {
@@ -1516,9 +1512,15 @@ CharacterCount.prototype.init = function () {
   // Check for module
   var $module = this.$module;
   var $textarea = this.$textarea;
-  if (!$textarea) {
+  var $countMessage = this.$countMessage;
+
+  if (!$textarea || !$countMessage) {
     return
   }
+
+  // We move count message right after the field
+  // Kept for backwards compatibility
+  $textarea.insertAdjacentElement('afterend', $countMessage);
 
   // Read options set using dataset ('data-' values)
   this.options = this.getDataset($module);
@@ -1537,23 +1539,16 @@ CharacterCount.prototype.init = function () {
     return
   }
 
-  // Generate and reference message
-  var boundCreateCountMessage = this.createCountMessage.bind(this);
-  this.countMessage = boundCreateCountMessage();
+  // Remove hard limit if set
+  $module.removeAttribute('maxlength');
 
-  // If there's a maximum length defined and the count message exists
-  if (this.countMessage) {
-    // Remove hard limit if set
-    $module.removeAttribute('maxlength');
+  // Bind event changes to the textarea
+  var boundChangeEvents = this.bindChangeEvents.bind(this);
+  boundChangeEvents();
 
-    // Bind event changes to the textarea
-    var boundChangeEvents = this.bindChangeEvents.bind(this);
-    boundChangeEvents();
-
-    // Update count message
-    var boundUpdateCountMessage = this.updateCountMessage.bind(this);
-    boundUpdateCountMessage();
-  }
+  // Update count message
+  var boundUpdateCountMessage = this.updateCountMessage.bind(this);
+  boundUpdateCountMessage();
 };
 
 // Read data attributes
@@ -1584,27 +1579,6 @@ CharacterCount.prototype.count = function (text) {
   return length
 };
 
-// Generate count message and bind it to the input
-// returns reference to the generated element
-CharacterCount.prototype.createCountMessage = function () {
-  var countElement = this.$textarea;
-  var elementId = countElement.id;
-  // Check for existing info count message
-  var countMessage = document.getElementById(elementId + '-info');
-  // If there is no existing info count message we add one right after the field
-  if (elementId && !countMessage) {
-    countElement.insertAdjacentHTML('afterend', '<span id="' + elementId + '-info" class="govuk-hint govuk-character-count__message" aria-live="polite"></span>');
-    this.describedBy = countElement.getAttribute('aria-describedby');
-    this.describedByInfo = this.describedBy + ' ' + elementId + '-info';
-    countElement.setAttribute('aria-describedby', this.describedByInfo);
-    countMessage = document.getElementById(elementId + '-info');
-  } else {
-  // If there is an existing info count message we move it right after the field
-    countElement.insertAdjacentElement('afterend', countMessage);
-  }
-  return countMessage
-};
-
 // Bind input propertychange to the elements and update based on the change
 CharacterCount.prototype.bindChangeEvents = function () {
   var $textarea = this.$textarea;
@@ -1631,7 +1605,7 @@ CharacterCount.prototype.checkIfValueChanged = function () {
 CharacterCount.prototype.updateCountMessage = function () {
   var countElement = this.$textarea;
   var options = this.options;
-  var countMessage = this.countMessage;
+  var countMessage = this.$countMessage;
 
   // Determine the remaining number of characters/words
   var currentLength = this.count(countElement.value);
@@ -1880,7 +1854,9 @@ ErrorSummary.prototype.getFragmentFromUrl = function (url) {
  *
  * Returns the first element that exists from this list:
  *
- * - The `<legend>` associated with the closest `<fieldset>` ancestor
+ * - The `<legend>` associated with the closest `<fieldset>` ancestor, as long
+ *   as the top of it is no more than half a viewport height away from the
+ *   bottom of the input
  * - The first `<label>` that is associated with the input using for="inputId"
  * - The closest parent `<label>`
  *
@@ -1895,7 +1871,32 @@ ErrorSummary.prototype.getAssociatedLegendOrLabel = function ($input) {
     var legends = $fieldset.getElementsByTagName('legend');
 
     if (legends.length) {
-      return legends[0]
+      var $candidateLegend = legends[0];
+
+      // If the input type is radio or checkbox, always use the legend if there
+      // is one.
+      if ($input.type === 'checkbox' || $input.type === 'radio') {
+        return $candidateLegend
+      }
+
+      // For other input types, only scroll to the fieldset’s legend (instead of
+      // the label associated with the input) if the input would end up in the
+      // top half of the screen.
+      //
+      // This should avoid situations where the input either ends up off the
+      // screen, or obscured by a software keyboard.
+      var legendTop = $candidateLegend.getBoundingClientRect().top;
+      var inputRect = $input.getBoundingClientRect();
+
+      // If the browser doesn't support Element.getBoundingClientRect().height
+      // or window.innerHeight (like IE8), bail and just link to the label.
+      if (inputRect.height && window.innerHeight) {
+        var inputBottom = inputRect.top + inputRect.height;
+
+        if (inputBottom - legendTop < window.innerHeight / 2) {
+          return $candidateLegend
+        }
+      }
     }
   }
 
@@ -2035,12 +2036,13 @@ Radios.prototype.handleClick = function (event) {
 
     (function (global) {
 
-      // Polyfill from https://github.com/Financial-Times/polyfill-service/pull/1062/files#diff-404b69b4750d18dea4174930a49170fd
+      // There is no polyfill in polyfill-library (https://github.com/Financial-Times/polyfill-library/issues/338)
+      // So we source this from https://github.com/Alhadis/Snippets/blob/e09b4dfb7ffc9e250bc28319051e39ead3e5f70a/js/polyfills/IE8-child-elements.js#L28-L33
       Object.defineProperty(Element.prototype, "nextElementSibling", {
         get: function(){
           var el = this.nextSibling;
           while (el && el.nodeType !== 1) { el = el.nextSibling; }
-          return (el.nodeType === 1) ? el : null;
+          return el;
         }
       });
 
@@ -2058,12 +2060,13 @@ Radios.prototype.handleClick = function (event) {
     if (detect) return
 
     (function (global) {
-      // Polyfill from https://github.com/Financial-Times/polyfill-service/pull/1062/files#diff-b45a1197b842728cb76b624b6ba7d739
+      // There is no polyfill in polyfill-library (https://github.com/Financial-Times/polyfill-library/issues/338)
+      // So we source this from https://github.com/Alhadis/Snippets/blob/e09b4dfb7ffc9e250bc28319051e39ead3e5f70a/js/polyfills/IE8-child-elements.js#L35-L40
       Object.defineProperty(Element.prototype, 'previousElementSibling', {
         get: function(){
           var el = this.previousSibling;
           while (el && el.nodeType !== 1) { el = el.previousSibling; }
-          return (el.nodeType === 1) ? el : null;
+          return el;
         }
       });
 
