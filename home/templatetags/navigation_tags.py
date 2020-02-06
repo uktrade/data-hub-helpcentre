@@ -8,7 +8,6 @@ from article.models import (
 
 register = template.Library()
 
-
 @register.inclusion_tag('tags/breadcrumbs.html', takes_context=True)
 def breadcrumbs(context):
     self = context.get('self')
@@ -65,3 +64,11 @@ def article_author(context, authored_object=None):
         }
 
     return model
+
+
+@register.inclusion_tag('tags/recent_articles.html', takes_context=True)
+def recent_articles_list(context, articles):
+
+    return {
+        'recent':  articles
+    }

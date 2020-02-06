@@ -32,3 +32,18 @@ def convert_list_to_matrix(items, row_length=3):
         child_groups_for_layout.append(row)
 
     return child_groups_for_layout
+
+
+def get_featured_data(child_class, parent_instance):
+
+    child_categories = child_class.objects.live() \
+        .child_of(parent_instance).order_by('title')
+
+    row_width = get_row_size(len(child_categories))
+    child_categories_matrix = \
+        convert_list_to_matrix(child_categories, row_width)
+
+    featured_column_classname = \
+        get_featured_column_classname(len(child_categories))
+
+    return featured_column_classname, child_categories_matrix

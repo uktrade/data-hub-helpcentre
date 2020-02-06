@@ -20,6 +20,7 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Ro
 @import "richtext";
 @import "article";
 @import "search";
+@import "recent";
 
 .article-list__item {
   position: relative;

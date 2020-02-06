@@ -22,12 +22,30 @@
     <div class="govuk-width-container">
 
         <main class="govuk-main-wrapper" id="main-content">
-
             {% for row in child_categories %}
                 <div class="govuk-grid-row">
                     {% for category in row %}
                         <div class="{{ featured_column_classname }}">
-                            <a class="featured-container" href="{{ category.url }}">
+                            <a class="featured-container featured-container__article-index-page" href="{{ category.url }}">
+                                <h2 class="govuk-heading-m">
+                                    {{ category.title }}
+                                </h2>
+                                {% if category.intro %}
+                                    <p class="govuk-body">
+                                        {{ category.intro }}
+                                    </p>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% for row in child_index_pages %}
+                <div class="govuk-grid-row">
+                    {% for category in row %}
+                        <div class="{{ child_index_column_classname }}">
+                            <a class="featured-container featured-container__article-index-page" href="{{ category.url }}">
                                 <h2 class="govuk-heading-m">
                                     {{ category.title }}
                                 </h2>
@@ -43,40 +61,16 @@
             {% endfor %}
 
 
-            <div class="govuk-grid-row govuk-!-margin-top-8">
-
-                <div class="govuk-grid-column-full">
-
-                    <h2 class="govuk-heading-l">
-                        Recent activity
-                    </h2>
-
-                    {% for post in recent %}
-                        <div class="recent-container govuk-!-padding-bottom-4 govuk-!-padding-top-4">
-                            <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
-                                <a class="govuk-link"
-                                   href="{% pageurl post %}">{{ post.title }}</a>
-                            </h4>
-                            <p class="govuk-body-s govuk-!-margin-bottom-1">
-                            <span class="article-date">
-                                {{ post.date|date:"d/m/Y" }}
-                            </span>
-                                <span class="article-author">
-                                {% article_author post %}
-                            </span>
-
-                            </p>
-                            {% if post.intro %}
-                                <p class="govuk-body article-list__short-description govuk-!-padding-bottom-0 govuk-!-margin-bottom-0">
-                                    {{ post.intro }}
-                                </p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-
+            {% if recent %}
+                <div class="govuk-grid-row govuk-!-margin-top-8">
+                    <div class="govuk-grid-column-full">
+                        <h2 class="govuk-heading-l">
+                            Recent activity
+                        </h2>
+                        {% recent_articles_list recent %}
+                    </div>
                 </div>
-
-            </div>
+            {% endif %}
         </main>
     </div>
 {% endblock %}

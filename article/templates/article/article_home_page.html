@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load navigation_tags wagtailcore_tags %}
+
+{% block body_class %}template-articlehomepage{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumbs %}
+{% endblock %}
+
+{% block header_search_container %}
+    <div class="top-search">{% search_box 'Search ...' %}</div>
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-width-container">
+        <main class="govuk-main-wrapper" id="main-content">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
+                </div>
+            </div>
+
+            {% for row in child_categories %}
+                <div class="govuk-grid-row">
+                    {% for category in row %}
+                        <div class="{{ featured_column_classname }}">
+                            <a class="featured-container" href="{{ category.url }}">
+                                <h2 class="govuk-heading-m">
+                                    {{ category.title }}
+                                </h2>
+                                {% if category.intro %}
+                                    <p class="govuk-body">
+                                        {{ category.intro }}
+                                    </p>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% if recent %}
+                <div class="govuk-grid-row govuk-!-margin-top-8">
+                    <div class="govuk-grid-column-full">
+                        <h2 class="govuk-heading-l">
+                            Recent activity
+                        </h2>
+                        {% recent_articles_list recent %}
+                    </div>
+                </div>
+            {% endif %}
+
+        </main>
+
+    </div>
+{% endblock %}

@@ -1,8 +1,6 @@
-
 $datahub-gray: #dee0e2;
 
 .hero-container {
-  // nb this just returns standard govuk- blue unless websafe is false
   background-color: $datahub-gray;
 }
 
@@ -28,8 +26,8 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
   padding: 1rem 1rem 0.5rem 1rem;
   min-height: 9rem;
 
-  //$border-color: darken($featured-bg-colour, 10%);
-  //border: solid 1px $border-color;
+  $border-color: darken($featured-bg-colour, 10%);
+  border: solid 1px $border-color;
 
   overflow: hidden;
   text-decoration: none;
@@ -37,9 +35,18 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
   &:hover {
     background-color: desaturate($featured-bg-colour, 100%);
   }
+
+  &.featured-container__article-index-page {
+    //text-align: center;
+  }
+
+  &.featured-container__article-home-page {
+    //background-color: green;
+  }
+
 }
 
-// To remove the border from the phase banner - horrible hack
+// To remove the border from the phase banner
 .template-homepage, .template-searchresults {
   .govuk-phase-banner {
     border-bottom-color: white;
