@@ -29,10 +29,12 @@
                         <ul class="govuk-list">
                             {% for result in search_results %}
                                 <li>
-                                    <h4>
+                                    <h4 class="govuk-!-margin-bottom-0">
                                         <a class="govuk-link" href="{% pageurl result %}">{{ result }}</a>
                                     </h4>
-                                    
+                                    <p class="govuk-body govuk-!-margin-bottom-1 govuk-!-margin-top-1">
+                                    {% tags_using_breadcrumbs result %}
+                                    </p>
                                     {% if result.search_description %}
                                         {{ result.search_description }}
                                     {% endif %}

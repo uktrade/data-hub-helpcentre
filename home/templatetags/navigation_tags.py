@@ -8,6 +8,19 @@ from article.models import (
 
 register = template.Library()
 
+
+@register.inclusion_tag('tags/tags_using_breadcrumbs.html', takes_context=True)
+def tags_using_breadcrumbs(context, page):
+    if page is None or page.depth <= 2:
+        ancestors = ()
+    else:
+        ancestors = Page.objects.ancestor_of(page, inclusive=False).filter(depth__gt=1)
+
+    return {
+        'ancestors': ancestors,
+    }
+
+
 @register.inclusion_tag('tags/breadcrumbs.html', takes_context=True)
 def breadcrumbs(context):
     self = context.get('self')
@@ -68,7 +81,6 @@ def article_author(context, authored_object=None):
 
 @register.inclusion_tag('tags/recent_articles.html', takes_context=True)
 def recent_articles_list(context, articles):
-
     return {
-        'recent':  articles
+        'recent': articles
     }

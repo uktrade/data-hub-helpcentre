@@ -34,8 +34,8 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Ro
 }
 
 .article-list__short-description {
-  overflow: hidden;
-  white-space: nowrap;
+  //overflow: hidden;
+  //white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -59,3 +59,17 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Ro
   }
 }
 
+.inline-breadcrumbs {
+
+  .inline-breadcrumbs--item {
+
+    border-left: solid 1px #ccc;
+    padding: 0 0.5rem;
+
+    &:nth-of-type(1) {
+      border-left: none;
+      padding-left: 0;
+    }
+
+  }
+}
