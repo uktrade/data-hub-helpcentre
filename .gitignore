@@ -77,4 +77,4 @@ node_modules
 media
 datadump
 .vscode
-static/
+/static
