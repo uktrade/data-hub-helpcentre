@@ -10,7 +10,11 @@ register = template.Library()
 
 
 @register.inclusion_tag('tags/tags_using_breadcrumbs.html', takes_context=True)
-def tags_using_breadcrumbs(context, page):
+def tags_using_breadcrumbs(context, page, level = None):
+
+    if not level:
+        level = page.depth
+
     if page is None or page.depth <= 2:
         ancestors = ()
     else:
