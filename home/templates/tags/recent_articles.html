@@ -1,27 +1,22 @@
 {% load navigation_tags wagtailcore_tags %}
 
 {% for post in recent %}
-    <div class="recent-container govuk-!-padding-top-4">
+    <div class="recent-container">
         <h4 class="govuk-heading-m govuk-!-margin-bottom-1 article-list__title">
-            <a class="govuk-link"
-               href="{% pageurl post %}">{{ post.title }}</a>
+            <a class="govuk-link" href="{% pageurl post %}">{{ post.title }}</a>
         </h4>
-        <p class="govuk-body">
-                            <span class="article-date">
-                                {{ post.date|date:"d/m/Y" }}
-                            </span>
-            <span class="article-author">
-                                {% article_author post %}
-                            </span>
-
+        <p class="govuk-body govuk-!-margin-bottom-1">
             {% if post.intro %}
-                <br>
                 <span class="article-list__short-description ">
                     {{ post.intro }}
                 </span>
+                <br>
             {% endif %}
-        <br>
-        {% tags_using_breadcrumbs post %}
+</p>
+    <p class="govuk-body-s">
+            <span class="article-date">{{ post.date|date:"d/m/Y" }}</span>
+            <span class="article-author">{% article_author post %}</span>
+            {% tags_using_breadcrumbs post %}
         </p>
 
     </div>

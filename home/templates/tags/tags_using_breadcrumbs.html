@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 
 <span class="inline-breadcrumbs">
-{% for ancestor in ancestors|slice:"1:" %}
+{% for ancestor in ancestors|slice:"2:" %}
 <a class="govuk-link--no-visited-state inline-breadcrumbs--item" href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor.title }}</a>
 {% endfor %}
 </span>
