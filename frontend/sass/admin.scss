@@ -1,0 +1,112 @@
+@import '../../node_modules/govuk-frontend/govuk/helpers/_colour.scss';
+
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+$primary-color: govuk-organisation-colour("department-for-international-trade", true);
+$button-color: $primary-color;
+$tabbar-bg-color: darken($primary-color, 10%);
+
+header {
+  background-color: $primary-color;
+}
+
+.page-explorer .listing .index {
+  background-color: $primary-color;
+}
+
+.breadcrumb li:hover {
+  background: white;
+  color: black;
+
+  a {
+    color: black;
+  }
+}
+
+.tab-nav a {
+  background-color: $primary-color;
+  border-top-color: $tabbar-bg-color;
+}
+
+.tab-nav a:hover {
+  border-top-color: white;
+}
+
+.tab-nav li.active a {
+  border-top-color: white;
+  cursor: default;
+}
+
+.button {
+  background-color: $button-color;
+  border-color: $button-color;
+}
+
+.button:hover {
+  background-color: lighten($button-color, 5%);
+  border-color: lighten($button-color, 5%);
+}
+
+.dropdown {
+  ul {
+    background-color: $button-color;
+
+    a {
+      &:hover {
+        background-color: lighten($button-color, 5%);
+      }
+    }
+  }
+}
+
+.dropdown .dropdown-toggle {
+  background-color: $button-color;
+}
+
+.dropdown .dropdown-toggle:hover, .dropdown.open .dropdown-toggle {
+  background-color: $button-color;
+}
+
+$breadcrumb-bg-color: #383838;
+
+@media screen and (min-width: 50em) {
+
+  .breadcrumb {
+    background: $breadcrumb-bg-color;
+  }
+
+  .breadcrumb li a {
+    &:after {
+      color: white;
+    }
+
+    &:hover {
+      &:after {
+        color: black;
+      }
+    }
+  }
+
+  .listing td.children:hover {
+    background-color: lighten($primary-color, 20%);
+  }
+
+  .listing tr:hover .children {
+    background-color: $primary-color;
+  }
+
+  .listing .children a {
+    color: $primary-color;
+  }
+
+  .tab-nav.merged {
+    background-color: $tabbar-bg-color;
+  }
+
+}
+
+.page-explorer .listing .index .button.bicolor {
+  background: blue;
+}

@@ -20,10 +20,5 @@
 
 {% block css %}
     {{ block.super }}
-    <style>
-        body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
 {% endblock %}

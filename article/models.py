@@ -78,6 +78,8 @@ class ArticlePage(Page):
         FieldPanel('author'),
     ]
 
+    parent_page_types = ['article.ArticleIndexPage']
+
     def get_context(self, request, *args, **kwargs):
         context = super(ArticlePage, self).get_context(request, *args, **kwargs)
 
