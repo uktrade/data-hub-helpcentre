@@ -5,7 +5,7 @@ botocore==1.12.197
 certifi==2019.6.16
 chardet==3.0.4
 dj-database-url==0.5.0
-Django==2.2.9
+Django==2.2.10
 django-environ==0.4.5
 django-modelcluster==4.4
 django-oauth-toolkit==1.2.0

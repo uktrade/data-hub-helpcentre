@@ -2,7 +2,7 @@ autopep8==1.4.4
 beautifulsoup4==4.6.0
 certifi==2019.6.16
 chardet==3.0.4
-Django==2.2.9
+Django==2.2.10
 django-modelcluster==4.4
 django-oauth-toolkit==1.2.0
 django-staff-sso-client==0.3.1
