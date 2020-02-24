@@ -13,6 +13,7 @@ $featured-fg-colour: white;
 $featured-bg-colour: govuk-organisation-colour("department-for-international-trade", true);
 
 .featured-container {
+  box-sizing: border-box;
   display: block;
   color: $featured-fg-colour;
 
@@ -20,7 +21,13 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
     color: $featured-fg-colour;
   }
 
+  p {
+    max-height: 50px;
+    overflow:hidden;
+  }
+
   background-color: $featured-bg-colour;
+  $border-color: darken($featured-bg-colour, 5%);
   box-sizing: border-box;
 
   padding: 1rem 1rem 0.5rem 1rem;
@@ -31,11 +38,10 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
   overflow: hidden;
   text-decoration: none;
 
+
   &:hover {
     transition: all 0.2s ease-in-out;
     background-color: desaturate($featured-bg-colour, 100%);
-    //border: solid 1px desaturate($border-color, 100%);
-    //box-shadow: 0px 5px 2px #ccc;
   }
 
   &.featured-container__article-index-page {

@@ -1,3 +1,5 @@
+import logging
+
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -9,9 +11,13 @@ from article.models import (
 from wagtail.core.models import Page
 from wagtail.search.models import Query
 
+logger = logging.getLogger(__name__)
+
+
 @login_required
 def search(request):
     search_query = request.GET.get('query', None)
+    logger.debug(f'search for "{search_query}"')
     page = request.GET.get('page', 1)
 
     # Search
@@ -21,6 +27,7 @@ def search(request):
 
         # Record hit
         query.add_hit()
+
     else:
         search_results = Page.objects.none()
 

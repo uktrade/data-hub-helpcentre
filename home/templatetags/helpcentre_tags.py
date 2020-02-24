@@ -1,3 +1,5 @@
+import logging
+
 from django import template
 
 from wagtail.core.models import Page
@@ -8,10 +10,11 @@ from article.models import (
 
 register = template.Library()
 
+logger = logging.getLogger(__name__)
+
 
 @register.inclusion_tag('tags/tags_using_breadcrumbs.html', takes_context=True)
-def tags_using_breadcrumbs(context, page, level = None):
-
+def tags_using_breadcrumbs(context, page, level=None):
     if not level:
         level = page.depth
 
