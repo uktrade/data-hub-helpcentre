@@ -215,7 +215,11 @@ LOGGING = {
             'level': 'DEBUG'
         },
         'search': {
-            'handlers' : ['console'],
+            'handlers': ['console'],
+            'level': 'DEBUG'
+        },
+        'article': {
+            'handlers': ['console'],
             'level': 'DEBUG'
         }
     }
