@@ -176,10 +176,12 @@ if 'aws-s3-bucket' in VCAP_SERVICES:
 FEEDBACK_URL = env.str('FEEDBACK_URL', '/')
 
 SENTRY_DSN = env.str('SENTRY_DSN', None)
+SENTRY_ENVIRONMENT = env.str('SENTRY_ENVIRONMENT', None)
 
 if SENTRY_DSN:
     RAVEN_CONFIG = {
-        "dsn": SENTRY_DSN
+        "dsn": SENTRY_DSN,
+        "environment" : SENTRY_ENVIRONMENT
     }
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
 

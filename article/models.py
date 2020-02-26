@@ -82,7 +82,6 @@ class ArticlePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(ArticlePage, self).get_context(request, *args, **kwargs)
-
         context['siblings'] = ArticlePage.objects.live() \
             .sibling_of(self, inclusive=False).order_by('title')
 
