@@ -153,7 +153,7 @@ WAGTAIL_SITE_NAME = 'helpcentre'
 
 BASE_URL = 'http://helpcentre.datahub.gov.uk'
 
-GIT_COMMIT = env.str('GIT_COMMIT', '')
+
 
 AUTHBROKER_URL = env.str('AUTHBROKER_URL')
 AUTHBROKER_CLIENT_ID = env.str('AUTHBROKER_CLIENT_ID')
@@ -187,6 +187,9 @@ if SENTRY_DSN:
 
 SHOW_ENV_BANNER = env.bool('SHOW_ENV_BANNER', False)
 ENV_NAME = env.str('ENV_NAME', '')
+
+GIT_BRANCH = env.str('GIT_BRANCH', '')
+GIT_COMMIT = env.str('GIT_COMMIT', '')
 
 LOGGING = {
     "version": 1,

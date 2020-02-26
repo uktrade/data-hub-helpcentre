@@ -145,7 +145,7 @@
 </script>
     <!-- End Google Analytics -->
 {% endif %}
-<!-- {{ git_commit }} -->
+<!-- {{git_branch}} {{ git_commit }} -->
 
 {% if show_banner %}
     <style>
@@ -157,9 +157,10 @@
             height: 60px;
             line-height: 60px;
             background-color: #cf102d;
-
-            text-align: center;
+            padding: 0 1em;
+            
             cursor: pointer;
+            text-align: center;
         }
 
         .env-banner:hover {
@@ -170,8 +171,19 @@
         .env-banner p {
             color: white;
             line-height: 60px;
-            text-transform: uppercase;
         }
+
+        .env-banner p .env {
+            text-transform: uppercase;
+            padding-right:1em;
+        }
+
+        .env-banner p .gits {
+            padding: 0 1em 0 0;
+            font-style: italic;
+            
+        }
+
     </style>
     <script>
     function hide(){
@@ -180,7 +192,10 @@
     }
     </script>
 <div class="env-banner" onclick="javascript:hide()" title="click to hide">
-    <p class="govuk-body">{{ env_name }}
+    <p class="govuk-body">
+        ENV:<span class="gits">        {{ env_name }}        </span>
+        GIT_BRANCH:<span class="gits">{{git_branch}}</span>
+        GIT_COMMIT:<span class="gits">{{git_commit}}</span>
     </p>
 </div>
 {% endif %}
