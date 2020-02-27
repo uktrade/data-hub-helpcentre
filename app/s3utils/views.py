@@ -38,8 +38,8 @@ def dump_images(request):
 
             zip.writestr('report.txt', logs)
 
-        with open(zip_filename, 'rb') as zip:
-            data = zip.read()
+        with open(zip_filename, 'rb') as zf:
+            data = zf.read()
             b = io.BytesIO(data)
 
     response = HttpResponse(b.getvalue(), content_type='application/x-zip-compressed')
