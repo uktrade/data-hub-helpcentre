@@ -1,0 +1,20 @@
+{% load static wagtailuserbar wagtailsettings_tags %}
+{% load wagtailimages_tags %}
+<html>
+<head>
+
+    <style>
+        img {
+            width: 160px;
+            height: 160px;
+            border: dashed 1px green;
+        }
+    </style>
+
+</head>
+<body>
+    {% for image_def in images %}
+        {% image image_def original %}
+    {% endfor %}
+</body>
+</html>

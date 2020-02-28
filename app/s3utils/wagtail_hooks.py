@@ -22,6 +22,12 @@ class ImportExportMenuItem(MenuItem):
 
 @hooks.register('register_admin_menu_item')
 def register_import_export_menu_item():
-    return ImportExportMenuItem(
-        _('Export Images'), reverse('s3utils:dump_images'), classnames='icon icon-download', order=800
-    )
+    return ImportExportMenuItem(('Export Images'), reverse('s3utils:download_images'), classnames='icon icon-download',
+                                order=800
+                                )
+
+@hooks.register('register_admin_menu_item')
+def register_display_images_menu_item():
+    return ImportExportMenuItem(('Display Images'), reverse('s3utils:display_images'), classnames='icon icon-image',
+                                order=800
+                                )
