@@ -20,11 +20,12 @@ class ImportExportMenuItem(MenuItem):
         return request.user.is_superuser
 
 
-@hooks.register('register_admin_menu_item')
-def register_import_export_menu_item():
-    return ImportExportMenuItem(('Export Images'), reverse('s3utils:download_images'), classnames='icon icon-download',
-                                order=800
-                                )
+# this doesn't work when images are hosted on s3
+#@hooks.register('register_admin_menu_item')
+#def register_import_export_menu_item():
+#    return ImportExportMenuItem(('Export Images'), reverse('s3utils:download_images'), classnames='icon icon-download',
+#                                order=800
+#                                )
 
 @hooks.register('register_admin_menu_item')
 def register_display_images_menu_item():
