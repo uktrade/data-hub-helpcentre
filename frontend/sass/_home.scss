@@ -21,9 +21,15 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
     color: $featured-fg-colour;
   }
 
+  h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   p {
     max-height: 50px;
-    overflow:hidden;
+    overflow: hidden;
   }
 
   background-color: $featured-bg-colour;
@@ -59,5 +65,16 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
 .template-homepage, .template-searchresults {
   .govuk-phase-banner {
     border-bottom-color: white;
+  }
+}
+
+// override the default logo width of 33%
+.govuk-header__logo {
+
+  @include govuk-media-query($from: tablet) {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
