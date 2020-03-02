@@ -120,7 +120,7 @@
     </div>
 </footer>
 
-{# Global javascript #} 
+{# Global javascript #}
 <script type="text/javascript" src="{% static 'js/helpdesk.js' %}"></script>
 
 
@@ -146,7 +146,7 @@
 </script>
     <!-- End Google Analytics -->
 {% endif %}
-<!-- {{git_branch}} {{ git_commit }} -->
+<!-- env:{{ env_name }} git_branch:{{git_branch}} git_commit:{{ git_commit }} -->
 
 {% if show_banner %}
     <style>
@@ -159,7 +159,7 @@
             line-height: 60px;
             background-color: #cf102d;
             padding: 0 1em;
-            
+
             cursor: pointer;
             text-align: center;
         }
@@ -182,7 +182,7 @@
         .env-banner p .gits {
             padding: 0 1em 0 0;
             font-style: italic;
-            
+
         }
 
     </style>
