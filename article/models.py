@@ -1,9 +1,6 @@
 import logging
 from django.db import models
 from django.conf import settings
-from django.http import JsonResponse, HttpResponseBadRequest
-
-from django.core.exceptions import PermissionDenied
 
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
@@ -18,38 +15,6 @@ from helpcentre.utils import convert_list_to_matrix, get_featured_data
 logger = logging.getLogger(__name__)
 
 
-def get_child_pages_for_api(page, request):
-    limit_query = request.GET.get('limit', 3)
-    if not settings.DEBUG:
-        expected_token = f'Bearer {settings.FEED_API_TOKEN}'
-        auth_token = request.META.get('HTTP_AUTHORIZATION', '')
-
-        if not expected_token == auth_token:
-            logger.error(f'Bad api token {auth_token}')
-            raise PermissionDenied()
-
-    limit = int(limit_query)
-
-    recent_articles = ArticlePage.objects.live().descendant_of(page).order_by('-date')[:limit]
-    site_root = request.site.root_url
-
-    result = {
-        'count': len(recent_articles),
-        'articles': []
-    }
-
-    for recent in recent_articles:
-        path = f'{site_root}{recent.url}'
-        article = {
-            'html_url': path,
-            'title': recent.title,
-            'created_at': recent.date,
-        }
-        result['articles'].append(article)
-
-    return result
-
-
 class ArticleIndexPage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
     show_in_columns = models.BooleanField(default=True,
@@ -59,23 +24,6 @@ class ArticleIndexPage(Page):
         FieldPanel('intro', classname='full'),
         FieldPanel('show_in_columns'),
     ]
-
-    def serve(self, request):
-
-        if "format" in request.GET and request.GET["format"] == "json":
-            logger.debug('overridden serve for ArticleIndexPage')
-            try:
-                api_response = get_child_pages_for_api(self, request)
-            except TypeError as e:
-                logger.error(e)
-                return HttpResponseBadRequest()
-            except ValueError as e:
-                logger.error(e)
-                return HttpResponseBadRequest()
-
-            return JsonResponse(api_response)
-
-        return super().serve(request)
 
     def get_context(self, request, *args, **kwargs):
         context = super(ArticleIndexPage, self) \
