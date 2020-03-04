@@ -12,11 +12,11 @@ logger = logging.getLogger(__name__)
 
 def child_article_feed(request, path):
     logger.debug(path)
+    path_components = [component for component in path.split('/') if component]
+    logger.debug(f"components {path_components}")
 
-    slug = path.split('/')[-1]
-    logger.debug(f"slug: {slug}")
-
-    page = Page.objects.get(slug=slug)
+    page = request.site.root_page.specific.route(request, path_components).page.specific
+    logger.debug(page)
 
     limit_query = request.GET.get('limit', 3)
     if settings.DEBUG:
