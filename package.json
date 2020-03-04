@@ -8,9 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^3.5.0"
-  },
-  "devDependencies": {
+    "govuk-frontend": "^3.5.0",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
