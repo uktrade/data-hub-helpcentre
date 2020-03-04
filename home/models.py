@@ -1,4 +1,5 @@
 from django.db import models
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
 
@@ -20,12 +21,22 @@ class GoogleAnalyticsSettings(BaseSetting):
 
 
 class HomePage(Page):
+    show_recent_child_articles = \
+        models.BooleanField(default=False,
+                            help_text='When checked this page will display a list of any descendant articles')
+
+    content_panels = Page.content_panels + [
+        FieldPanel('show_recent_child_articles')
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super(HomePage, self).get_context(request, *args, **kwargs)
 
-        recent = ArticlePage.objects.live().descendant_of(self) \
-                     .not_type(ArticleIndexPage).order_by('-date')[:10]
+        recent = []
+
+        if self.show_recent_child_articles:
+            recent = ArticlePage.objects.live().descendant_of(self) \
+                         .not_type(ArticleIndexPage).order_by('-date')[:10]
 
         context['recent'] = recent
 

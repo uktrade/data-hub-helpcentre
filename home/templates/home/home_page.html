@@ -59,7 +59,16 @@
                 </div>
             {% endfor %}
 
-
+            {% if recent %}
+                <div class="govuk-grid-row govuk-!-margin-top-8">
+                    <div class="govuk-grid-column-full">
+                        <h2 class="govuk-heading-l">
+                            Recent activity
+                        </h2>
+                        {% recent_articles_list recent %}
+                    </div>
+                </div>
+            {% endif %}
 
         </main>
     </div>

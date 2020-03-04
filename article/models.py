@@ -112,7 +112,9 @@ class ArticleHomePage(Page):
 
         featured_column_classname, child_categories_matrix = get_featured_data(ArticleIndexPage, self)
 
-        recent = ArticlePage.objects.live().descendant_of(self) \
+        recent = []
+        if self.show_recent_child_articles:
+            recent = ArticlePage.objects.live().descendant_of(self) \
                      .not_type(ArticleIndexPage).order_by('-date')[:10]
 
         context['child_categories'] = child_categories_matrix
