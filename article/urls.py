@@ -5,6 +5,5 @@ from .views import (
 )
 
 urlpatterns = [
-    path('<path:path]>', child_article_feed, name='child_article_feed'),
-
+    path('<path:path>', child_article_feed, name='child_article_feed'),
 ]
