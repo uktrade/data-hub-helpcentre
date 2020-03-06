@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load helpcentre_tags wagtailcore_tags %}
+
+{% block body_class %}template-articlepage{% endblock %}
+
+{% block breadcrumbs %}
+    {% breadcrumbs %}
+{% endblock %}
+
+{% block header_search_container %}
+    <div class="top-search">{% search_box 'Search ...' %}</div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-width-container">
+        <main class="govuk-main-wrapper" id="main-content">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-l">{{ page.title }}</h1>
+                </div>
+            </div>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-three-quarters">
+                    <p class="govuk-body">
+                        <span class="article-date">
+                        {{ page.date|date:"d/m/Y" }}
+                        </span>
+
+                        <span class="article-author">
+                        {% article_author %}
+                        </span>
+                    </p>
+                    {{ page.body }}
+                </div>
+
+                <div class="govuk-grid-column-one-quarter">
+                    {% if siblings %}
+                        <h2 class="govuk-heading-s">Articles in this section</h2>
+                    {% endif %}
+
+                    <ul class="govuk-dit-sidenav">
+                        {% for sibling in siblings %}
+                            <li>
+                                {% if page.url == sibling.url %}
+                                    {{ sibling.title }}
+                                {% else %}
+                                    <a href="{{ sibling.url }}">{{ sibling.title }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+{% endblock %}

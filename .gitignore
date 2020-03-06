@@ -74,7 +74,7 @@ ssl.key
 ssl.crt
 db.sqlite3
 node_modules
-app/media
+media
 datadump
-app/static
 .vscode
+/static

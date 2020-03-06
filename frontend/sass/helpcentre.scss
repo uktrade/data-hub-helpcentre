@@ -1,18 +1,17 @@
 $govuk-assets-path: '/static/assets/';
 $govuk-page-width: 1160px;
 
-$govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
-
+$govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 @import '../../node_modules/govuk-frontend/govuk/all.scss';
 
- //Following the great.gov.uk styles body text is Roboto and Headings are Overpass
- //There is no simple way (that I've found) to set heading font family via sass variables
+//Following the great.gov.uk styles body text is Roboto and Headings are Overpass
+//There is no simple way (that I've found) to set heading font family via sass variables
 
 .govuk-heading-xl, .govuk-heading-l, .govuk-heading-m, .govuk-heading-s {
-  font-family: 'Overpass', sans-serif;
+  font-family: $govuk-font-family;
 
   a {
-    font-family: 'Overpass', sans-serif;
+    font-family: $govuk-font-family;
   }
 }
 
@@ -21,6 +20,7 @@ $govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
 @import "richtext";
 @import "article";
 @import "search";
+@import "recent";
 
 .article-list__item {
   position: relative;
@@ -34,8 +34,8 @@ $govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
 }
 
 .article-list__short-description {
-  overflow: hidden;
-  white-space: nowrap;
+  //overflow: hidden;
+  //white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -59,3 +59,17 @@ $govuk-font-family: 'Roboto', Arial, "Helvetica Neue", sans-serif;
   }
 }
 
+.inline-breadcrumbs {
+  color: $govuk-secondary-text-colour;
+  .inline-breadcrumbs--item {
+    color: $govuk-secondary-text-colour;
+    text-decoration: none;
+    border-bottom: dotted 1px;
+
+    &:hover {
+
+      border-bottom: solid 1px;
+    }
+
+  }
+}
