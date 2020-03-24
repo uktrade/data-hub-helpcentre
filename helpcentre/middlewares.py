@@ -12,6 +12,10 @@ class RedirectDomainMiddleware(object):
                 and not request.path.startswith('/api/'):
             return HttpResponseRedirect('https://help.datahub.trade.gov.uk' + request.path)
 
+        if request.META['HTTP_HOST'].endswith('data-services-helpcentre.london.cloudapps.digital') \
+                and not request.path.startswith('/api/'):
+            return HttpResponseRedirect('https://data-services-help.trade.gov.uk' + request.path)
+
         response = self.get_response(request)
 
         return response
