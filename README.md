@@ -138,3 +138,21 @@ writing manifest file 'pip-egg-info/psycopg2.egg-info/SOURCES.txt'
 Try 
 
     brew install postgresql
+
+
+## Ubuntu > 18
+
+https://stackoverflow.com/a/12037133
+
+```
+    writing manifest file '/tmp/pip-install-d7flps2p/psycopg2/pip-egg-info/psycopg2.egg-info/SOURCES.txt'
+    
+    Error: pg_config executable not found.
+
+```
+
+Try
+
+```
+    sudo apt install libpq-dev
+```
