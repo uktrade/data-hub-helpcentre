@@ -1,0 +1,46 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: python:3.6.9
+        environment:
+          DJANGO_SETTINGS_CONFIG: helpcentre.settings.dev
+
+          AUTHBROKER_CLIENT_ID: not_the_real_client_id
+          AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
+          AUTHBROKER_URL: https://url.to.sso
+            
+          FEED_API_TOKEN: asdasdasdasd
+          FEEDBACK_URL: http://path.to.feedback
+          DEBUG: True
+          
+      - image: postgres:10
+        environment:
+          POSTGRES_DB: export-wins-data
+          POSTGRES_HOST_AUTH_METHOD: trust
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore pip cache
+          key: v1-export-wins-data-{{ checksum "requirements.txt" }}
+          paths:
+            - ~/cache/pip
+      - run:
+          name: Install dependencies
+          command: python -m pip install --cache-dir ~/cache/pip --progress-bar off -r requirements.txt
+      - save_cache:
+          name: Save pip cache
+          key: v1-export-wins-data-{{ checksum "requirements.txt" }}
+          paths:
+            - ~/cache/pip
+      - run:
+          name: Run tests
+          command: pytest
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
