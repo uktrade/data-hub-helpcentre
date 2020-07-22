@@ -78,3 +78,4 @@ media
 datadump
 .vscode
 /static
+postgres_data
