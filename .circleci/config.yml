@@ -37,7 +37,7 @@ jobs:
             - ~/cache/pip
       - run:
           name: Run tests
-          command: pytest
+          command: python manage.py test
 
 workflows:
   version: 2
