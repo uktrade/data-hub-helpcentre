@@ -1,5 +1,4 @@
 .rich-text {
-
   p {
     @extend .govuk-body;
   }
@@ -8,7 +7,8 @@
     @extend .govuk-heading-m;
   }
 
-  h3, h4 {
+  h3,
+  h4 {
     @extend .govuk-heading-s;
   }
 
@@ -27,5 +27,4 @@
     @extend .govuk-section-break;
     @extend .govuk-section-break--visible;
   }
-
 }
