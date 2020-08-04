@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
-from wagtail.core.models import Page
 from .models import ArticlePage
 
 logger = logging.getLogger(__name__)

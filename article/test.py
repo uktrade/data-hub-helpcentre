@@ -1,5 +1,9 @@
 from wagtail.tests.utils import WagtailPageTests
-from .models import *
+from .models import (
+    ArticlePage,
+    ArticleIndexPage,
+)
+
 from home.models import HomePage
 
 

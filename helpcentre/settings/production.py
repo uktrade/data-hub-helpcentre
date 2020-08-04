@@ -1,3 +1,5 @@
+# flake8: noqa
+# TODO - consolidate all these settings files
 from .base import *  # noqa: F403, F401
 from django.core.exceptions import ImproperlyConfigured
 
