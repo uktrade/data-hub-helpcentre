@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('article', '0008_articlehomepage'),
+        ("article", "0008_articlehomepage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='articlehomepage',
-            name='show_recent_child_articles',
+            model_name="articlehomepage",
+            name="show_recent_child_articles",
             field=models.BooleanField(default=True),
         ),
     ]

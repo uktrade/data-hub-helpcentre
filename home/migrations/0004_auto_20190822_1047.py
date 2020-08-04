@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('home', '0003_googleanalyticssettings'),
+        ("home", "0003_googleanalyticssettings"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='googleanalyticssettings',
-            name='is_enabled',
-            field=models.BooleanField(default=False, help_text='When checked the GA tracking code will appear on all frontend pages'),
+            model_name="googleanalyticssettings",
+            name="is_enabled",
+            field=models.BooleanField(
+                default=False,
+                help_text="When checked the GA tracking code will appear on all frontend pages",
+            ),
         ),
     ]
