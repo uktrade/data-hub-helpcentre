@@ -11,7 +11,7 @@ jobs:
             - npm-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Restore npm dependencies
-          command: npm ci
+          command: npm install
       - run:
           name: Run prettier
           command: |
