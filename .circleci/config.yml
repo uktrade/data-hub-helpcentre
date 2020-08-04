@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Run prettier
           command: |
-            npm run prettier
+            npx prettier --check "frontend/sass/**/*.{scss,js}"
       - save_cache:
           paths:
             - node_modules
