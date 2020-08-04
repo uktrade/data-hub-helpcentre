@@ -44,8 +44,7 @@ jobs:
           name: flake8
           command: |
             source env/bin/activate
-            echo "this is where we run flake8"
-            # flake8 --count
+            flake8 --count
       - save_cache:
           paths:
             - env
