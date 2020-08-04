@@ -1,6 +1,56 @@
 version: 2
 
 jobs:
+  prettier:
+    docker: 
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Restore npm dependencies
+          command: npm ci
+      - run:
+          name: Run prettier
+          command: |
+            npm run prettier
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-dependencies-{{ checksum "package-lock.json" }}  
+
+  python_code_style:
+    docker:
+      - image: circleci/python:3.6.6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pip-dependencies-{{ checksum "requirements-dev.txt" }}
+      - run:
+          name: Create virtualenv and install dependencies
+          command: |
+              python3 -m venv env
+              . env/bin/activate
+              pip install -r requirements-dev.txt          
+      - run:
+          name: Run black
+          command: |
+            source env/bin/activate
+            echo "this is where we run black"
+            # black trade_remedies_caseworker --check
+      - run:
+          name: flake8
+          command: |
+            source env/bin/activate
+            echo "this is where we run flake8"
+            # flake8 --count
+      - save_cache:
+          paths:
+            - env
+          key: pip-dependencies-{{ checksum "requirements-dev.txt" }}
   build:
     working_directory: ~/app
     docker:
@@ -44,3 +94,5 @@ workflows:
   build:
     jobs:
       - build
+      - prettier
+      - python_code_style      
