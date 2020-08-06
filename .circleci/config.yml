@@ -49,7 +49,7 @@ jobs:
           paths:
             - env
           key: pip-dependencies-{{ checksum "requirements-dev.txt" }}
-  build:
+  test:
     working_directory: ~/app
     docker:
       - image: python:3.6.9
@@ -91,6 +91,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - build
+      - test
       - prettier
       - python_code_style      
