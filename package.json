@@ -18,5 +18,8 @@
     "sass": "gulp",
     "sass:watch": "gulp && gulp sass:watch",
     "postinstall": "gulp"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }

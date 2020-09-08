@@ -10,14 +10,19 @@ $datahub-gray: #dee0e2;
 }
 
 $featured-fg-colour: white;
-$featured-bg-colour: govuk-organisation-colour("department-for-international-trade", true);
+$featured-bg-colour: govuk-organisation-colour(
+  "department-for-international-trade",
+  true
+);
 
 .featured-container {
   box-sizing: border-box;
   display: block;
   color: $featured-fg-colour;
 
-  a, h2, p {
+  a,
+  h2,
+  p {
     color: $featured-fg-colour;
   }
 
@@ -44,7 +49,6 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
   overflow: hidden;
   text-decoration: none;
 
-
   &:hover {
     transition: all 0.2s ease-in-out;
     background-color: desaturate($featured-bg-colour, 100%);
@@ -52,17 +56,16 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
 
   &.featured-container__article-index-page {
     //text-align: center;
-
   }
 
   &.featured-container__article-home-page {
     //background-color: green;
   }
-
 }
 
 // To remove the border from the phase banner
-.template-homepage, .template-searchresults {
+.template-homepage,
+.template-searchresults {
   .govuk-phase-banner {
     border-bottom-color: white;
   }
@@ -70,7 +73,6 @@ $featured-bg-colour: govuk-organisation-colour("department-for-international-tra
 
 // override the default logo width of 33%
 .govuk-header__logo {
-
   @include govuk-media-query($from: tablet) {
     width: 50%;
     overflow: hidden;

@@ -1,4 +1,24 @@
-# data-hub-helpcentre
+# data-hub-helpcentre (aka Data Services Helpcentre)
+
+## Coding Styles
+
+We use the following tools to maintain a consistent coding style
+
+- [black](https://black.readthedocs.io/) - for python code formatting
+- [flake8](https://flake8.pycqa.org/en/latest/) - Python code style
+- [prettier](https://prettier.io/) - for javascript and sass code formatting
+
+These style rules are enforced by CircleCI *so please check your code locally before pushing changes!*
+
+### Quickly check coding quality locally
+
+The quickest way is the run via docker containers.
+
+    make prettier
+    make black
+    make flake8
+
+These will create temporary containers install dependencies and run the code formatters
 
 ## Local Development - Python
 
