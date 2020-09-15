@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-APPLICATION_NAME="Trade Remedies Caseworker"
+APPLICATION_NAME="data-hub-helpcentre"
 APPLICATION_VERSION=1.0
 VENV_PATH=~/Envs/traderem-api/bin
 
