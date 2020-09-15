@@ -9,6 +9,7 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail.search import index
+from wagtailcodeblock.blocks import CodeBlock
 
 from helpcentre.utils import convert_list_to_matrix, get_featured_data
 
@@ -58,7 +59,11 @@ class ArticlePage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
 
     body = StreamField(
-        [("paragraph", blocks.RichTextBlock()), ("image", ImageChooserBlock()),],
+        [
+            ("paragraph", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("code", CodeBlock(label="Code")),
+        ],
         null=True,
         blank=True,
     )
