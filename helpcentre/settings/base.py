@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "article",
     "storages",
     "wagtail.contrib.settings",
-    #    'wagtail.contrib.styleguide',
+    "wagtailcodeblock",
 ]
 
 MIDDLEWARE = [
