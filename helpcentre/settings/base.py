@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "wagtailcodeblock",
 ]
 
+
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -192,3 +193,17 @@ LOGGING = {
         "article": {"handlers": ["console"], "level": "DEBUG"},
     },
 }
+
+# https://github.com/FlipperPA/wagtailcodeblock#languages-available
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ("bash", "Bash/Shell"),
+    ("css", "CSS"),
+    ("diff", "diff"),
+    ("html", "HTML"),
+    ("javascript", "Javascript"),
+    ("json", "JSON"),
+    ("python", "Python"),
+    ("r", "R"),
+    ("scss", "SCSS"),
+    ("yaml", "YAML"),
+)
