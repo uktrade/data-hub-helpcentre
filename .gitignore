@@ -79,3 +79,4 @@ datadump
 .vscode
 /static
 postgres_data
+yarn.lock
