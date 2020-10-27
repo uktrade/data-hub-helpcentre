@@ -27,6 +27,8 @@ Pre-requisites
 - pip
 - docker
 
+
+
 #### Animated gif support on macOS
 
 The Wand pip package requires `imagemagick` to be installed for animated gif support
@@ -52,7 +54,7 @@ pip install -r requirements.txt
 ### Create a local env file
 
 ```
-cp app/sample.env app/.env
+cp sample.env .env
 ```
 
 Fill in the blanks for `AUTHBROKER`
