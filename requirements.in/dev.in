@@ -1,0 +1,6 @@
+# Constrain to base requirements
+-r ../requirements/base.txt
+
+black==19.10b0
+flake8==3.8.3
+coverage==5.2

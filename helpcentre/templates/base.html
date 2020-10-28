@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailsettings_tags %}
+{% load static wagtailuserbar wagtailsettings_tags wagtailcore_tags %}
 {% get_settings use_default_site=True %}
 <!DOCTYPE html>
 <html class="govuk-template no-js " lang="en">
@@ -97,6 +97,12 @@
                         <a target="_blank" class="govuk-footer__link"
                            href="https://workspace.trade.gov.uk/working-at-dit/policies-and-guidance/data-workspace-privacy-policy">
                             Privacy Policy
+                        </a>
+                    </li>
+                    <li class="govuk-footer__inline-list-item">
+                        <a class="govuk-footer__link"
+                           href="{% slugurl 'accessibility-statement' %}">
+                           Accessibility Statement
                         </a>
                     </li>
                 </ul>

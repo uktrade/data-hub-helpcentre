@@ -90,7 +90,7 @@ WSGI_APPLICATION = "helpcentre.wsgi.application"
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgres://postgres:postgres@localhost:5432/helpcentre"
+        default="postgres://postgres:postgres@postgres:5432/helpcentre"
     )
 }
 
