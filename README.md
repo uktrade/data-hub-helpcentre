@@ -40,17 +40,17 @@ make front-end
 make up
 ```
 
-### Changing requirements files
+### Run website locally
+
+Browse the website at http://localhost:8000
+
+## Changing requirements files
 
 Make any changes to requirements.in files and then run (uses pip tools - https://github.com/jazzband/pip-tools):
 
 ```bash
 make all-requirements
 ```
-
-#### Run website locally
-
-Browse the website at localhost:8000
 
 ## Building the front end styles
 
