@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailsettings_tags %}
+{% load static wagtailuserbar wagtailsettings_tags wagtailcore_tags %}
 {% get_settings use_default_site=True %}
 <!DOCTYPE html>
 <html class="govuk-template no-js " lang="en">
@@ -101,7 +101,7 @@
                     </li>
                     <li class="govuk-footer__inline-list-item">
                         <a class="govuk-footer__link"
-                           href="/accessibility-statement">
+                           href="{% slugurl 'accessibility-statement' %}">
                            Accessibility Statement
                         </a>
                     </li>

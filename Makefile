@@ -15,15 +15,22 @@ help:
 	@echo -e "$(COLOUR_YELLOW)make prettier$(COLOUR_NONE) : Check sass files using prettier"
 	@echo -e "$(COLOUR_YELLOW)make flake8$(COLOUR_NONE) : Check python files using flake8"
 	@echo -e "$(COLOUR_YELLOW)make black$(COLOUR_NONE) : Check python files using black"
+	@echo -e "$(COLOUR_YELLOW)make all-requirements$(COLOUR_NONE) : Generate requirements files"
+	@echo -e "$(COLOUR_YELLOW)make build$(COLOUR_NONE) : docker-compose build"
+	@echo -e "$(COLOUR_YELLOW)make up$(COLOUR_NONE) : docker-compose up"
+	@echo -e "$(COLOUR_YELLOW)make down$(COLOUR_NONE) : docker-compose down"
+	@echo -e "$(COLOUR_YELLOW)make migrations$(COLOUR_NONE) : Create Django migrations"
+	@echo -e "$(COLOUR_YELLOW)make migrate$(COLOUR_NONE) : Run Django migrate"
+	@echo -e "$(COLOUR_YELLOW)make front-end$(COLOUR_NONE) : Generate front end for first use"
 
 prettier:
 	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --check "frontend/sass/**/*.{scss,js}"'
 
 flake8:
-	docker run -it --rm -v requirements:/usr/local -v "$(CURDIR):/app" python sh -c "cd /app && pip install -r requirements-dev.txt && flake8 --count" 
+	docker-compose run --rm helpcentre flake8
 
 black:
-	docker run -it --rm -v requirements:/usr/local -v "$(CURDIR):/app" python sh -c "cd /app && pip install -r requirements-dev.txt && black . --check"
+	docker-compose run --rm helpcentre  black . --check
 
 all-requirements:
 	pip-compile --output-file requirements/base.txt requirements.in/base.in
@@ -38,6 +45,12 @@ up:
 
 down:
 	docker-compose down
+
+shell:
+	docker-compose run --rm helpcentre python manage.py shell
+
+migrations:
+	docker-compose run --rm helpcentre python manage.py makemigration
 
 migrate:
 	docker-compose run --rm helpcentre python manage.py migrate

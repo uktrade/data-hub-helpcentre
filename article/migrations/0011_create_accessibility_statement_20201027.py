@@ -8,26 +8,26 @@ from wagtail.core.models import Page
 
 
 def create_accessibility_page(apps, schema_editor):
-    ContentType = apps.get_model('contenttypes.ContentType')
-    HomePage = apps.get_model('home.HomePage')
-    ArticlePage = apps.get_model('article.ArticlePage')
+    ContentType = apps.get_model("contenttypes.ContentType")
+    HomePage = apps.get_model("home.HomePage")
+    ArticlePage = apps.get_model("article.ArticlePage")
 
-    home_page = HomePage.objects.all().first()
+    home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
-        model='articlepage', 
-        app_label='article',
+        model="articlepage", app_label="article",
     )
 
     parent = Page.objects.filter(slug=home_page.slug).first()
 
-    current_time = datetime.datetime.now() 
+    current_time = datetime.datetime.now()
 
     blocks = []
 
-    blocks.append({
-        'type': 'paragraph',
-        'value': """
+    blocks.append(
+        {
+            "type": "paragraph",
+            "value": """
     <p class="govuk-body">This website, Data Services Help Centre, is run by the Department for International Trade (DIT).
         It allows users to find information and help regarding the folowing services:
     </p>
@@ -190,33 +190,33 @@ def create_accessibility_page(apps, schema_editor):
     <h2 class="govuk-heading-m">Statement history</h2>
 
     <p class="govuk-body">This statement was prepared on 28.10.2020.</p>
-        """
-    },)
+        """,
+        },
+    )
 
     body = json.dumps(blocks)
 
-    accessibility_page = ArticlePage(
+    accessibility_page_instance = ArticlePage(
         content_type=article_content_type,
         date=current_time,
         intro="Accessibility Statement for Data Services Help Centre",
         body=body,
-        first_published_at=current_time,
-        last_published_at=current_time,
         title="Accessibility Statement",
         slug="accessibility-statement",
-        live=True,
     )
 
-    parent.add_child(instance=accessibility_page)
+    parent.add_child(instance=accessibility_page_instance)
     parent.save()
+
+    accessibility_page = ArticlePage.objects.filter(slug="accessibility-statement").first()
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('article', '0010_auto_20200206_1524'),
-        ('home', '0005_homepage_show_recent_child_articles'),
-        ('wagtailcore', '0045_assign_unlock_grouppagepermission'),
+        ("article", "0010_auto_20200206_1524"),
+        ("home", "0005_homepage_show_recent_child_articles"),
+        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
     ]
 
     operations = [

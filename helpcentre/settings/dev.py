@@ -1,3 +1,5 @@
+import os
+import sys
 from .base import *  # noqa: F403, F401
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -16,3 +18,26 @@ try:
     from .local import *  # noqa: F403, F401
 except ImportError:
     pass
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "stdout": {"class": "logging.StreamHandler", "stream": sys.stdout,},
+        "null": {"class": "logging.NullHandler",},
+    },
+    "root": {"handlers": ["stdout"], "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),},
+    "loggers": {
+        "django": {
+            "handlers": ["stdout",],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+        "wagtail.core": {
+            "handlers": ["stdout",],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+        "django.server": {"handlers": ["null"], "propagate": False,},
+    },
+}
