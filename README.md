@@ -32,7 +32,7 @@ AUTHBROKER_CLIENT_SECRET=from_webopp
 AUTHBROKER_URL=if_you_have_access
 ```
 
-Set up and run the site:
+### Set up and run the site:
 
 ```bash
 make migrate
