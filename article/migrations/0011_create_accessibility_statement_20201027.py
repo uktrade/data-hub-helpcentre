@@ -208,8 +208,6 @@ def create_accessibility_page(apps, schema_editor):
     parent.add_child(instance=accessibility_page_instance)
     parent.save()
 
-    accessibility_page = ArticlePage.objects.filter(slug="accessibility-statement").first()
-
 
 class Migration(migrations.Migration):
 
