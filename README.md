@@ -44,6 +44,12 @@ make up
 
 Browse the website at http://localhost:8000
 
+## Run unit tests
+
+```bash
+make test
+```
+
 ## Changing requirements files
 
 Make any changes to requirements.in files and then run (uses pip tools - https://github.com/jazzband/pip-tools):

@@ -28,13 +28,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - pip-dependencies-{{ checksum "requirements-dev.txt" }}
+            - pip-dependencies-{{ checksum "requirements/dev.txt" }}
       - run:
           name: Create virtualenv and install dependencies
           command: |
               python3 -m venv env
               . env/bin/activate
-              pip install -r requirements-dev.txt          
+              pip install -r requirements/dev.txt          
       - run:
           name: Run black
           command: |
@@ -48,39 +48,40 @@ jobs:
       - save_cache:
           paths:
             - env
-          key: pip-dependencies-{{ checksum "requirements-dev.txt" }}
+          key: pip-dependencies-{{ checksum "requirements/dev.txt" }}
   test:
     working_directory: ~/app
     docker:
       - image: python:3.6.9
         environment:
           DJANGO_SETTINGS_CONFIG: helpcentre.settings.dev
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
 
           AUTHBROKER_CLIENT_ID: not_the_real_client_id
           AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
           AUTHBROKER_URL: https://url.to.sso
             
-          FEED_API_TOKEN: asdasdasdasd
+          FEED_API_TOKEN: test
           FEEDBACK_URL: http://path.to.feedback
           DEBUG: True
           
       - image: postgres:10
         environment:
-          POSTGRES_DB: export-wins-data
+          POSTGRES_DB: helpcentre
           POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
       - restore_cache:
           name: Restore pip cache
-          key: v1-export-wins-data-{{ checksum "requirements.txt" }}
+          key: v1-data-hub-helpcentre-{{ checksum "requirements/dev.txt" }}
           paths:
             - ~/cache/pip
       - run:
           name: Install dependencies
-          command: python -m pip install --cache-dir ~/cache/pip --progress-bar off -r requirements.txt
+          command: python -m pip install --cache-dir ~/cache/pip --progress-bar off -r requirements/dev.txt
       - save_cache:
           name: Save pip cache
-          key: v1-export-wins-data-{{ checksum "requirements.txt" }}
+          key: v1-data-hub-helpcentre-{{ checksum "requirements/dev.txt" }}
           paths:
             - ~/cache/pip
       - run:

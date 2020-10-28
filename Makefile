@@ -19,6 +19,8 @@ help:
 	@echo -e "$(COLOUR_YELLOW)make build$(COLOUR_NONE) : docker-compose build"
 	@echo -e "$(COLOUR_YELLOW)make up$(COLOUR_NONE) : docker-compose up"
 	@echo -e "$(COLOUR_YELLOW)make down$(COLOUR_NONE) : docker-compose down"
+	@echo -e "$(COLOUR_YELLOW)make shell$(COLOUR_NONE) : Run Django shell"
+	@echo -e "$(COLOUR_YELLOW)make test$(COLOUR_NONE) : Run Django tests"
 	@echo -e "$(COLOUR_YELLOW)make migrations$(COLOUR_NONE) : Create Django migrations"
 	@echo -e "$(COLOUR_YELLOW)make migrate$(COLOUR_NONE) : Run Django migrate"
 	@echo -e "$(COLOUR_YELLOW)make front-end$(COLOUR_NONE) : Generate front end for first use"
@@ -48,6 +50,9 @@ down:
 
 shell:
 	docker-compose run --rm helpcentre python manage.py shell
+
+test:
+	docker-compose run --rm helpcentre python manage.py test
 
 migrations:
 	docker-compose run --rm helpcentre python manage.py makemigration
