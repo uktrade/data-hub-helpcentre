@@ -76,7 +76,7 @@ def create_accessibility_page(apps, schema_editor):
         large print, easy read, audio recording or braille, please contact:
     </p>
     <ul class="govuk-list govuk-list--bullet">
-        <li class="govuk-body">email <a class="govuk-link" href="mailto:TODO@trade.gov.uk">TODO@trade.gov.uk</a></li>
+        <li class="govuk-body">email <a class="govuk-link" href="mailto:liveservices@digital.trade.gov.uk">liveservices@digital.trade.gov.uk</a></li>
     </ul>
 
     <p class="govuk-body">We'll consider your request and get back to you in 2 days.</p>
@@ -86,7 +86,7 @@ def create_accessibility_page(apps, schema_editor):
     <p class="govuk-body">The Live Services Team is always looking to improve the accessibility of this website.
         If you find any problems that are not listed on this page or think this website is not meeting accessibility
         requirements, please email the Live Services team at:
-        <a class="govuk-link" href="mailto:TODO@uktrade.zendesk.com">TODO@uktrade.zendesk.com</a>
+        <a class="govuk-link" href="mailto:liveservices@digital.trade.gov.uk">liveservices@digital.trade.gov.uk</a>
     </p>
 
     <p class="govuk-body">The Live Services team will review your request and get back to you in 2 working days.</p>
