@@ -68,7 +68,9 @@ WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(PROJECT_DIR, "templates"),],
+        "DIRS": [
+            os.path.join(PROJECT_DIR, "templates"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -101,9 +103,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa: E501
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},  # noqa: E501
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},  # noqa: E501
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},  # noqa: E501
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },  # noqa: E501
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },  # noqa: E501
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },  # noqa: E501
 ]
 
 # Internationalization

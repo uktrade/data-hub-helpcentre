@@ -11,7 +11,12 @@ ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "helpcentre",}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "helpcentre",
+    }
+}
 
 try:
     from .local import *  # noqa: F403, F401
