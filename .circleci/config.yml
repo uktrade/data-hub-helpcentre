@@ -28,7 +28,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - pip-dependencies-{{ checksum "requirements/dev.txt" }}
+            - pip-dependencies-3.9-{{ checksum "requirements/dev.txt" }}
       - run:
           name: Create virtualenv and install dependencies
           command: |
@@ -48,7 +48,7 @@ jobs:
       - save_cache:
           paths:
             - env
-          key: pip-dependencies-{{ checksum "requirements/dev.txt" }}
+          key: pip-dependencies-3.9-{{ checksum "requirements/dev.txt" }}
   test:
     working_directory: ~/app
     docker:
@@ -73,7 +73,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore pip cache
-          key: v1-data-hub-helpcentre-{{ checksum "requirements/dev.txt" }}
+          key: pip-dependencies-3.9-{{ checksum "requirements/dev.txt" }}
           paths:
             - ~/cache/pip
       - run:
@@ -81,7 +81,7 @@ jobs:
           command: python -m pip install --cache-dir ~/cache/pip --progress-bar off -r requirements/dev.txt
       - save_cache:
           name: Save pip cache
-          key: v1-data-hub-helpcentre-{{ checksum "requirements/dev.txt" }}
+          key: pip-dependencies-3.9-{{ checksum "requirements/dev.txt" }}
           paths:
             - ~/cache/pip
       - run:
