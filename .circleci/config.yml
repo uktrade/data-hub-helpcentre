@@ -23,7 +23,7 @@ jobs:
 
   python_code_style:
     docker:
-      - image: circleci/python:3.6.6
+      - image: circleci/python:3.9.2
     steps:
       - checkout
       - restore_cache:
@@ -52,7 +52,7 @@ jobs:
   test:
     working_directory: ~/app
     docker:
-      - image: python:3.6.9
+      - image: circleci/python:3.9.2
         environment:
           DJANGO_SETTINGS_CONFIG: helpcentre.settings.dev
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
@@ -65,7 +65,7 @@ jobs:
           FEEDBACK_URL: http://path.to.feedback
           DEBUG: True
           
-      - image: postgres:10
+      - image: postgres:11
         environment:
           POSTGRES_DB: helpcentre
           POSTGRES_HOST_AUTH_METHOD: trust
