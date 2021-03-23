@@ -15,8 +15,7 @@ def create_accessibility_page(apps, schema_editor):
     home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
-        model="articlepage",
-        app_label="article",
+        model="articlepage", app_label="article",
     )
 
     parent = Page.objects.filter(slug=home_page.slug).first()
