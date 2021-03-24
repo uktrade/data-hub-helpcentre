@@ -1,9 +1,14 @@
 wagtail>=2.12,<2.13
 
 dj-database-url==0.5.0
+
 django-environ==0.4.5
+django-oauth-toolkit
 django-staff-sso-client==1.0.0
 django-storages==1.7.1
+
+docutils
+
 psycopg2==2.8.3
 wagtailcodeblock==1.17.1.0
 whitenoise==1.0.6

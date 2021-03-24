@@ -10,8 +10,12 @@ beautifulsoup4==4.8.2
     # via wagtail
 certifi==2019.6.16
     # via requests
+cffi==1.14.5
+    # via cryptography
 chardet==3.0.4
     # via requests
+cryptography==3.4.6
+    # via jwcrypto
 dj-database-url==0.5.0
     # via -r requirements.in/base.in
 django-environ==0.4.5
@@ -20,6 +24,8 @@ django-filter==2.4.0
     # via wagtail
 django-modelcluster==5.1
     # via wagtail
+django-oauth-toolkit==1.5.0
+    # via -r requirements.in/base.in
 django-staff-sso-client==1.0.0
     # via -r requirements.in/base.in
 django-storages==1.7.1
@@ -32,6 +38,7 @@ django==2.2.19
     # via
     #   -r requirements.in/base.in
     #   django-filter
+    #   django-oauth-toolkit
     #   django-staff-sso-client
     #   django-storages
     #   django-taggit
@@ -40,6 +47,8 @@ django==2.2.19
     #   wagtail
 djangorestframework==3.12.2
     # via wagtail
+docutils==0.16
+    # via -r requirements.in/base.in
 draftjs-exporter==2.1.6
     # via wagtail
 et-xmlfile==1.0.1
@@ -48,10 +57,14 @@ html5lib==1.0.1
     # via wagtail
 idna==2.8
     # via requests
+jwcrypto==0.8
+    # via django-oauth-toolkit
 l18n==2018.5
     # via wagtail
-oauthlib==3.0.2
-    # via requests-oauthlib
+oauthlib==3.1.0
+    # via
+    #   django-oauth-toolkit
+    #   requests-oauthlib
 openpyxl==3.0.7
     # via tablib
 pillow==8.1.2
@@ -60,6 +73,8 @@ pillow==8.1.2
     #   wagtail
 psycopg2==2.8.3
     # via -r requirements.in/base.in
+pycparser==2.20
+    # via cffi
 pytz==2019.2
     # via
     #   django
@@ -71,10 +86,12 @@ requests-oauthlib==1.2.0
     # via django-staff-sso-client
 requests==2.22.0
     # via
+    #   django-oauth-toolkit
     #   requests-oauthlib
     #   wagtail
 six==1.12.0
     # via
+    #   django-oauth-toolkit
     #   html5lib
     #   l18n
 soupsieve==2.0.1

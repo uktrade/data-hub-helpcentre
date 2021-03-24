@@ -22,6 +22,10 @@ certifi==2019.6.16
     # via
     #   -r requirements.in/../requirements/base.txt
     #   requests
+cffi==1.14.5
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   cryptography
 chardet==3.0.4
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -30,6 +34,10 @@ click==7.1.2
     # via black
 coverage==5.2
     # via -r requirements.in/dev.in
+cryptography==3.4.6
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   jwcrypto
 dj-database-url==0.5.0
     # via -r requirements.in/../requirements/base.txt
 django-environ==0.4.5
@@ -42,6 +50,8 @@ django-modelcluster==5.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+django-oauth-toolkit==1.5.0
+    # via -r requirements.in/../requirements/base.txt
 django-staff-sso-client==1.0.0
     # via -r requirements.in/../requirements/base.txt
 django-storages==1.7.1
@@ -58,6 +68,7 @@ django==2.2.19
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-filter
+    #   django-oauth-toolkit
     #   django-staff-sso-client
     #   django-storages
     #   django-taggit
@@ -68,6 +79,8 @@ djangorestframework==3.12.2
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+docutils==0.16
+    # via -r requirements.in/../requirements/base.txt
 draftjs-exporter==2.1.6
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -86,15 +99,20 @@ idna==2.8
     # via
     #   -r requirements.in/../requirements/base.txt
     #   requests
+jwcrypto==0.8
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   django-oauth-toolkit
 l18n==2018.5
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
 mccabe==0.6.1
     # via flake8
-oauthlib==3.0.2
+oauthlib==3.1.0
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-oauth-toolkit
     #   requests-oauthlib
 openpyxl==3.0.7
     # via
@@ -110,6 +128,10 @@ psycopg2==2.8.3
     # via -r requirements.in/../requirements/base.txt
 pycodestyle==2.6.0
     # via flake8
+pycparser==2.20
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   cffi
 pyflakes==2.2.0
     # via flake8
 pytz==2019.2
@@ -131,11 +153,13 @@ requests-oauthlib==1.2.0
 requests==2.22.0
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-oauth-toolkit
     #   requests-oauthlib
     #   wagtail
 six==1.12.0
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-oauth-toolkit
     #   html5lib
     #   l18n
 soupsieve==2.0.1
