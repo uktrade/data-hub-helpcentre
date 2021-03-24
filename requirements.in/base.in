@@ -7,7 +7,7 @@ django-storages==1.7.1
 psycopg2==2.8.3
 wagtailcodeblock==1.17.1.0
 whitenoise==1.0.6
-
+waitress
 
 # DEPENDABOT OVERRIDES
 pillow>=8.1.1

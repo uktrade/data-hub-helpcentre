@@ -164,6 +164,8 @@ wagtail==2.12.3
     #   wagtailcodeblock
 wagtailcodeblock==1.17.1.0
     # via -r requirements.in/../requirements/base.txt
+waitress==2.0.0
+    # via -r requirements.in/../requirements/base.txt
 webencodings==0.5.1
     # via
     #   -r requirements.in/../requirements/base.txt

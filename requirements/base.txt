@@ -91,6 +91,8 @@ wagtail==2.12.3
     #   wagtailcodeblock
 wagtailcodeblock==1.17.1.0
     # via -r requirements.in/base.in
+waitress==2.0.0
+    # via -r requirements.in/base.in
 webencodings==0.5.1
     # via html5lib
 whitenoise==1.0.6
