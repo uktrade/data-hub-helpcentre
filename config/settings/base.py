@@ -11,6 +11,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
+SECRET_KEY = env.str("SECRET_KEY")
+
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+
 INSTALLED_APPS = [
     "home",
     "search",
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     "storages",
     "wagtail.contrib.settings",
     "wagtailcodeblock",
+    "user",
 ]
 
 
@@ -49,9 +54,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
-    "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    # 'authbroker_client.middleware.ProtectAllViewsMiddleware',
+    "authbroker_client.middleware.ProtectAllViewsMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -175,24 +179,7 @@ ENV_NAME = env.str("ENV_NAME", "")
 GIT_BRANCH = env.str("GIT_BRANCH", "")
 GIT_COMMIT = env.str("GIT_COMMIT", "")
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    # "root": {
-    #     "level": "DEBUG",
-    #     "handlers": ["console"]
-    # },
-    "formatters": {"verbose": {"format": "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"}},
-    "handlers": {
-        "console": {"level": "DEBUG", "class": "logging.StreamHandler", "formatter": "verbose"}
-    },
-    "loggers": {
-        "django": {"handlers": ["console"], "level": "INFO"},
-        "home": {"handlers": ["console"], "level": "DEBUG"},
-        "search": {"handlers": ["console"], "level": "DEBUG"},
-        "article": {"handlers": ["console"], "level": "DEBUG"},
-    },
-}
+AUTH_USER_MODEL = "user.User"
 
 # https://github.com/FlipperPA/wagtailcodeblock#languages-available
 WAGTAIL_CODE_BLOCK_LANGUAGES = (
@@ -207,3 +194,51 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("scss", "SCSS"),
     ("yaml", "YAML"),
 )
+
+AUTHBROKER_ANONYMOUS_PATHS = ('check', )
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "{asctime} {levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "simple",
+        },
+    },
+    "root": {
+        "handlers": ["stdout"],
+        "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
+    },
+    "loggers": {
+        "django": {
+            "handlers": [
+                "stdout",
+            ],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+        "django.server": {
+            "handlers": [
+                "stdout",
+            ],
+            "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+        "django.db.backends": {
+            "handlers": [
+                "stdout",
+            ],
+            "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+    },
+}
+

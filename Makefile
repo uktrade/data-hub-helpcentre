@@ -32,12 +32,12 @@ flake8:
 	docker-compose run --rm helpcentre flake8
 
 black:
-	docker-compose run --rm helpcentre  black . --check
+	docker-compose run --rm helpcentre black . --check
 
 all-requirements:
-	pip-compile --output-file requirements/base.txt requirements.in/base.in
-	pip-compile --output-file requirements/dev.txt requirements.in/dev.in
-	pip-compile --output-file requirements/prod.txt requirements.in/prod.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/base.txt requirements.in/base.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/dev.txt requirements.in/dev.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/prod.txt requirements.in/prod.in
 
 build:
 	docker-compose build
