@@ -55,7 +55,7 @@ test:
 	docker-compose run --rm helpcentre python manage.py test
 
 migrations:
-	docker-compose run --rm helpcentre python manage.py makemigration
+	docker-compose run --rm helpcentre python manage.py makemigrations
 
 migrate:
 	docker-compose run --rm helpcentre python manage.py migrate

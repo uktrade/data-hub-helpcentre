@@ -10,7 +10,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from authbroker_client import urls as authbroker_client_urls
 
 from article import urls as article_urls
-from helpcentre.views_healthcheck import health_check_view
+from config.views_healthcheck import health_check_view
 
 from search import views as search_views
 

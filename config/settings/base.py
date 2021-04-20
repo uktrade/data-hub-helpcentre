@@ -1,5 +1,6 @@
 import os
 import environ
+import sys
 
 import dj_database_url
 
@@ -65,7 +66,7 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_URL = reverse_lazy("authbroker_client:login")
 LOGIN_REDIRECT_URL = "/"
-ROOT_URLCONF = "helpcentre.urls"
+ROOT_URLCONF = "config.urls"
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 
@@ -87,7 +88,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "helpcentre.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

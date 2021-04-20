@@ -24,7 +24,9 @@ botocore==1.12.197
 certifi==2019.6.16
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   elastic-apm
     #   requests
+    #   sentry-sdk
 chardet==3.0.4
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -37,13 +39,19 @@ django-filter==2.4.0
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+django-ipware==3.0.2
+    # via django-log-formatter-ecs
+django-log-formatter-ecs==0.0.5
+    # via -r requirements.in/prod.in
 django-modelcluster==5.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
 django-oauth-toolkit==1.2.0
     # via -r requirements.in/../requirements/base.txt
-django-staff-sso-client==1.0.0
+django-simple-history==3.0.0
+    # via -r requirements.in/../requirements/base.txt
+django-staff-sso-client==3.1.0
     # via -r requirements.in/../requirements/base.txt
 django-storages==1.7.1
     # via -r requirements.in/../requirements/base.txt
@@ -78,6 +86,8 @@ draftjs-exporter==2.1.6
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+elastic-apm==6.1.2
+    # via -r requirements.in/prod.in
 et-xmlfile==1.0.1
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -101,10 +111,14 @@ jmespath==0.9.4
     #   -r requirements.in/../requirements/base.txt
     #   boto3
     #   botocore
+kubi-ecs-logger==0.1.0
+    # via django-log-formatter-ecs
 l18n==2018.5
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+marshmallow==3.6.1
+    # via kubi-ecs-logger
 oauthlib==3.0.2
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -137,9 +151,7 @@ pytz==2019.2
     #   django-modelcluster
     #   l18n
 raven==6.10.0
-    # via
-    #   -r requirements.in/../requirements/base.txt
-    #   django-staff-sso-client
+    # via -r requirements.in/../requirements/base.txt
 requests-oauthlib==1.2.0
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -154,6 +166,8 @@ s3transfer==0.2.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   boto3
+sentry-sdk==1.0.0
+    # via -r requirements.in/../requirements/base.txt
 six==1.12.0
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -178,7 +192,9 @@ urllib3==1.25.3
     # via
     #   -r requirements.in/../requirements/base.txt
     #   botocore
+    #   elastic-apm
     #   requests
+    #   sentry-sdk
 wagtail==2.12.3
     # via
     #   -r requirements.in/../requirements/base.txt

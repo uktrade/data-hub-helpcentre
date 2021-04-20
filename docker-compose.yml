@@ -24,3 +24,5 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
