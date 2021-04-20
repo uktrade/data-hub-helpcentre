@@ -6,7 +6,7 @@ from authbroker_client.utils import (
 )
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, User as AuthUser
-
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -22,15 +22,12 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
     @staticmethod
     def get_or_create_user(profile):
         users_matching_sso_record = User.objects.filter(
-            username=profile["email_user_id"]
+            Q(username=profile["user_id"])
+            | Q(username=profile["user_email"])
         )
-
-        # There can only be 0 users or 1 match
-        assert (  # noqa S101
-            users_matching_sso_record.count() < 2
-        ), "Duplicate email SSO id user found"
+        # change name of table
         user = users_matching_sso_record.first()
-
+        # user
         if user:
             # Set email_user_id as username (it is now the preferred option)
             user.username = profile["email_user_id"]
@@ -38,7 +35,6 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
             user.sso_contact_email = profile["contact_email"]  # might change over time
             user.first_name = profile["first_name"]  # might change over time
             user.last_name = profile["last_name"]  # might change over time
-            user.legacy_sso_user_id = profile["user_id"]
         else:
             user = User(
                 username=profile["email_user_id"],
@@ -46,23 +42,9 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
                 sso_contact_email=profile["contact_email"],
                 first_name=profile["first_name"],
                 last_name=profile["last_name"],
-                legacy_sso_user_id=profile["user_id"],
             )
 
         user.set_unusable_password()
         user.save()
-
-
-        # Find out if this user has an entry in the legacy user table
-        legacy_user = AuthUser.objects.filter(
-            email=profile["email"],
-        ).first()
-
-        if legacy_user:
-            for group in legacy_user.groups.all():
-                if not user.groups.filter(name=group.name).first():
-                    group.user_set.add(user)
-
-        # TODO - delete legacy user?
 
         return user

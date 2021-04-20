@@ -33,7 +33,7 @@ soupsieve==2.0.1
 sqlparse==0.3.0
 Unidecode==1.1.1
 urllib3==1.25.3
-wagtail==2.12.3
+wagtail==2.12.4
 wagtailcodeblock==1.17.1.0
 waitress==1.4.3
 Wand==0.5.5

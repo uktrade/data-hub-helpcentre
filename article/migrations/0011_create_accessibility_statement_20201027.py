@@ -11,7 +11,7 @@ def create_accessibility_page(apps, schema_editor):
     ContentType = apps.get_model("contenttypes.ContentType")
     HomePage = apps.get_model("home.HomePage")
     ArticlePage = apps.get_model("article.ArticlePage")
-
+    Locale = apps.get_model("wagtailcore.Locale")
     home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
@@ -195,6 +195,7 @@ def create_accessibility_page(apps, schema_editor):
     )
 
     body = json.dumps(blocks)
+    locale = Locale.objects.filter(language_code="en").first()
 
     accessibility_page_instance = ArticlePage(
         content_type=article_content_type,
@@ -203,6 +204,7 @@ def create_accessibility_page(apps, schema_editor):
         body=body,
         title="Accessibility Statement",
         slug="accessibility-statement",
+        locale=locale,
     )
 
     parent.add_child(instance=accessibility_page_instance)
@@ -214,7 +216,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ("article", "0010_auto_20200206_1524"),
         ("home", "0005_homepage_show_recent_child_articles"),
-        ("wagtailcore", "0045_assign_unlock_grouppagepermission"),
+        ("wagtailcore", "0060_fix_workflow_unique_constraint"),
     ]
 
     operations = [
