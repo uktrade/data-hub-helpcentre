@@ -60,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
+    "user.backends.CustomAuthbrokerBackend",
     "django.contrib.auth.backends.ModelBackend",
     "authbroker_client.backends.AuthbrokerBackend",
 ]

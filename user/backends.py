@@ -5,7 +5,6 @@ from authbroker_client.utils import (
     has_valid_token,
 )
 from django.contrib.auth import get_user_model
-from django.db.models import Q
 
 User = get_user_model()
 
@@ -20,12 +19,20 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
 
     @staticmethod
     def get_or_create_user(profile):
+        # First try to find an entry using email_user_id. If this fails,
+        # try to match the user_id
         users_matching_sso_record = User.objects.filter(
-            Q(username=profile["user_id"])
-            | Q(username=profile["user_email"])
+            username=profile["email_user_id"]
         )
-        # change name of table
         user = users_matching_sso_record.first()
+        if not user:
+            # If you match using a 'or', you may return two records, and
+            # when you set the username you may have an error,
+            # because you are duplicating the username.
+            users_matching_sso_record = User.objects.filter(
+                username=profile["user_id"]
+            )
+            user = users_matching_sso_record.first()
         # user
         if user:
             # Set email_user_id as username (it is now the preferred option)
