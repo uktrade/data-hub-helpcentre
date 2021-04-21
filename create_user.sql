@@ -3,6 +3,9 @@ BEGIN;
 -- Create model User
 --
 ALTER TABLE auth_user RENAME TO user_user;
+ALTER TABLE auth_user_user_permissions RENAME TO user_user_user_permissions;
+ALTER TABLE auth_user_groups RENAME TO user_user_groups;
+
 ALTER TABLE user_user ADD COLUMN "sso_contact_email" varchar(254) NULL;
 --
 -- Create model HistoricalUser
