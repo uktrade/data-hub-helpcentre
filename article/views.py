@@ -16,7 +16,11 @@ def child_article_feed(request, path):
     path_components = [component for component in path.split("/") if component]
     logger.debug(f"components {path_components}")
 
-    page = Site.find_for_request(request).root_page.specific.route(request, path_components).page.specific
+    page = (
+        Site.find_for_request(request)
+        .root_page.specific.route(request, path_components)
+        .page.specific
+    )
     logger.debug(page)
 
     limit_query = request.GET.get("limit", 3)

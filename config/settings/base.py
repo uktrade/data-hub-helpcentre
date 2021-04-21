@@ -196,47 +196,29 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("yaml", "YAML"),
 )
 
-AUTHBROKER_ANONYMOUS_PATHS = ('check', )
+AUTHBROKER_ANONYMOUS_PATHS = ("check",)
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "simple": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
-        },
-    },
+    "formatters": {"simple": {"format": "{asctime} {levelname} {message}", "style": "{",},},
     "handlers": {
-        "stdout": {
-            "class": "logging.StreamHandler",
-            "stream": sys.stdout,
-            "formatter": "simple",
-        },
+        "stdout": {"class": "logging.StreamHandler", "stream": sys.stdout, "formatter": "simple",},
     },
-    "root": {
-        "handlers": ["stdout"],
-        "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
-    },
+    "root": {"handlers": ["stdout"], "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),},
     "loggers": {
         "django": {
-            "handlers": [
-                "stdout",
-            ],
+            "handlers": ["stdout",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
         "django.server": {
-            "handlers": [
-                "stdout",
-            ],
+            "handlers": ["stdout",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": [
-                "stdout",
-            ],
+            "handlers": ["stdout",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
             "propagate": True,
         },

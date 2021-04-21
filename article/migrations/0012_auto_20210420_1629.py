@@ -9,14 +9,53 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('article', '0011_create_accessibility_statement_20201027'),
+        ("article", "0011_create_accessibility_statement_20201027"),
         ("wagtailcore", "0060_fix_workflow_unique_constraint"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='articlepage',
-            name='body',
-            field=wagtail.core.fields.StreamField([('paragraph', wagtail.core.blocks.RichTextBlock()), ('image', wagtail.images.blocks.ImageChooserBlock()), ('code', wagtail.core.blocks.StructBlock([('language', wagtail.core.blocks.ChoiceBlock(choices=[('bash', 'Bash/Shell'), ('css', 'CSS'), ('diff', 'diff'), ('html', 'HTML'), ('javascript', 'Javascript'), ('json', 'JSON'), ('python', 'Python'), ('r', 'R'), ('scss', 'SCSS'), ('yaml', 'YAML')], help_text='Coding language', identifier='language', label='Language')), ('code', wagtail.core.blocks.TextBlock(identifier='code', label='Code'))], label='Code'))], blank=True, null=True),
+            model_name="articlepage",
+            name="body",
+            field=wagtail.core.fields.StreamField(
+                [
+                    ("paragraph", wagtail.core.blocks.RichTextBlock()),
+                    ("image", wagtail.images.blocks.ImageChooserBlock()),
+                    (
+                        "code",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                (
+                                    "language",
+                                    wagtail.core.blocks.ChoiceBlock(
+                                        choices=[
+                                            ("bash", "Bash/Shell"),
+                                            ("css", "CSS"),
+                                            ("diff", "diff"),
+                                            ("html", "HTML"),
+                                            ("javascript", "Javascript"),
+                                            ("json", "JSON"),
+                                            ("python", "Python"),
+                                            ("r", "R"),
+                                            ("scss", "SCSS"),
+                                            ("yaml", "YAML"),
+                                        ],
+                                        help_text="Coding language",
+                                        identifier="language",
+                                        label="Language",
+                                    ),
+                                ),
+                                (
+                                    "code",
+                                    wagtail.core.blocks.TextBlock(identifier="code", label="Code"),
+                                ),
+                            ],
+                            label="Code",
+                        ),
+                    ),
+                ],
+                blank=True,
+                null=True,
+            ),
         ),
     ]

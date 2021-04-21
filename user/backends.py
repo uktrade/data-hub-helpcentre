@@ -21,13 +21,9 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
     def get_or_create_user(profile):
         # First try to find an entry using email_user_id (new recommended field).
         # If this fails, try to match the user_id (old recommended field).
-        user = User.objects.filter(
-            username=profile["email_user_id"]
-        ).first()
+        user = User.objects.filter(username=profile["email_user_id"]).first()
         if not user:
-            user = User.objects.filter(
-                username=profile["user_id"]
-            ).first()
+            user = User.objects.filter(username=profile["user_id"]).first()
 
         if user:
             # Set email_user_id as username (it is now the preferred option)

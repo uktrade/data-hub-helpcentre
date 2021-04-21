@@ -20,13 +20,8 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "ecs_formatter": {
-            "()": ECSFormatter,
-        },
-        "simple": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
-        },
+        "ecs_formatter": {"()": ECSFormatter,},
+        "simple": {"format": "{asctime} {levelname} {message}", "style": "{",},
     },
     "handlers": {
         "ecs": {
@@ -41,34 +36,22 @@ LOGGING = {
         },
     },
     "root": {
-        "handlers": [
-            "ecs",
-            "stdout",
-        ],
+        "handlers": ["ecs", "stdout",],
         "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),  # noqa F405
     },
     "loggers": {
         "django": {
-            "handlers": [
-                "ecs",
-                "stdout",
-            ],
+            "handlers": ["ecs", "stdout",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),  # noqa F405
             "propagate": False,
         },
         "django.server": {
-            "handlers": [
-                "ecs",
-                "stdout",
-            ],
+            "handlers": ["ecs", "stdout",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": [
-                "ecs",
-                "stdout",
-            ],
+            "handlers": ["ecs", "stdout",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },
