@@ -216,7 +216,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ("article", "0010_auto_20200206_1524"),
         ("home", "0005_homepage_show_recent_child_articles"),
-        ("wagtailcore", "0060_fix_workflow_unique_constraint"),
     ]
 
     operations = [

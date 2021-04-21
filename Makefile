@@ -51,6 +51,9 @@ down:
 shell:
 	docker-compose run --rm helpcentre python manage.py shell
 
+bash:
+	docker-compose run --rm helpcentre bash
+
 test:
 	docker-compose run --rm helpcentre python manage.py test
 
