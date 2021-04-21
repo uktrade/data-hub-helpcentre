@@ -5,7 +5,6 @@ from authbroker_client.utils import (
     has_valid_token,
 )
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group, User as AuthUser
 from django.db.models import Q
 
 User = get_user_model()
