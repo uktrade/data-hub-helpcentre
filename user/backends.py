@@ -19,21 +19,16 @@ class CustomAuthbrokerBackend(AuthbrokerBackend):
 
     @staticmethod
     def get_or_create_user(profile):
-        # First try to find an entry using email_user_id. If this fails,
-        # try to match the user_id
-        users_matching_sso_record = User.objects.filter(
+        # First try to find an entry using email_user_id (new recommended field).
+        # If this fails, try to match the user_id (old recommended field).
+        user = User.objects.filter(
             username=profile["email_user_id"]
-        )
-        user = users_matching_sso_record.first()
+        ).first()
         if not user:
-            # If you match using a 'or', you may return two records, and
-            # when you set the username you may have an error,
-            # because you are duplicating the username.
-            users_matching_sso_record = User.objects.filter(
+            user = User.objects.filter(
                 username=profile["user_id"]
-            )
-            user = users_matching_sso_record.first()
-        # user
+            ).first()
+
         if user:
             # Set email_user_id as username (it is now the preferred option)
             user.username = profile["email_user_id"]

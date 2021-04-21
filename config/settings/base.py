@@ -60,9 +60,8 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    "user.backends.CustomAuthbrokerBackend",
     "django.contrib.auth.backends.ModelBackend",
-    "authbroker_client.backends.AuthbrokerBackend",
+    "user.backends.CustomAuthbrokerBackend",
 ]
 
 LOGIN_URL = reverse_lazy("authbroker_client:login")
