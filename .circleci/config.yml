@@ -65,7 +65,7 @@ jobs:
           FEEDBACK_URL: http://path.to.feedback
           DEBUG: True
           
-      - image: postgres:10
+      - image: postgres:12
         environment:
           POSTGRES_DB: helpcentre
           POSTGRES_HOST_AUTH_METHOD: trust
