@@ -6,8 +6,9 @@ import dj_database_url
 
 from django.urls import reverse_lazy
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+
+TEST = os.path.join(os.path.dirname(__file__))
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.settings",
     "wagtailcodeblock",
     "user",
+    "sass_processor",
 ]
 
 
@@ -56,12 +58,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "authbroker_client.middleware.ProtectAllViewsMiddleware",
+    #"authbroker_client.middleware.ProtectAllViewsMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "user.backends.CustomAuthbrokerBackend",
+    #"user.backends.CustomAuthbrokerBackend",
 ]
 
 LOGIN_URL = reverse_lazy("authbroker_client:login")
@@ -70,10 +72,12 @@ ROOT_URLCONF = "config.urls"
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 
+#SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "/frontend")
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(PROJECT_DIR, "templates"),],
+        "DIRS": [os.path.join(BASE_DIR, "templates"),],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,10 +134,11 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    #"sass_processor.finders.CssFinder",
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "frontend"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -198,3 +203,48 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
 
 AUTHBROKER_ANONYMOUS_PATHS = ("check",)
 
+WAGTAIL_BASE_URL="http://localhost:8000"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "{asctime} {levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "stderr": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "root": {
+        "handlers": ["stderr"],
+        "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
+    },
+    "loggers": {
+        "django": {
+            "handlers": [
+                "stderr",
+            ],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+        "django.server": {
+            "handlers": [
+                "stderr",
+            ],
+            "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+        "django.db.backends": {
+            "handlers": [
+                "stderr",
+            ],
+            "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+    },
+}

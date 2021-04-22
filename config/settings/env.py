@@ -24,32 +24,26 @@ LOGGING = {
         "simple": {"format": "{asctime} {levelname} {message}", "style": "{",},
     },
     "handlers": {
-        "ecs": {
-            "class": "logging.StreamHandler",
-            "formatter": "ecs_formatter",
-        },
-        "stdout": {
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
+        "ecs": {"class": "logging.StreamHandler", "formatter": "ecs_formatter",},
+        "stderr": {"class": "logging.StreamHandler", "formatter": "simple",},
     },
     "root": {
-        "handlers": ["ecs", "stdout",],
+        "handlers": ["ecs", "stderr",],
         "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),  # noqa F405
     },
     "loggers": {
         "django": {
-            "handlers": ["ecs", "stdout",],
+            "handlers": ["ecs", "stderr",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),  # noqa F405
             "propagate": False,
         },
         "django.server": {
-            "handlers": ["ecs", "stdout",],
+            "handlers": ["ecs", "stderr",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": ["ecs", "stdout",],
+            "handlers": ["ecs", "stderr",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },

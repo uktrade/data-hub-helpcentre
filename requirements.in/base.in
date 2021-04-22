@@ -42,3 +42,6 @@ whitenoise==1.0.6
 XlsxWriter==1.2.8
 sentry-sdk>=0.20.2
 django-simple-history
+libsass
+django-compressor
+django-sass-processor

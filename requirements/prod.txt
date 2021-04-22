@@ -33,6 +33,12 @@ chardet==3.0.4
     #   requests
 dj-database-url==0.5.0
     # via -r requirements.in/../requirements/base.txt
+django-appconf==1.0.4
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   django-compressor
+django-compressor==2.4.1
+    # via -r requirements.in/../requirements/base.txt
 django-environ==0.4.5
     # via -r requirements.in/../requirements/base.txt
 django-filter==2.4.0
@@ -48,6 +54,8 @@ django-modelcluster==5.1
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
 django-oauth-toolkit==1.2.0
+    # via -r requirements.in/../requirements/base.txt
+django-sass-processor==1.0.1
     # via -r requirements.in/../requirements/base.txt
 django-simple-history==3.0.0
     # via -r requirements.in/../requirements/base.txt
@@ -66,6 +74,7 @@ django-treebeard==4.3
 django==2.2.20
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-appconf
     #   django-filter
     #   django-oauth-toolkit
     #   django-staff-sso-client
@@ -117,6 +126,8 @@ l18n==2018.5
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
+libsass==0.20.1
+    # via -r requirements.in/../requirements/base.txt
 marshmallow==3.6.1
     # via kubi-ecs-logger
 oauthlib==3.0.2
@@ -152,6 +163,10 @@ pytz==2019.2
     #   l18n
 raven==6.10.0
     # via -r requirements.in/../requirements/base.txt
+rcssmin==1.0.6
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   django-compressor
 requests-oauthlib==1.2.0
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -162,6 +177,10 @@ requests==2.22.0
     #   django-oauth-toolkit
     #   requests-oauthlib
     #   wagtail
+rjsmin==1.1.0
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   django-compressor
 s3transfer==0.2.1
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -171,8 +190,10 @@ sentry-sdk==1.0.0
 six==1.12.0
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-compressor
     #   html5lib
     #   l18n
+    #   libsass
     #   python-dateutil
 soupsieve==2.0.1
     # via
