@@ -54,7 +54,7 @@ jobs:
     docker:
       - image: python:3.9.2
         environment:
-          DJANGO_SETTINGS_CONFIG: helpcentre.settings.dev
+          DJANGO_SETTINGS_CONFIG: config.settings.local
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
 
           AUTHBROKER_CLIENT_ID: not_the_real_client_id
