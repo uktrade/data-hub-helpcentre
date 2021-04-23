@@ -56,15 +56,13 @@ jobs:
         environment:
           DJANGO_SETTINGS_CONFIG: config.settings.local
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
-
+          SECRET_KEY: test
           AUTHBROKER_CLIENT_ID: not_the_real_client_id
           AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
           AUTHBROKER_URL: https://url.to.sso
-            
           FEED_API_TOKEN: test
           FEEDBACK_URL: http://path.to.feedback
           DEBUG: True
-          
       - image: postgres:12
         environment:
           POSTGRES_DB: helpcentre
