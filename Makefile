@@ -65,3 +65,9 @@ migrate:
 
 front-end:
 	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass' 
+
+compilescss:
+	docker-compose run --rm helpcentre python manage.py compilescss
+
+collectstatic:
+	docker-compose run --rm helpcentre python manage.py collectstatic

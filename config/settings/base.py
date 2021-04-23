@@ -151,7 +151,6 @@ WAGTAIL_SITE_NAME = "helpcentre"
 
 BASE_URL = "http://helpcentre.datahub.gov.uk"
 
-
 AUTHBROKER_URL = env.str("AUTHBROKER_URL")
 AUTHBROKER_CLIENT_ID = env.str("AUTHBROKER_CLIENT_ID")
 AUTHBROKER_CLIENT_SECRET = env.str("AUTHBROKER_CLIENT_SECRET")
@@ -202,8 +201,6 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
 )
 
 AUTHBROKER_ANONYMOUS_PATHS = ("check",)
-
-WAGTAIL_BASE_URL="http://localhost:8000"
 
 LOGGING = {
     "version": 1,
