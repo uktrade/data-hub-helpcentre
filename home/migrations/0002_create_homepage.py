@@ -8,6 +8,7 @@ def create_homepage(apps, schema_editor):
     Page = apps.get_model("wagtailcore.Page")
     Site = apps.get_model("wagtailcore.Site")
     HomePage = apps.get_model("home.HomePage")
+    Locale = apps.get_model("wagtailcore.Locale")
 
     # Delete the default homepage
     # If migration is run multiple times, it may have already been deleted
@@ -19,6 +20,8 @@ def create_homepage(apps, schema_editor):
     )
 
     # Create a new homepage
+    locale = Locale.objects.filter(language_code="en").first()
+
     homepage = HomePage.objects.create(
         title="Home",
         draft_title="Home",
@@ -28,6 +31,7 @@ def create_homepage(apps, schema_editor):
         depth=2,
         numchild=0,
         url_path="/home/",
+        locale=locale,
     )
 
     # Create a site with the new homepage set as the root

@@ -1,5 +1,6 @@
 {% load static wagtailuserbar wagtailsettings_tags wagtailcore_tags %}
 {% get_settings use_default_site=True %}
+{% load sass_tags %}
 <!DOCTYPE html>
 <html class="govuk-template no-js " lang="en">
 <head>
@@ -31,7 +32,7 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/helpcentre.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'sass/helpcentre.scss' %}">
     <meta property="og:image" content="{% static 'assets/images/govuk-opengraph-image.png' %}">
 
     {% block extra_css %}

@@ -2,8 +2,6 @@ version: "3"
 services:
   postgres:
     image: postgres:10.4
-    volumes:
-     - ./postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     env_file: .env
@@ -24,3 +22,5 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
