@@ -1,6 +1,5 @@
 import os
 import environ
-import sys
 
 import dj_database_url
 
@@ -58,12 +57,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    #"authbroker_client.middleware.ProtectAllViewsMiddleware",
+    "authbroker_client.middleware.ProtectAllViewsMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    #"user.backends.CustomAuthbrokerBackend",
+    "user.backends.CustomAuthbrokerBackend",
 ]
 
 LOGIN_URL = reverse_lazy("authbroker_client:login")
@@ -72,7 +71,7 @@ ROOT_URLCONF = "config.urls"
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 
-#SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "/frontend")
+# SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "/frontend")
 
 TEMPLATES = [
     {
@@ -134,7 +133,6 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    #"sass_processor.finders.CssFinder",
 ]
 
 STATICFILES_DIRS = [
@@ -205,41 +203,22 @@ AUTHBROKER_ANONYMOUS_PATHS = ("check",)
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "simple": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "stderr": {
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-    },
-    "root": {
-        "handlers": ["stderr"],
-        "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
-    },
+    "formatters": {"simple": {"format": "{asctime} {levelname} {message}", "style": "{",},},
+    "handlers": {"stderr": {"class": "logging.StreamHandler", "formatter": "simple",},},
+    "root": {"handlers": ["stderr"], "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),},
     "loggers": {
         "django": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
         "django.server": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
             "propagate": True,
         },

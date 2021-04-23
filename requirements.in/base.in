@@ -45,3 +45,4 @@ django-simple-history
 libsass
 django-compressor
 django-sass-processor
+django_log_formatter_ecs

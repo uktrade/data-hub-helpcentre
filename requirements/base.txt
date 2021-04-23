@@ -38,6 +38,10 @@ django-environ==0.4.5
     # via -r requirements.in/base.in
 django-filter==2.4.0
     # via wagtail
+django-ipware==3.0.2
+    # via django-log-formatter-ecs
+django-log-formatter-ecs==0.0.5
+    # via -r requirements.in/base.in
 django-modelcluster==5.1
     # via wagtail
 django-oauth-toolkit==1.2.0
@@ -95,12 +99,16 @@ jmespath==0.9.4
     #   -r requirements.in/base.in
     #   boto3
     #   botocore
+kubi-ecs-logger==0.1.0
+    # via django-log-formatter-ecs
 l18n==2018.5
     # via
     #   -r requirements.in/base.in
     #   wagtail
 libsass==0.20.1
     # via -r requirements.in/base.in
+marshmallow==3.6.1
+    # via kubi-ecs-logger
 oauthlib==3.0.2
     # via
     #   -r requirements.in/base.in
