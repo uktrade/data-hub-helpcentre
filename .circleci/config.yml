@@ -55,7 +55,7 @@ jobs:
       - image: python:3.9.2
         environment:
           ALLOWED_HOSTS: "*"
-          DJANGO_SETTINGS_CONFIG: config.settings.local
+          DJANGO_SETTINGS_MODULE: config.settings.test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
           SECRET_KEY: test
           AUTHBROKER_CLIENT_ID: not_the_real_client_id
