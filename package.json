@@ -8,16 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^3.5.0",
-    "del": "^5.1.0",
-    "gulp": "^4.0.2",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5"
-  },
-  "scripts": {
-    "sass": "gulp",
-    "sass:watch": "gulp && gulp sass:watch",
-    "postinstall": "gulp"
+    "govuk-frontend": "^3.5.0"
   },
   "devDependencies": {
     "prettier": "^2.0.5"

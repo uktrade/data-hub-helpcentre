@@ -32,12 +32,12 @@ flake8:
 	docker-compose run --rm helpcentre flake8
 
 black:
-	docker-compose run --rm helpcentre  black . --check
+	docker-compose run --rm helpcentre black . --check
 
 all-requirements:
-	pip-compile --output-file requirements/base.txt requirements.in/base.in
-	pip-compile --output-file requirements/dev.txt requirements.in/dev.in
-	pip-compile --output-file requirements/prod.txt requirements.in/prod.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/base.txt requirements.in/base.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/dev.txt requirements.in/dev.in
+	docker-compose run --rm helpcentre pip-compile --output-file requirements/prod.txt requirements.in/prod.in
 
 build:
 	docker-compose build
@@ -51,14 +51,23 @@ down:
 shell:
 	docker-compose run --rm helpcentre python manage.py shell
 
+bash:
+	docker-compose run --rm helpcentre bash
+
 test:
 	docker-compose run --rm helpcentre python manage.py test
 
 migrations:
-	docker-compose run --rm helpcentre python manage.py makemigration
+	docker-compose run --rm helpcentre python manage.py makemigrations
 
 migrate:
 	docker-compose run --rm helpcentre python manage.py migrate
 
 front-end:
 	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass' 
+
+compilescss:
+	docker-compose run --rm helpcentre python manage.py compilescss
+
+collectstatic:
+	docker-compose run --rm helpcentre python manage.py collectstatic

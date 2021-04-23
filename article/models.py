@@ -11,7 +11,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.search import index
 from wagtailcodeblock.blocks import CodeBlock
 
-from helpcentre.utils import convert_list_to_matrix, get_featured_data
+from config.utils import convert_list_to_matrix, get_featured_data
 
 logger = logging.getLogger(__name__)
 

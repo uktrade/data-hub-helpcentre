@@ -4,7 +4,7 @@ from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
 
 from article.models import ArticlePage, ArticleIndexPage, ArticleHomePage
-from helpcentre.utils import get_featured_data
+from config.utils import get_featured_data
 
 
 @register_setting(icon="site")
