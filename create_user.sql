@@ -17,8 +17,7 @@ CREATE INDEX "user_historicaluser_username_87870a80" ON "user_historicaluser" ("
 CREATE INDEX "user_historicaluser_username_87870a80_like" ON "user_historicaluser" ("username" varchar_pattern_ops);
 CREATE INDEX "user_historicaluser_history_user_id_18e3a3af" ON "user_historicaluser" ("history_user_id");
 
-INSERT INTO public.django_migrations(app, name, applied)
-	VALUES ('user', '0001_initial', now());
+INSERT INTO public.django_migrations(app, name, applied) VALUES ('user', '0001_initial', now());
 
 
 COMMIT;
