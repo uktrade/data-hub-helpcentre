@@ -71,12 +71,12 @@ ROOT_URLCONF = "config.urls"
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 
-# SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "/frontend")
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "/frontend")
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates"),],
+        "DIRS": [os.path.join(BASE_DIR, "templates"), ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
