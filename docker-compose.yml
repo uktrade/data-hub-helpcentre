@@ -4,7 +4,8 @@ services:
     image: postgres:10.4
     ports:
       - "5432:5432"
-    env_file: .env
+    volumes:
+      - ./setup/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -13,7 +14,6 @@ services:
   helpcentre:
     build:
        context: .
-    env_file: .env
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/app/
