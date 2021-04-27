@@ -7,8 +7,6 @@ from django.urls import reverse_lazy
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-TEST = os.path.join(os.path.dirname(__file__))
-
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
@@ -136,6 +134,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend"),
+    os.path.join(BASE_DIR, "node_modules/govuk-frontend/govuk"),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
