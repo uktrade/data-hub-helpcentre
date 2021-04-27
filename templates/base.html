@@ -128,14 +128,14 @@
 </footer>
 
 {# Global javascript #}
-<script type="text/javascript" src="{% static 'js/helpdesk.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'js/helpdesk.js' %}"></script>#}
 
 
 {% block extra_js %}
     {# Override this in templates to add extra javascript #}
 {% endblock %}
 
-<script src="/static/js/all.js"></script>
+<script src="{% static 'all.js' %}"></script>
 <script>
     window.GOVUKFrontend.initAll()
 </script>
