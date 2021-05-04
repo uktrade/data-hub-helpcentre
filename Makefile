@@ -28,6 +28,9 @@ help:
 prettier:
 	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --check "frontend/sass/**/*.{scss,js}"'
 
+prettier-fix:
+	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --write "frontend/sass/**/*.{scss,js}"'
+
 flake8:
 	docker-compose run --rm helpcentre flake8
 
@@ -71,3 +74,6 @@ compilescss:
 
 collectstatic:
 	docker-compose run --rm helpcentre python manage.py collectstatic
+
+elevate:
+	docker-compose run --rm helpcentre python manage.py elevate_sso_user_permissions --email=$(email)
