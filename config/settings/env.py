@@ -25,25 +25,25 @@ LOGGING = {
     },
     "handlers": {
         "ecs": {"class": "logging.StreamHandler", "formatter": "ecs_formatter",},
-        "stderr": {"class": "logging.StreamHandler", "formatter": "simple",},
+        "simple": {"class": "logging.StreamHandler", "formatter": "simple",},
     },
     "root": {
-        "handlers": ["ecs", "stderr",],
+        "handlers": ["ecs", "simple",],
         "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),  # noqa F405
     },
     "loggers": {
         "django": {
-            "handlers": ["ecs", "stderr",],
+            "handlers": ["ecs", "simple",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),  # noqa F405
             "propagate": False,
         },
         "django.server": {
-            "handlers": ["ecs", "stderr",],
+            "handlers": ["ecs", "simple",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": ["ecs", "stderr",],
+            "handlers": ["ecs", "simple",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "ERROR"),  # noqa F405
             "propagate": False,
         },
