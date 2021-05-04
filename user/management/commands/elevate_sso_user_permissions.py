@@ -9,9 +9,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--email",
-            help="Test user's email address",
-            dest="email",
+            "--email", help="Test user's email address", dest="email",
         )
 
     def handle(self, *args, **options):
@@ -21,14 +19,10 @@ class Command(BaseCommand):
             user = get_user_model()
 
             if email:
-                sso_user = user.objects.get(
-                    email=email,
-                )
+                sso_user = user.objects.get(email=email,)
             else:
                 sso_user = (
-                    user.objects.exclude(
-                        email="AnonymousUser",
-                    )
+                    user.objects.exclude(email="AnonymousUser",)
                     .exclude(Q(email__contains="test.com"))
                     .first()
                 )
@@ -37,9 +31,7 @@ class Command(BaseCommand):
             sso_user.save()
             self.stdout.write(
                 self.style.SUCCESS(
-                    "Successfully elevated user permission for user {0}".format(
-                        sso_user.email
-                    )
+                    "Successfully elevated user permission for user {0}".format(sso_user.email)
                 )
             )
         else:
