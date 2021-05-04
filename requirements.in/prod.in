@@ -6,3 +6,4 @@ greenlet==0.4.16
 gevent==20.6.1
 psycogreen==1.0.2
 elastic-apm
+django-audit-log-middleware
