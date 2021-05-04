@@ -215,7 +215,7 @@ tablib[xls,xlsx]==3.0.0
     #   wagtail
 unidecode==1.1.1
     # via -r requirements.in/../requirements/base.txt
-urllib3==1.25.3
+urllib3==1.25.11
     # via
     #   -r requirements.in/../requirements/base.txt
     #   botocore

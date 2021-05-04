@@ -71,3 +71,6 @@ compilescss:
 
 collectstatic:
 	docker-compose run --rm helpcentre python manage.py collectstatic
+
+elevate:
+	docker-compose run --rm helpcentre python manage.py elevate_sso_user_permissions --email=$(email)

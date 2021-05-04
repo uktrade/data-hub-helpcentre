@@ -5,6 +5,11 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
   Roboto, "Helvetica Neue", Arial, sans-serif;
 @import "../../node_modules/govuk-frontend/govuk/all.scss";
 
+@import "home";
+@import "richtext";
+@import "article";
+@import "search";
+
 //Following the great.gov.uk styles body text is Roboto and Headings are Overpass
 //There is no simple way (that I've found) to set heading font family via sass variables
 
@@ -13,32 +18,22 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
 .govuk-heading-m,
 .govuk-heading-s {
   font-family: $govuk-font-family;
-
   a {
     font-family: $govuk-font-family;
   }
 }
-
-@import "home";
-@import "richtext";
-@import "article";
-@import "search";
-@import "recent";
 
 .article-list__item {
   position: relative;
 }
 
 .article-list__title {
-  //@include govuk-font($size: 19);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .article-list__short-description {
-  //overflow: hidden;
-  //white-space: nowrap;
   text-overflow: ellipsis;
 }
 
