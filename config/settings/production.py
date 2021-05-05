@@ -16,3 +16,6 @@ MIDDLEWARE += [
 INSTALLED_APPS += [
     "django_audit_log_middleware",
 ]
+
+# Audit log middleware user field
+AUDIT_LOG_USER_FIELD = "username"
