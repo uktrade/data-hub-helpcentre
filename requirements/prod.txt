@@ -37,6 +37,8 @@ django-appconf==1.0.4
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-compressor
+django-audit-log-middleware==0.0.4
+    # via -r requirements.in/prod.in
 django-compressor==2.4.1
     # via -r requirements.in/../requirements/base.txt
 django-environ==0.4.5
@@ -48,6 +50,7 @@ django-filter==2.4.0
 django-ipware==3.0.2
     # via
     #   -r requirements.in/../requirements/base.txt
+    #   django-audit-log-middleware
     #   django-log-formatter-ecs
 django-log-formatter-ecs==0.0.5
     # via -r requirements.in/../requirements/base.txt
@@ -77,6 +80,7 @@ django==2.2.20
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-appconf
+    #   django-audit-log-middleware
     #   django-filter
     #   django-oauth-toolkit
     #   django-staff-sso-client
