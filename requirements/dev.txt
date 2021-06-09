@@ -84,7 +84,7 @@ django-treebeard==4.3
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
-django==2.2.20
+django==2.2.22
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-appconf
