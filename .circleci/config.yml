@@ -52,7 +52,7 @@ jobs:
   test:
     working_directory: ~/app
     docker:
-      - image: python:3.9.2
+      - image: python:3.9.4
         environment:
           ALLOWED_HOSTS: "*"
           DJANGO_SETTINGS_MODULE: config.settings.test
