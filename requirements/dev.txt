@@ -10,6 +10,10 @@ anyascii==0.1.7
     #   wagtail
 appdirs==1.4.4
     # via black
+asgiref==3.3.4
+    # via
+    #   -r requirements.in/../requirements/base.txt
+    #   django
 attrs==20.2.0
     # via black
 autopep8==1.4.4
@@ -20,9 +24,9 @@ beautifulsoup4==4.8.2
     #   wagtail
 black==19.10b0
     # via -r requirements.in/dev.in
-boto3==1.9.197
+boto3==1.17.92
     # via -r requirements.in/../requirements/base.txt
-botocore==1.12.197
+botocore==1.20.92
     # via
     #   -r requirements.in/../requirements/base.txt
     #   boto3
@@ -84,7 +88,7 @@ django-treebeard==4.3
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
-django==2.2.20
+django==3.1.12
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-appconf
@@ -101,9 +105,7 @@ djangorestframework==3.12.4
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
 docutils==0.14
-    # via
-    #   -r requirements.in/../requirements/base.txt
-    #   botocore
+    # via -r requirements.in/../requirements/base.txt
 draftjs-exporter==2.1.6
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -193,7 +195,7 @@ requests-oauthlib==1.2.0
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-staff-sso-client
-requests==2.22.0
+requests==2.25.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-oauth-toolkit
@@ -203,11 +205,11 @@ rjsmin==1.1.0
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django-compressor
-s3transfer==0.2.1
+s3transfer==0.4.2
     # via
     #   -r requirements.in/../requirements/base.txt
     #   boto3
-sentry-sdk==1.0.0
+sentry-sdk==1.1.0
     # via -r requirements.in/../requirements/base.txt
 six==1.12.0
     # via
@@ -235,7 +237,7 @@ typed-ast==1.4.1
     # via black
 unidecode==1.1.1
     # via -r requirements.in/../requirements/base.txt
-urllib3==1.25.11
+urllib3==1.26.5
     # via
     #   -r requirements.in/../requirements/base.txt
     #   botocore
