@@ -78,7 +78,7 @@ django-simple-history==3.0.0
     # via -r requirements.in/../requirements/base.txt
 django-staff-sso-client==3.1.0
     # via -r requirements.in/../requirements/base.txt
-django-storages==1.7.1
+django-storages==1.11.1
     # via -r requirements.in/../requirements/base.txt
 django-taggit==1.2.0
     # via
