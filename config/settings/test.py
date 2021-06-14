@@ -7,11 +7,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "helpcentre",}}
 
-
-MIDDLEWARE += [
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-]
-
 try:
     from .local import *  # noqa: F403, F401
 except ImportError:
