@@ -23,7 +23,7 @@ jobs:
 
   python_code_style:
     docker:
-      - image: circleci/python:3.9.2
+      - image: circleci/python:3.9.4
     steps:
       - checkout
       - restore_cache:
@@ -52,7 +52,7 @@ jobs:
   test:
     working_directory: ~/app
     docker:
-      - image: python:3.9.2
+      - image: python:3.9.4
         environment:
           ALLOWED_HOSTS: "*"
           DJANGO_SETTINGS_MODULE: config.settings.test
