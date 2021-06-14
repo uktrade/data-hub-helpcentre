@@ -158,7 +158,7 @@ VCAP_SERVICES = env.json("VCAP_SERVICES", {})
 if "aws-s3-bucket" in VCAP_SERVICES:
     AWS_DEFAULT_ACL = None
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
     s3 = VCAP_SERVICES["aws-s3-bucket"][0]["credentials"]
     AWS_STORAGE_BUCKET_NAME = s3["bucket_name"]
     AWS_ACCESS_KEY_ID = s3["aws_access_key_id"]
