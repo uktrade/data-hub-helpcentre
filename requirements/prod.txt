@@ -242,7 +242,7 @@ webencodings==0.5.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   html5lib
-whitenoise==1.0.6
+whitenoise==5.2.0
     # via -r requirements.in/../requirements/base.txt
 willow==1.4
     # via

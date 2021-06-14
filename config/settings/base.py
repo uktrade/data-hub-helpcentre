@@ -10,6 +10,8 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
+DEBUG = env.bool("DJANGO_DEBUG", False)
+
 SECRET_KEY = env.str("SECRET_KEY")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "authbroker_client.middleware.ProtectAllViewsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = [
