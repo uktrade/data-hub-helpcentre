@@ -7,6 +7,12 @@ INSTALLED_APPS += [  # noqa F405
     "elasticapm.contrib.django",
 ]
 
+MIDDLEWARE += [
+    "config.middlewares.RedirectDomainMiddleware",
+    "django_audit_log_middleware.AuditLogMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+]
+
 ELASTIC_APM = {
     "SERVICE_NAME": "DataHub Help Centre",
     "SECRET_TOKEN": env("ELASTIC_APM_SECRET_TOKEN"),  # noqa F405
