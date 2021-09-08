@@ -4,7 +4,7 @@ from django import template
 
 from wagtail.core.models import Page
 
-from article.models import ArticlePage
+from api.models import ArticlePage
 
 register = template.Library()
 

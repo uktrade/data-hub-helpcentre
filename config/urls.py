@@ -9,7 +9,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from authbroker_client import urls as authbroker_client_urls
 
-from article import urls as article_urls
+from api import urls as api_urls
 from config.views_healthcheck import health_check_view
 
 from search import views as search_views
@@ -21,7 +21,7 @@ urlpatterns = [
     url(r"^search/$", search_views.search, name="search"),
     path("auth/", include(authbroker_client_urls)),
     path("check/", health_check_view, name="healthcheck_view"),
-    url(r"^api/feeds/", include(article_urls)),
+    url(r"^api/feeds/", include(api_urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

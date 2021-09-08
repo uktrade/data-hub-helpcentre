@@ -9,7 +9,7 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("article", "0011_create_accessibility_statement_20201027"),
+        ("api", "0011_create_accessibility_statement_20201027"),
         ("wagtailcore", "0060_fix_workflow_unique_constraint"),
     ]
 

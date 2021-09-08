@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
-        ("article", "0007_auto_20190806_0913"),
+        ("api", "0007_auto_20190806_0913"),
     ]
 
     operations = [

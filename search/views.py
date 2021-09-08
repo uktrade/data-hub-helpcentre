@@ -4,7 +4,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from article.models import ArticlePage
+from api.models import ArticlePage
 
 from wagtail.core.models import Page
 from wagtail.search.models import Query

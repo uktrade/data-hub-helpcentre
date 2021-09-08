@@ -10,12 +10,12 @@ from wagtail.core.models import Page
 def create_accessibility_page(apps, schema_editor):
     ContentType = apps.get_model("contenttypes.ContentType")
     HomePage = apps.get_model("home.HomePage")
-    ArticlePage = apps.get_model("article.ArticlePage")
+    ArticlePage = apps.get_model("api.ArticlePage")
     Locale = apps.get_model("wagtailcore.Locale")
     home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
-        model="articlepage", app_label="article",
+        model="articlepage", app_label="api",
     )
 
     parent = Page.objects.filter(slug=home_page.slug).first()
@@ -152,8 +152,8 @@ def create_accessibility_page(apps, schema_editor):
 
     <ul class="govuk-list govuk-list--bullet">
         <li class="govuk-body">The homepage</li>
-        <li class="govuk-body">A sample of article home pages</li>
-        <li class="govuk-body">A sample of article pages</li>
+        <li class="govuk-body">A sample of api home pages</li>
+        <li class="govuk-body">A sample of api pages</li>
     </ul>
 
     <p class="govuk-body">Live Services will test the navigation bar that appears at the top of every
@@ -214,7 +214,7 @@ def create_accessibility_page(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("article", "0010_auto_20200206_1524"),
+        ("api", "0010_auto_20200206_1524"),
         ("home", "0005_homepage_show_recent_child_articles"),
     ]
 

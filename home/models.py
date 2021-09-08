@@ -3,7 +3,7 @@ from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
 
-from article.models import ArticlePage, ArticleIndexPage, ArticleHomePage
+from api.models import ArticlePage, ArticleIndexPage, ArticleHomePage
 from config.utils import get_featured_data
 
 
