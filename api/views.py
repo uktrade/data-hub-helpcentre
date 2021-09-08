@@ -1,7 +1,6 @@
 import logging
-import csv
 
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
@@ -11,30 +10,12 @@ from .models import ArticlePage
 
 from .hawk import (
     HawkAuthentication,
-    HawkResponseMiddleware,
 )
 
-from django.utils.decorators import decorator_from_middleware
-
-from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
-
-
-class DataLakeViewSet(ViewSet,):
-    authentication_classes = (HawkAuthentication,)
-    permission_classes = ()
-
-    @decorator_from_middleware(HawkResponseMiddleware)
-    def list(self, request):
-        response = HttpResponse(content_type="text/csv")
-        response["Content-Disposition"] = f"attachment; filename={self.filename}.csv"
-        writer = csv.writer(response, csv.excel)
-        writer.writerow(self.title_list)
-        self.write_data(writer)
-        return response
 
 
 class ChildArticleFeedView(APIView):
@@ -47,8 +28,8 @@ class ChildArticleFeedView(APIView):
 
         page = (
             Site.find_for_request(request)
-                .root_page.specific.route(request, path_components)
-                .page.specific
+            .root_page.specific.route(request, path_components)
+            .page.specific
         )
         logger.debug(page)
 

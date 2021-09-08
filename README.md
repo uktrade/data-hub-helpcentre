@@ -8,7 +8,7 @@ We use the following tools to maintain a consistent coding style
 - [flake8](https://flake8.pycqa.org/en/latest/) - Python code style
 - [prettier](https://prettier.io/) - for javascript and sass code formatting
 
-These style rules are enforced by CircleCI *so please check your code locally before pushing changes!*
+These style rules are enforced by CircleCI _so please check your code locally before pushing changes!_
 
 ### Quickly check coding quality locally
 

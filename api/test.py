@@ -1,5 +1,4 @@
 import datetime
-import requests
 
 from django.test import (
     TestCase,
@@ -32,33 +31,33 @@ class ArticleIndexPageTests(WagtailPageTests):
         self.assertCanCreateAt(ArticleIndexPage, ArticlePage)
 
 
-test_url = 'http://testserver' + reverse('child_article_feed', kwargs={'path': 'data-hub'})
+test_url = "http://testserver" + reverse("child_article_feed", kwargs={"path": "data-hub/updates/"})
 
 
 def hawk_auth_sender(
-        key_id='access_key',
-        secret_key='secret_key',
-        url=test_url,
-        method='GET',
-        content_type='application/json',
+    key_id="access_key",
+    secret_key="secret_key",
+    url=test_url,
+    method="GET",
+    content_type="application/json",
 ):
     return mohawk.Sender(
         {
-            'id': key_id,
-            'key': secret_key,
-            'algorithm': 'sha256',
+            "id": key_id,
+            "key": secret_key,
+            "algorithm": "sha256",
         },
         url,
         method,
-        content='',
+        content="",
         content_type=content_type,
     )
 
 
 class HawkTests(TestCase):
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY='access_key',
-        HAWK_INCOMING_SECRET_KEY='secret_key',
+        HAWK_INCOMING_ACCESS_KEY="access_key",
+        HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_empty_object_returned_with_authentication(self):
         """If the Authorization and X-Forwarded-For headers are correct, then
@@ -67,50 +66,45 @@ class HawkTests(TestCase):
         sender = hawk_auth_sender()
         response = APIClient().get(
             test_url,
-            content_type='application/json',
+            content_type="application/json",
             HTTP_AUTHORIZATION=sender.request_header,
-            HTTP_X_FORWARDED_FOR='1.2.3.4, 123.123.123.123',
+            HTTP_X_FORWARDED_FOR="1.2.3.4, 123.123.123.123",
         )
-
-        assert response.status_code == status.HTTP_302_FOUND
+        assert response.status_code == status.HTTP_404_NOT_FOUND
 
     @override_settings(
         HAWK_INCOMING_ACCESS_KEY="wrong-id",
         HAWK_INCOMING_SECRET_KEY="secret_key",
     )
-    def test_bad_credentials_mean_302_returned(self):
+    def test_bad_credentials_mean_401_returned(self):
         """If the wrong credentials are used,
-        then a 302 is returned
+        then a 401 is returned
         """
         sender = hawk_auth_sender()
         response = APIClient().get(
             test_url,
-            content_type='application/json',
+            content_type="application/json",
             HTTP_AUTHORIZATION=sender.request_header,
-            HTTP_X_FORWARDED_FOR='1.2.3.4, 123.123.123.123',
+            HTTP_X_FORWARDED_FOR="1.2.3.4, 123.123.123.123",
         )
-        assert response.status_code == status.HTTP_302_FOUND
-        error = {'detail': 'Incorrect authentication credentials.'}
-        assert response.json == error
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
-    # @override_settings(
-    #     HAWK_INCOMING_ACCESS_KEY="some-id",
-    #     HAWK_INCOMING_SECRET_KEY="some-secret",
-    # )
-    # def test_if_61_seconds_in_past_401_returned(self):
-    #     """If the Authorization header is generated 61 seconds in the past, then a
-    #     401 is returned
-    #     """
-    #     past = datetime.datetime.now() - datetime.timedelta(seconds=61)
-    #     with freeze_time(past):
-    #         auth = hawk_auth_sender().request_header
-    #     response = APIClient().get(
-    #         reverse('child_article_feed', args={"/api/feeds/data-hub/updates/"}),
-    #         content_type='',
-    #         HTTP_AUTHORIZATION=auth,
-    #         HTTP_X_FORWARDED_FOR='1.2.3.4, 123.123.123.123',
-    #     )
-    #
-    #     assert response.status_code == status.HTTP_401_UNAUTHORIZED
-    #     error = {'detail': 'Incorrect authentication credentials.'}
-    #     assert response.json() == error
+    @override_settings(
+        HAWK_INCOMING_ACCESS_KEY="access_key",
+        HAWK_INCOMING_SECRET_KEY="secret_key",
+    )
+    def test_if_61_seconds_in_past_401_returned(self):
+        """If the Authorization header is generated 61 seconds in the past, then a
+        401 is returned
+        """
+        past = datetime.datetime.now() - datetime.timedelta(seconds=61)
+        with freeze_time(past):
+            auth = hawk_auth_sender().request_header
+        response = APIClient().get(
+            test_url,
+            content_type="",
+            HTTP_AUTHORIZATION=auth,
+            HTTP_X_FORWARDED_FOR="1.2.3.4, 123.123.123.123",
+        )
+
+        assert response.status_code == status.HTTP_401_UNAUTHORIZED

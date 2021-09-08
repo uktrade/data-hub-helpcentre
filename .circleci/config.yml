@@ -2,8 +2,8 @@ version: 2
 
 jobs:
   prettier:
-    docker: 
-      - image: 'circleci/node:latest'
+    docker:
+      - image: "circleci/node:latest"
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +19,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: npm-dependencies-{{ checksum "package-lock.json" }}  
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
 
   python_code_style:
     docker:
@@ -32,9 +32,9 @@ jobs:
       - run:
           name: Create virtualenv and install dependencies
           command: |
-              python3 -m venv env
-              . env/bin/activate
-              pip install -r requirements/dev.txt          
+            python3 -m venv env
+            . env/bin/activate
+            pip install -r requirements/dev.txt
       - run:
           name: Run black
           command: |
@@ -93,4 +93,4 @@ workflows:
     jobs:
       - test
       - prettier
-      - python_code_style      
+      - python_code_style

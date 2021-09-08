@@ -41,5 +41,8 @@ def search(request):
     return render(
         request,
         "search/search.html",
-        {"search_query": search_query, "search_results": search_results,},
+        {
+            "search_query": search_query,
+            "search_results": search_results,
+        },
     )
