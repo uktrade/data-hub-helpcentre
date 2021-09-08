@@ -151,7 +151,7 @@ openpyxl==3.0.7
     # via
     #   -r requirements.in/../requirements/base.txt
     #   tablib
-pillow==8.2.0
+pillow==8.3.2
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail
