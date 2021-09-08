@@ -42,11 +42,7 @@ def hawk_auth_sender(
     content_type="application/json",
 ):
     return mohawk.Sender(
-        {
-            "id": key_id,
-            "key": secret_key,
-            "algorithm": "sha256",
-        },
+        {"id": key_id, "key": secret_key, "algorithm": "sha256",},
         url,
         method,
         content="",
@@ -56,8 +52,7 @@ def hawk_auth_sender(
 
 class HawkTests(TestCase):
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="access_key",
-        HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="access_key", HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_empty_object_returned_with_authentication(self):
         """If the Authorization and X-Forwarded-For headers are correct, then
@@ -73,8 +68,7 @@ class HawkTests(TestCase):
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="wrong-id",
-        HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="wrong-id", HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_bad_credentials_mean_401_returned(self):
         """If the wrong credentials are used,
@@ -90,8 +84,7 @@ class HawkTests(TestCase):
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="access_key",
-        HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="access_key", HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_if_61_seconds_in_past_401_returned(self):
         """If the Authorization header is generated 61 seconds in the past, then a

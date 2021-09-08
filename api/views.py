@@ -8,9 +8,7 @@ from wagtail.core.models import Site
 
 from .models import ArticlePage
 
-from .hawk import (
-    HawkAuthentication,
-)
+from .hawk import HawkAuthentication
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
