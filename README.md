@@ -21,7 +21,7 @@ These style rules are enforced by CircleCI *so please check your code locally be
 ### Create a local env file
 
 ```
-cp sample.env .env
+cp .env.example .env
 ```
 
 Fill in the blanks for `AUTHBROKER`

@@ -56,7 +56,7 @@ jobs:
         environment:
           ALLOWED_HOSTS: "*"
           DJANGO_SETTINGS_MODULE: config.settings.test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre #PS-IGNORE
           SECRET_KEY: test
           AUTHBROKER_CLIENT_ID: not_the_real_client_id
           AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
