@@ -28,7 +28,9 @@ class Migration(migrations.Migration):
                 ),
                 ("intro", models.CharField(blank=True, max_length=250, null=True)),
             ],
-            options={"abstract": False,},
+            options={
+                "abstract": False,
+            },
             bases=("wagtailcore.page",),
         ),
     ]

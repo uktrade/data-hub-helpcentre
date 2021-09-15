@@ -11,6 +11,7 @@ from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
 
+
 class ChildArticleFeedView(APIView):
     authentication_classes = (HawkAuthentication,)
 
