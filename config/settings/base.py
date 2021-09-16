@@ -39,12 +39,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "authbroker_client",
-    "article",
+    "api",
     "storages",
     "wagtail.contrib.settings",
     "wagtailcodeblock",
     "user",
     "sass_processor",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -74,9 +75,7 @@ WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            os.path.join(BASE_DIR, "templates"),
-        ],
+        "DIRS": [os.path.join(BASE_DIR, "templates"),],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,15 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # noqa: E501
     },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },  # noqa: E501
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },  # noqa: E501
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },  # noqa: E501
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},  # noqa: E501
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},  # noqa: E501
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},  # noqa: E501
 ]
 
 # Internationalization
@@ -214,41 +207,22 @@ AUTHBROKER_ANONYMOUS_PATHS = ("check", "/api/feeds/data-hub/updates/")
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "simple": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "stderr": {
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-    },
-    "root": {
-        "handlers": ["stderr"],
-        "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
-    },
+    "formatters": {"simple": {"format": "{asctime} {levelname} {message}", "style": "{",},},
+    "handlers": {"stderr": {"class": "logging.StreamHandler", "formatter": "simple",},},
+    "root": {"handlers": ["stderr"], "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),},
     "loggers": {
         "django": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
         "django.server": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
             "propagate": False,
         },
         "django.db.backends": {
-            "handlers": [
-                "stderr",
-            ],
+            "handlers": ["stderr",],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
