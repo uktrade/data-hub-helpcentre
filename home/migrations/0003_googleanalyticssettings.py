@@ -40,8 +40,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "verbose_name": "Google Analytics",
-            },
+            options={"verbose_name": "Google Analytics",},
         ),
     ]
