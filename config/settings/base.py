@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "wagtailcodeblock",
     "user",
     "sass_processor",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -182,6 +183,9 @@ ENV_NAME = env.str("ENV_NAME", "")
 GIT_BRANCH = env.str("GIT_BRANCH", "")
 GIT_COMMIT = env.str("GIT_COMMIT", "")
 
+HAWK_INCOMING_ACCESS_KEY = env.str("HAWK_INCOMING_ACCESS_KEY", "")
+HAWK_INCOMING_SECRET_KEY = env.str("HAWK_INCOMING_SECRET_KEY", "")
+
 AUTH_USER_MODEL = "user.User"
 
 # https://github.com/FlipperPA/wagtailcodeblock#languages-available
@@ -198,7 +202,7 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("yaml", "YAML"),
 )
 
-AUTHBROKER_ANONYMOUS_PATHS = ("check",)
+AUTHBROKER_ANONYMOUS_PATHS = ("check", "/api/feeds/data-hub/updates/")
 
 LOGGING = {
     "version": 1,

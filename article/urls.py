@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import child_article_feed
+from .views import ChildArticleFeedView
 
 urlpatterns = [
-    path("<path:path>", child_article_feed, name="child_article_feed"),
+    path("<path:path>", ChildArticleFeedView.as_view(), name="child_article_feed"),
 ]

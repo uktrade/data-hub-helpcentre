@@ -142,6 +142,8 @@ marshmallow==3.6.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   kubi-ecs-logger
+mohawk==1.1.0
+    # via -r requirements.in/../requirements/base.txt
 oauthlib==3.0.2
     # via
     #   -r requirements.in/../requirements/base.txt
@@ -206,6 +208,7 @@ six==1.12.0
     #   html5lib
     #   l18n
     #   libsass
+    #   mohawk
     #   python-dateutil
 soupsieve==2.0.1
     # via
