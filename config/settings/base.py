@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "authbroker_client",
-    "api",
+    "article",
     "storages",
     "wagtail.contrib.settings",
     "wagtailcodeblock",
