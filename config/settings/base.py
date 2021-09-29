@@ -99,7 +99,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgres://postgres:postgres@postgres:5432/helpcentre"  # PS-IGNORE
+        default="postgres://postgres:postgres@postgres:5432/helpcentre"  # /PS-IGNORE
     )
 }
 

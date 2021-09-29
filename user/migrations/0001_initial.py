@@ -54,13 +54,13 @@ class Migration(migrations.Migration):
                 (
                     "first_name",
                     models.CharField(
-                        blank=True, max_length=30, verbose_name="first name"  # PS-IGNORE
+                        blank=True, max_length=30, verbose_name="first name"  # /PS-IGNORE
                     ),
                 ),
                 (
                     "last_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="last name"  # PS-IGNORE
+                        blank=True, max_length=150, verbose_name="last name"  # /PS-IGNORE
                     ),
                 ),
                 (
@@ -158,13 +158,13 @@ class Migration(migrations.Migration):
                 (
                     "first_name",
                     models.CharField(
-                        blank=True, max_length=30, verbose_name="first name"  # PS-IGNORE
+                        blank=True, max_length=30, verbose_name="first name"  # /PS-IGNORE
                     ),
                 ),
                 (
                     "last_name",
                     models.CharField(
-                        blank=True, max_length=150, verbose_name="last name"  # PS-IGNORE
+                        blank=True, max_length=150, verbose_name="last name"  # /PS-IGNORE
                     ),
                 ),
                 (

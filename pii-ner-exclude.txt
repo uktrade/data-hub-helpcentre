@@ -183,3 +183,28 @@ NAME
 accessible:</p
 Statement for Data Services Help Centre
 branding_favicon
+managers=
+requirements/prod.txt
+article/migrations/0007_auto_20190806_0913.py
+article_home_page.html
+article/migrations/0006_articlepage_author.py
+templates/404.html
+templates/500.html
+9e81e9e01d0f912ca256ddf558cae6efce2320a6
+article/migrations/0009_articlehomepage_show_recent_child_articles.py
+eb2c10f231be6c74aa2078f757a122f29a939760
+7623cae02f74357191b13409bb5c86a3a6038873
+Makefile
+Procfile
+40ca8961b76198de748912ec55dc32b752579e79
+479055dd392a34a594a55e0b897831f7a25c25e3
+Helvetica Neue
+django.contrib import
+django.utils.crypto
+dj_database_url.config
+HAWK_INCOMING_ACCESS_KEY =
+env.str("HAWK_INCOMING_ACCESS_KEY
+the Department for International Trade
+wagtailadmin
+base.html
+NeOgEDZKuE/z+DeQZ3CX3fZKswHsDbjUIFM3elmalbLam5+eXCTnTOtQEDZbwW72uQpjhn8+bnF30KuD9jhwwZ9gKNRJKT930EscFGpA5BJNPlkUU/HL1wybju6ldXV2/B8RAwyvB5Mx4CrsTsezJbYOIThr4v0eTRcxirI6cFvdBGLjK43+ApSSbvR3npKMFgxEHe6ax8Pt83Y4cMGfYCjaShuXmCyf0KNFrwDMYYM/6IOEpmD6xcuWhpd/
