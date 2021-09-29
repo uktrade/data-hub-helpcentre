@@ -53,11 +53,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "first_name",
-                    models.CharField(blank=True, max_length=30, verbose_name="first name"),  #PS-IGNORE
+                    models.CharField(
+                        blank=True, max_length=30, verbose_name="first name"  # PS-IGNORE
+                    ),
                 ),
                 (
                     "last_name",
-                    models.CharField(blank=True, max_length=150, verbose_name="last name"),  #PS-IGNORE
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="last name"  # PS-IGNORE
+                    ),
                 ),
                 (
                     "email",
@@ -109,8 +113,14 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "user", "verbose_name_plural": "users", "abstract": False,},
-            managers=[("objects", django.contrib.auth.models.UserManager()),],
+            options={
+                "verbose_name": "user",
+                "verbose_name_plural": "users",
+                "abstract": False,
+            },
+            managers=[
+                ("objects", django.contrib.auth.models.UserManager()),
+            ],
         ),
         migrations.CreateModel(
             name="HistoricalUser",
@@ -147,11 +157,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "first_name",
-                    models.CharField(blank=True, max_length=30, verbose_name="first name"),  #PS-IGNORE
+                    models.CharField(
+                        blank=True, max_length=30, verbose_name="first name"  # PS-IGNORE
+                    ),
                 ),
                 (
                     "last_name",
-                    models.CharField(blank=True, max_length=150, verbose_name="last name"),  #PS-IGNORE
+                    models.CharField(
+                        blank=True, max_length=150, verbose_name="last name"  # PS-IGNORE
+                    ),
                 ),
                 (
                     "email",
