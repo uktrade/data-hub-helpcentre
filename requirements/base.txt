@@ -44,7 +44,7 @@ django-ipware==3.0.2
     # via django-log-formatter-ecs
 django-log-formatter-ecs==0.0.5
     # via -r requirements.in/base.in
-django-modelcluster==5.1
+django-modelcluster==5.3
     # via wagtail
 django-oauth-toolkit==1.2.0
     # via -r requirements.in/base.in
@@ -56,13 +56,13 @@ django-staff-sso-client==3.1.0
     # via -r requirements.in/base.in
 django-storages==1.11.1
     # via -r requirements.in/base.in
-django-taggit==1.2.0
+django-taggit==2.1.0
     # via
     #   -r requirements.in/base.in
     #   wagtail
 django-treebeard==4.3
     # via wagtail
-django==3.1.13
+django==3.2.12
     # via
     #   -r requirements.in/base.in
     #   django-appconf
@@ -118,7 +118,7 @@ oauthlib==3.0.2
     #   requests-oauthlib
 openpyxl==3.0.7
     # via tablib
-pillow==8.3.2
+pillow==9.0.1
     # via
     #   -r requirements.in/base.in
     #   wagtail
@@ -179,6 +179,8 @@ sqlparse==0.3.0
     #   django
 tablib[xls,xlsx]==3.0.0
     # via wagtail
+telepath==0.2
+    # via wagtail
 unidecode==1.1.1
     # via -r requirements.in/base.in
 urllib3==1.26.5
@@ -187,13 +189,13 @@ urllib3==1.26.5
     #   botocore
     #   requests
     #   sentry-sdk
-wagtail==2.12.5
+wagtail==2.16.1
     # via
     #   -r requirements.in/base.in
     #   wagtailcodeblock
 wagtailcodeblock==1.17.1.0
     # via -r requirements.in/base.in
-waitress==1.4.3
+waitress==2.1.1
     # via -r requirements.in/base.in
 wand==0.5.5
     # via -r requirements.in/base.in
