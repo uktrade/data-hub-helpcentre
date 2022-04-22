@@ -62,7 +62,7 @@ django-taggit==2.1.0
     #   wagtail
 django-treebeard==4.3
     # via wagtail
-django==3.2.12
+django==3.2.13
     # via
     #   -r requirements.in/base.in
     #   django-appconf
