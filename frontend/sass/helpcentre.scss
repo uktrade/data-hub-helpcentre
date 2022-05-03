@@ -9,6 +9,7 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
 @import "richtext";
 @import "article";
 @import "search";
+@import "content";
 
 //Following the great.gov.uk styles body text is Roboto and Headings are Overpass
 //There is no simple way (that I've found) to set heading font family via sass variables
