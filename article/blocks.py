@@ -8,7 +8,7 @@ class EmbedVideoBlock(blocks.StructBlock):
     video = EmbedBlock(
         help_text="Paste a URL from Microsoft Stream or Youtube. Please "
         "use the page URL rather than the URL from the embed code."
-    )  # <-- the part we need
+    )
 
     class Meta:
         template = "blocks/video_embed.html"
