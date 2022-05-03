@@ -5,12 +5,13 @@ from django.conf import settings
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.core import blocks
+from wagtail.core.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail.search import index
 from wagtailcodeblock.blocks import CodeBlock
 
+from . import blocks
 from config.utils import convert_list_to_matrix, get_featured_data
 
 logger = logging.getLogger(__name__)
@@ -60,8 +61,9 @@ class ArticlePage(Page):
 
     body = StreamField(
         [
-            ("paragraph", blocks.RichTextBlock()),
+            ("paragraph", RichTextBlock()),
             ("image", ImageChooserBlock()),
+            ("embed_video", blocks.EmbedVideoBlock(help_text="""Embed a video""")),
             ("code", CodeBlock(label="Code")),
         ],
         null=True,
