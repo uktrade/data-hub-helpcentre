@@ -209,9 +209,7 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
 # - 'urls' specifies which patterns
 ms_stream_provider = {
     "endpoint": "https://web.microsoftstream.com/oembed",
-    "urls": [
-        "^https://.+?.microsoftstream.com/video/.+$",
-    ],
+    "urls": ["^https://.+?.microsoftstream.com/video/.+$",],
 }
 # https://*.microsoftstream.com/video/ID
 # https://web.microsoftstream.com/video/2db4eeae-f9f8-4324-997a-41f682dea240 /PS-IGNORE
@@ -219,18 +217,13 @@ ms_stream_provider = {
 # Need a custom youtube provider because the Wagtail default has a bug
 youtube_provider = {
     "endpoint": "https://www.youtube.com/oembed",
-    "urls": [
-        "^https://www.youtube.com/watch.+$",
-    ],
+    "urls": ["^https://www.youtube.com/watch.+$",],
 }
 
 WAGTAILEMBEDS_FINDERS = [
     {
         "class": "wagtail.embeds.finders.oembed",
-        "providers": [
-            youtube_provider,
-            ms_stream_provider,
-        ],
+        "providers": [youtube_provider, ms_stream_provider,],
     }
 ]
 
