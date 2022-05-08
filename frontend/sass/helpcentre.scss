@@ -3,6 +3,10 @@ $govuk-page-width: 1160px;
 
 $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
   Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
 @import "../../node_modules/govuk-frontend/govuk/all.scss";
 
 @import "home";
@@ -18,6 +22,7 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
 .govuk-heading-m,
 .govuk-heading-s {
   font-family: $govuk-font-family;
+
   a {
     font-family: $govuk-font-family;
   }
@@ -59,6 +64,7 @@ $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
 
 .inline-breadcrumbs {
   color: $govuk-secondary-text-colour;
+
   .inline-breadcrumbs--item {
     color: $govuk-secondary-text-colour;
     text-decoration: none;
