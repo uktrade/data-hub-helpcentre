@@ -2,7 +2,7 @@ import logging
 
 from wagtail.core.models import Site
 
-from .models import ArticlePage
+from .models import ArticlePage, ArticleIndexPage
 
 from .hawk import HawkAuthentication
 
