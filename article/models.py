@@ -24,13 +24,13 @@ class ArticleIndexPage(Page):
         help_text="When set to True, any child articles will be displayed in columns, otherwise full width",
     )
 
-    children_order_by_choices = [
+    CHILDREN_ORDER_BY_CHOICES = [
         ("-date", "Date with most recent first"),
         ("sequence", "Sequence"),
     ]
 
     children_order_by = models.CharField(
-        max_length=50, choices=children_order_by_choices, default="-date"
+        max_length=50, choices=CHILDREN_ORDER_BY_CHOICES, default="-date"
     )
 
     content_panels = Page.content_panels + [
