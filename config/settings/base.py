@@ -202,6 +202,31 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("yaml", "YAML"),
 )
 
+# Add a custom provider
+# Your custom provider must support oEmbed for this to work. You should be
+# able to find these details in the provider's documentation.
+# - 'endpoint' is the URL of the oEmbed endpoint that Wagtail will call
+# - 'urls' specifies which patterns
+ms_stream_provider = {
+    "endpoint": "https://web.microsoftstream.com/oembed",
+    "urls": ["^https://.+?.microsoftstream.com/video/.+$",],
+}
+# https://*.microsoftstream.com/video/ID
+# https://web.microsoftstream.com/video/2db4eeae-f9f8-4324-997a-41f682dea240 /PS-IGNORE
+
+# Need a custom youtube provider because the Wagtail default has a bug
+youtube_provider = {
+    "endpoint": "https://www.youtube.com/oembed",
+    "urls": ["^https://www.youtube.com/watch.+$",],
+}
+
+WAGTAILEMBEDS_FINDERS = [
+    {
+        "class": "wagtail.embeds.finders.oembed",
+        "providers": [youtube_provider, ms_stream_provider,],
+    }
+]
+
 AUTHBROKER_ANONYMOUS_PATHS = ("check", "/api/feeds/data-hub/updates/")
 
 LOGGING = {
