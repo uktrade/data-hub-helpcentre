@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('article', '0013_alter_articlepage_body'),
+        ("article", "0013_alter_articlepage_body"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='articleindexpage',
-            name='children_order_by',
-            field=models.CharField(choices=[('-date', 'Date with most recent first'), ('sequence', 'Sequence')], default='-date', max_length=50),
+            model_name="articleindexpage",
+            name="children_order_by",
+            field=models.CharField(
+                choices=[("-date", "Date with most recent first"), ("sequence", "Sequence")],
+                default="-date",
+                max_length=50,
+            ),
         ),
         migrations.AddField(
-            model_name='articlepage',
-            name='sequence',
+            model_name="articlepage",
+            name="sequence",
             field=models.IntegerField(default=0),
         ),
     ]

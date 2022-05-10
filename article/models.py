@@ -24,9 +24,14 @@ class ArticleIndexPage(Page):
         help_text="When set to True, any child articles will be displayed in columns, otherwise full width",
     )
 
-    children_order_by_choices = [("-date", "Date with most recent first"), ("sequence", "Sequence"), ]
+    children_order_by_choices = [
+        ("-date", "Date with most recent first"),
+        ("sequence", "Sequence"),
+    ]
 
-    children_order_by = models.CharField(max_length=50, choices=children_order_by_choices, default="-date")
+    children_order_by = models.CharField(
+        max_length=50, choices=children_order_by_choices, default="-date"
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
@@ -38,7 +43,10 @@ class ArticleIndexPage(Page):
         context = super(ArticleIndexPage, self).get_context(request, *args, **kwargs)
 
         children = (
-            ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by(self.children_order_by)
+            ArticlePage.objects.live()
+            .child_of(self)
+            .not_type(ArticleIndexPage)
+            .order_by(self.children_order_by)
         )
 
         siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by("title")
