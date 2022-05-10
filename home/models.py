@@ -37,6 +37,7 @@ class HomePage(Page):
                 ArticlePage.objects.live()
                 .descendant_of(self)
                 .not_type(ArticleIndexPage)
+                # TODO: Check if need to integrate children order from ArticleIndexPage
                 .order_by("-date")[:10]
             )
 

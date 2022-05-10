@@ -15,6 +15,8 @@ from config.utils import convert_list_to_matrix, get_featured_data
 
 logger = logging.getLogger(__name__)
 
+children_order_by_choices = [("-date", "Date most recent first"), ("sequence", "Sequence"),]
+
 
 class ArticleIndexPage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
@@ -23,8 +25,11 @@ class ArticleIndexPage(Page):
         help_text="When set to True, any child articles will be displayed in columns, otherwise full width",
     )
 
+    children_order = models.CharField(max_length=150, choices=children_order_by_choices, default="-date")
+
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
+        FieldPanel("children_order"),
         FieldPanel("show_in_columns"),
     ]
 
@@ -32,7 +37,7 @@ class ArticleIndexPage(Page):
         context = super(ArticleIndexPage, self).get_context(request, *args, **kwargs)
 
         children = (
-            ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by("-date")
+            ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by(self.children_order)
         )
 
         siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by("title")
@@ -57,6 +62,8 @@ class ArticleIndexPage(Page):
 class ArticlePage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250, blank=True, null=True)
+
+    sequence = models.IntegerField(default=0, null=False)
 
     body = StreamField(
         [
@@ -86,6 +93,7 @@ class ArticlePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("date"),
         FieldPanel("intro"),
+        FieldPanel("sequence"),
         StreamFieldPanel("body"),
         FieldPanel("author"),
     ]
@@ -128,6 +136,7 @@ class ArticleHomePage(Page):
                 ArticlePage.objects.live()
                 .descendant_of(self)
                 .not_type(ArticleIndexPage)
+                # TODO: Check if need to integrate children order from ArticleIndexPage
                 .order_by("-date")[:10]
             )
 
