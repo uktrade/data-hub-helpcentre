@@ -20,8 +20,6 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AddField(
-            model_name="articlepage",
-            name="sequence",
-            field=models.IntegerField(default=0),
+            model_name="articlepage", name="sequence", field=models.IntegerField(default=0),
         ),
     ]

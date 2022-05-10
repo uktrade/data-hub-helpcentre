@@ -71,7 +71,7 @@ class ArticleIndexPage(Page):
 class ArticlePage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250, blank=True, null=True)
-    sequence = models.IntegerField(default=0, null=False)
+    sequence = models.IntegerField(default=0)
 
     body = StreamField(
         [
