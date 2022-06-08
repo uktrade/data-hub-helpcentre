@@ -31,3 +31,37 @@
     height: calc(100vw * 0.3);
   }
 }
+
+.article-body {
+  table {
+    @extend .govuk-table;
+
+    thead {
+      @extend .govuk-table__head !optional;
+
+      tr {
+        @extend .govuk-table__row !optional;
+      }
+
+      th {
+        @extend .govuk-table__header;
+      }
+    }
+
+    tbody {
+      @extend .govuk-table__body !optional;
+
+      tr {
+        @extend .govuk-table__row;
+      }
+
+      th {
+        @extend .govuk-table__header;
+      }
+
+      td {
+        @extend .govuk-table__cell;
+      }
+    }
+  }
+}
