@@ -9,6 +9,7 @@ from wagtail.core.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail.search import index
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtailcodeblock.blocks import CodeBlock
 
 from . import blocks
@@ -79,6 +80,7 @@ class ArticlePage(Page):
             ("image", ImageChooserBlock()),
             ("embed_video", blocks.EmbedVideoBlock(help_text="""Embed a video""")),
             ("code", CodeBlock(label="Code")),
+            ("table", TableBlock(help_text="")),
         ],
         null=True,
         blank=True,
