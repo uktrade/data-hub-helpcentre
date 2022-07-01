@@ -5,12 +5,14 @@ from django.conf import settings
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.core import blocks
+from wagtail.core.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 from wagtail.search import index
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtailcodeblock.blocks import CodeBlock
 
+from . import blocks
 from config.utils import convert_list_to_matrix, get_featured_data
 
 logger = logging.getLogger(__name__)
@@ -23,16 +25,29 @@ class ArticleIndexPage(Page):
         help_text="When set to True, any child articles will be displayed in columns, otherwise full width",
     )
 
+    CHILDREN_ORDER_BY_CHOICES = [
+        ("-date", "Date with most recent first"),
+        ("sequence", "Sequence"),
+    ]
+
+    children_order_by = models.CharField(
+        max_length=50, choices=CHILDREN_ORDER_BY_CHOICES, default="-date"
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
         FieldPanel("show_in_columns"),
+        FieldPanel("children_order_by"),
     ]
 
     def get_context(self, request, *args, **kwargs):
         context = super(ArticleIndexPage, self).get_context(request, *args, **kwargs)
 
         children = (
-            ArticlePage.objects.live().child_of(self).not_type(ArticleIndexPage).order_by("-date")
+            ArticlePage.objects.live()
+            .child_of(self)
+            .not_type(ArticleIndexPage)
+            .order_by(self.children_order_by)
         )
 
         siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by("title")
@@ -57,12 +72,15 @@ class ArticleIndexPage(Page):
 class ArticlePage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250, blank=True, null=True)
+    sequence = models.IntegerField(default=0)
 
     body = StreamField(
         [
-            ("paragraph", blocks.RichTextBlock()),
+            ("paragraph", RichTextBlock()),
             ("image", ImageChooserBlock()),
+            ("embed_video", blocks.EmbedVideoBlock(help_text="""Embed a video""")),
             ("code", CodeBlock(label="Code")),
+            ("table", TableBlock(help_text="")),
         ],
         null=True,
         blank=True,
@@ -86,6 +104,7 @@ class ArticlePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("date"),
         FieldPanel("intro"),
+        FieldPanel("sequence"),
         StreamFieldPanel("body"),
         FieldPanel("author"),
     ]

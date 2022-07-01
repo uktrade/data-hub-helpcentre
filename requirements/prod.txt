@@ -241,7 +241,7 @@ wagtail==2.16.1
     #   wagtailcodeblock
 wagtailcodeblock==1.17.1.0
     # via -r requirements.in/../requirements/base.txt
-waitress==2.1.1
+waitress==2.1.2
     # via -r requirements.in/../requirements/base.txt
 wand==0.5.5
     # via -r requirements.in/../requirements/base.txt
