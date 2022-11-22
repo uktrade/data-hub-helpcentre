@@ -162,7 +162,7 @@ pathspec==0.8.0
     # via black
 pep517==0.10.0
     # via pip-tools
-pillow==9.0.1
+pillow==9.3.0
     # via
     #   -r requirements.in/../requirements/base.txt
     #   wagtail

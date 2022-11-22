@@ -118,7 +118,7 @@ oauthlib==3.0.2
     #   requests-oauthlib
 openpyxl==3.0.7
     # via tablib
-pillow==9.0.1
+pillow==9.3.0
     # via
     #   -r requirements.in/base.in
     #   wagtail
