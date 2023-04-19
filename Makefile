@@ -27,7 +27,7 @@ help:
 
 
 run = docker-compose run --rm helpcentre
-poetry = $(run) helpcentre poetry --quiet
+poetry = $(run) poetry --quiet
 
 
 prettier:
