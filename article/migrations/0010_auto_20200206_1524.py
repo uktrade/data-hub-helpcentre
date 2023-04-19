@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("article", "0009_articlehomepage_show_recent_child_articles"),
     ]

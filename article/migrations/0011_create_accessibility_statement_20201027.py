@@ -15,7 +15,8 @@ def create_accessibility_page(apps, schema_editor):
     home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
-        model="articlepage", app_label="article",
+        model="articlepage",
+        app_label="article",
     )
 
     parent = Page.objects.filter(slug=home_page.slug).first()
@@ -212,7 +213,6 @@ def create_accessibility_page(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("article", "0010_auto_20200206_1524"),
         ("home", "0005_homepage_show_recent_child_articles"),

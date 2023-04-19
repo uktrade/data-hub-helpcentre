@@ -9,7 +9,6 @@ import wagtail.images.blocks
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("article", "0014_auto_20220510_1245"),
     ]

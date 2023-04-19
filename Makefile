@@ -42,6 +42,8 @@ flake8:
 black:
 	$(run) black . --check
 
+black-change:
+	$(run) black .
 
 all-requirements:
 	$(poetry) export -f requirements.txt --output requirements/base.txt --without-hashes --without production,dev
