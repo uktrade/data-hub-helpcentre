@@ -25,6 +25,11 @@ help:
 	@echo -e "$(COLOUR_YELLOW)make migrate$(COLOUR_NONE) : Run Django migrate"
 	@echo -e "$(COLOUR_YELLOW)make front-end$(COLOUR_NONE) : Generate front end for first use"
 
+
+run = docker-compose run --rm helpcentre
+poetry = $(run) helpcentre poetry --quiet
+
+
 prettier:
 	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --check "frontend/sass/**/*.{scss,js}"'
 
@@ -32,15 +37,16 @@ prettier-fix:
 	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --write "frontend/sass/**/*.{scss,js}"'
 
 flake8:
-	docker-compose run --rm helpcentre flake8
+	$(run) flake8
 
 black:
-	docker-compose run --rm helpcentre black . --check
+	$(run) black . --check
+
 
 all-requirements:
-	docker-compose run --rm helpcentre pip-compile --output-file requirements/base.txt requirements.in/base.in
-	docker-compose run --rm helpcentre pip-compile --output-file requirements/dev.txt requirements.in/dev.in
-	docker-compose run --rm helpcentre pip-compile --output-file requirements/prod.txt requirements.in/prod.in
+	$(poetry) export -f requirements.txt --output requirements/base.txt --without-hashes --without production,dev
+	$(poetry) export -f requirements.txt --output requirements/dev.txt --without-hashes --with dev --without production
+	$(poetry) export -f requirements.txt --output requirements/prod.txt --without-hashes --with production --without dev
 
 build:
 	docker-compose build
@@ -52,28 +58,28 @@ down:
 	docker-compose down
 
 shell:
-	docker-compose run --rm helpcentre python manage.py shell
+	$(run) python manage.py shell
 
 bash:
-	docker-compose run --rm helpcentre bash
+	$(run) bash
 
 test:
-	docker-compose run --rm helpcentre python manage.py test
+	$(run) python manage.py test
 
 migrations:
-	docker-compose run --rm helpcentre python manage.py makemigrations
+	$(run) python manage.py makemigrations
 
 migrate:
-	docker-compose run --rm helpcentre python manage.py migrate
+	$(run) python manage.py migrate
 
 front-end:
-	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass' 
+	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass'
 
 compilescss:
-	docker-compose run --rm helpcentre python manage.py compilescss
+	$(run) python manage.py compilescss
 
 collectstatic:
-	docker-compose run --rm helpcentre python manage.py collectstatic
+	$(run) python manage.py collectstatic
 
 elevate:
-	docker-compose run --rm helpcentre python manage.py elevate_sso_user_permissions --email=$(email)
+	$(run) python manage.py elevate_sso_user_permissions --email=$(email)
