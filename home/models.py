@@ -1,6 +1,6 @@
 from django.db import models
 from wagtail.admin.panels import FieldPanel
-from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.models import Page
 
 from article.models import ArticleHomePage, ArticleIndexPage, ArticlePage
@@ -8,7 +8,7 @@ from config.utils import get_featured_data
 
 
 @register_setting(icon="site")
-class GoogleAnalyticsSettings(BaseSetting):
+class GoogleAnalyticsSettings(BaseSiteSetting):
     tracking_code = models.CharField(max_length=50, help_text="Your GA tracking code")
     is_enabled = models.BooleanField(
         default=False,

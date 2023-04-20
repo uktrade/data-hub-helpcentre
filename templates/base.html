@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html class="govuk-template no-js " lang="en">
 <head>
+    {# See: https://docs.wagtail.org/en/stable/releases/4.0.html#opening-links-within-the-live-preview-panel #}
+    {% if request.in_preview_panel %}
+        <base target="_blank">
+    {% endif %}
+
     <meta charset="utf-8"/>
 {#    <link href="https://fonts.googleapis.com/css?family=Overpass|Roboto&display=swap" rel="stylesheet">#}
     <title>
