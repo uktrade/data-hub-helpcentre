@@ -218,5 +218,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_accessibility_page),
+        # NOTE: Skipping this migration going forwards as this should have been
+        # a management command and causes issues when setting up a fresh local
+        # environment.
+        # migrations.RunPython(create_accessibility_page),
     ]
