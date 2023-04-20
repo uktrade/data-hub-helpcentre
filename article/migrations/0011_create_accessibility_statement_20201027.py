@@ -1,10 +1,9 @@
 import datetime
 import json
 
-from django.db import migrations
 from django.contrib.auth import get_user_model
-
-from wagtail.core.models import Page
+from django.db import migrations
+from wagtail.models import Page
 
 
 def create_accessibility_page(apps, schema_editor):

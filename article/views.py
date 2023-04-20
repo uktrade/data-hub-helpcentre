@@ -1,13 +1,11 @@
 import logging
 
-from wagtail.core.models import Site
-
-from .models import ArticlePage
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from wagtail.models import Site
 
 from .hawk import HawkAuthentication
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from .models import ArticlePage
 
 logger = logging.getLogger(__name__)
 

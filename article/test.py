@@ -1,25 +1,16 @@
 import datetime
 
-from django.test import (
-    TestCase,
-    override_settings,
-)
-
-from freezegun import freeze_time
-
 import mohawk
-
+from django.test import TestCase, override_settings
+from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
-
-from wagtail.tests.utils import WagtailPageTests
-from .models import (
-    ArticlePage,
-    ArticleIndexPage,
-)
+from wagtail.test.utils import WagtailPageTests
 
 from home.models import HomePage
+
+from .models import ArticleIndexPage, ArticlePage
 
 
 # noinspection PyMethodMayBeStatic

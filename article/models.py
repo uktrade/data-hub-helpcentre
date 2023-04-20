@@ -1,19 +1,19 @@
 import logging
-from django.db import models
+
 from django.conf import settings
-
-from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.core.blocks import RichTextBlock
-from wagtail.images.blocks import ImageChooserBlock
-
-from wagtail.search import index
+from django.db import models
+from wagtail.admin.panels import FieldPanel
+from wagtail.blocks import RichTextBlock
 from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail.fields import StreamField
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page
+from wagtail.search import index
 from wagtailcodeblock.blocks import CodeBlock
 
-from . import blocks
 from config.utils import convert_list_to_matrix, get_featured_data
+
+from . import blocks
 
 logger = logging.getLogger(__name__)
 
@@ -84,6 +84,7 @@ class ArticlePage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     author = models.ForeignKey(
@@ -105,7 +106,7 @@ class ArticlePage(Page):
         FieldPanel("date"),
         FieldPanel("intro"),
         FieldPanel("sequence"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
         FieldPanel("author"),
     ]
 

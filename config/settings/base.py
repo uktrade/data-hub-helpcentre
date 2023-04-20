@@ -1,8 +1,7 @@
 import os
-import environ
 
 import dj_database_url
-
+import environ
 from django.urls import reverse_lazy
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -30,7 +29,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail",
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -157,7 +156,7 @@ MEDIA_URL = "/media/"
 
 WAGTAIL_SITE_NAME = "helpcentre"
 
-BASE_URL = "http://helpcentre.datahub.gov.uk"
+WAGTAILADMIN_BASE_URL = "http://helpcentre.datahub.gov.uk"
 
 AUTHBROKER_URL = env.str("AUTHBROKER_URL")
 AUTHBROKER_CLIENT_ID = env.str("AUTHBROKER_CLIENT_ID")
