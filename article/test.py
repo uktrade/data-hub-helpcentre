@@ -6,7 +6,7 @@ from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
-from wagtail.test.utils import WagtailPageTests
+from wagtail.test.utils import WagtailPageTestCase
 
 from home.models import HomePage
 
@@ -14,7 +14,7 @@ from .models import ArticleIndexPage, ArticlePage
 
 
 # noinspection PyMethodMayBeStatic
-class ArticleIndexPageTests(WagtailPageTests):
+class ArticleIndexPageTests(WagtailPageTestCase):
     def test_cannot_create_article_page_under_homepage(self):
         self.assertCanNotCreateAt(HomePage, ArticlePage)
 
