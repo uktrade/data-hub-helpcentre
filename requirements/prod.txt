@@ -214,7 +214,7 @@ soupsieve==2.0.1
     # via
     #   -r requirements.in/../requirements/base.txt
     #   beautifulsoup4
-sqlparse==0.3.0
+sqlparse==0.4.4
     # via
     #   -r requirements.in/../requirements/base.txt
     #   django
