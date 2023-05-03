@@ -1,29 +1,20 @@
 import datetime
 
-from django.test import (
-    TestCase,
-    override_settings,
-)
-
-from freezegun import freeze_time
-
 import mohawk
-
+from django.test import TestCase, override_settings
+from freezegun import freeze_time
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APIClient
-
-from wagtail.tests.utils import WagtailPageTests
-from .models import (
-    ArticlePage,
-    ArticleIndexPage,
-)
+from wagtail.test.utils import WagtailPageTestCase
 
 from home.models import HomePage
 
+from .models import ArticleIndexPage, ArticlePage
+
 
 # noinspection PyMethodMayBeStatic
-class ArticleIndexPageTests(WagtailPageTests):
+class ArticleIndexPageTests(WagtailPageTestCase):
     def test_cannot_create_article_page_under_homepage(self):
         self.assertCanNotCreateAt(HomePage, ArticlePage)
 
@@ -42,7 +33,11 @@ def hawk_auth_sender(
     content_type="application/json",
 ):
     return mohawk.Sender(
-        {"id": key_id, "key": secret_key, "algorithm": "sha256",},
+        {
+            "id": key_id,
+            "key": secret_key,
+            "algorithm": "sha256",
+        },
         url,
         method,
         content="",
@@ -52,7 +47,8 @@ def hawk_auth_sender(
 
 class HawkTests(TestCase):
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="access_key", HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="access_key",
+        HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_empty_object_returned_with_authentication(self):
         """If the Authorization and X-Forwarded-For headers are correct, then
@@ -68,7 +64,8 @@ class HawkTests(TestCase):
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="wrong-id", HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="wrong-id",
+        HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_bad_credentials_mean_401_returned(self):
         """If the wrong credentials are used,
@@ -84,7 +81,8 @@ class HawkTests(TestCase):
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
     @override_settings(
-        HAWK_INCOMING_ACCESS_KEY="access_key", HAWK_INCOMING_SECRET_KEY="secret_key",
+        HAWK_INCOMING_ACCESS_KEY="access_key",
+        HAWK_INCOMING_SECRET_KEY="secret_key",
     )
     def test_if_61_seconds_in_past_401_returned(self):
         """If the Authorization header is generated 61 seconds in the past, then a

@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("wagtailcore", "0041_group_collection_permissions_verbose_name_plural"),
         ("home", "0002_create_homepage"),
@@ -40,6 +39,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "Google Analytics",},
+            options={
+                "verbose_name": "Google Analytics",
+            },
         ),
     ]

@@ -1,6 +1,5 @@
 from django.http import JsonResponse
-
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 
 def health_check_view(request):

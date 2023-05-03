@@ -22,8 +22,15 @@ def lookup_credentials(access_key_id):
     """Raises a HawkFail if the passed ID is not equal to
     settings.HAWK_INCOMING_ACCESS_KEY
     """
-    if not constant_time_compare(access_key_id, settings.HAWK_INCOMING_ACCESS_KEY,):
-        raise HawkFail("No Hawk ID of {access_key_id}".format(access_key_id=access_key_id,))
+    if not constant_time_compare(
+        access_key_id,
+        settings.HAWK_INCOMING_ACCESS_KEY,
+    ):
+        raise HawkFail(
+            "No Hawk ID of {access_key_id}".format(
+                access_key_id=access_key_id,
+            )
+        )
 
     return {
         "id": settings.HAWK_INCOMING_ACCESS_KEY,
@@ -37,11 +44,16 @@ def seen_nonce(access_key_id, nonce, _):
     used within 60 seconds
     """
     cache_key = "activity_stream:{access_key_id}:{nonce}".format(
-        access_key_id=access_key_id, nonce=nonce,
+        access_key_id=access_key_id,
+        nonce=nonce,
     )
 
     # cache.add only adds key if it isn't present
-    seen_cache_key = not cache.add(cache_key, True, timeout=60,)
+    seen_cache_key = not cache.add(
+        cache_key,
+        True,
+        timeout=60,
+    )
 
     if seen_cache_key:
         logger.warning("Already seen nonce {nonce}".format(nonce=nonce))
@@ -85,7 +97,11 @@ class HawkAuthentication(BaseAuthentication):
         try:
             hawk_receiver = authorise(request)
         except HawkFail as e:
-            logger.warning("Failed authentication {e}".format(e=e,))
+            logger.warning(
+                "Failed authentication {e}".format(
+                    e=e,
+                )
+            )
             raise AuthenticationFailed(INCORRECT_CREDENTIALS_MESSAGE)
 
         return (None, hawk_receiver)
@@ -99,6 +115,7 @@ class HawkResponseMiddleware:
         response = self.get_response(request)
 
         response["Server-Authorization"] = request.auth.respond(
-            content=response.content, content_type=response["Content-Type"],
+            content=response.content,
+            content_type=response["Content-Type"],
         )
         return response

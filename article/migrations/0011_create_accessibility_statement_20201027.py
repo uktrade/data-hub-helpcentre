@@ -1,10 +1,9 @@
 import datetime
 import json
 
-from django.db import migrations
 from django.contrib.auth import get_user_model
-
-from wagtail.core.models import Page
+from django.db import migrations
+from wagtail.models import Page
 
 
 def create_accessibility_page(apps, schema_editor):
@@ -15,7 +14,8 @@ def create_accessibility_page(apps, schema_editor):
     home_page = Page.objects.filter(slug="home").first()
 
     article_content_type, _ = ContentType.objects.get_or_create(
-        model="articlepage", app_label="article",
+        model="articlepage",
+        app_label="article",
     )
 
     parent = Page.objects.filter(slug=home_page.slug).first()
@@ -212,12 +212,14 @@ def create_accessibility_page(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("article", "0010_auto_20200206_1524"),
         ("home", "0005_homepage_show_recent_child_articles"),
     ]
 
     operations = [
-        migrations.RunPython(create_accessibility_page),
+        # NOTE: Skipping this migration going forwards as this should have been
+        # a management command and causes issues when setting up a fresh local
+        # environment.
+        # migrations.RunPython(create_accessibility_page),
     ]

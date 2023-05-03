@@ -52,7 +52,7 @@ make test
 
 ## Changing requirements files
 
-Make any changes to requirements.in files and then run (uses pip tools - https://github.com/jazzband/pip-tools):
+Make any changes using poetry, then run:
 
 ```bash
 make all-requirements

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("article", "0013_alter_articlepage_body"),
     ]
@@ -20,6 +19,8 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AddField(
-            model_name="articlepage", name="sequence", field=models.IntegerField(default=0),
+            model_name="articlepage",
+            name="sequence",
+            field=models.IntegerField(default=0),
         ),
     ]
