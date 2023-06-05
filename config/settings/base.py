@@ -219,6 +219,7 @@ ms_stream_provider = {
     "endpoint": "https://web.microsoftstream.com/oembed",
     "urls": [
         "^https://.+?.microsoftstream.com/video/.+$",
+        "^https://dbis.sharepoint.com/.+$",
     ],
 }
 # https://*.microsoftstream.com/video/ID
