@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 from django.db import models
 from wagtail.admin.panels import FieldPanel
-from wagtail.blocks import RichTextBlock
+from wagtail.blocks import RawHTMLBlock, RichTextBlock
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -81,6 +81,7 @@ class ArticlePage(Page):
             ("embed_video", blocks.EmbedVideoBlock(help_text="""Embed a video""")),
             ("code", CodeBlock(label="Code")),
             ("table", TableBlock(help_text="")),
+            ("HTML", RawHTMLBlock()),
         ],
         null=True,
         blank=True,
