@@ -24,3 +24,12 @@ services:
         condition: service_healthy
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
+  helpcentre-sso.test:
+    build: https://github.com/uktrade/mock-sso.git
+    environment:
+      - MOCK_SSO_PORT=8081
+      - MOCK_SSO_TOKEN=bar
+      - MOCK_SSO_CODE=fizz
+    ports:
+      - "8081:8081"
+
