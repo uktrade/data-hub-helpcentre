@@ -24,14 +24,6 @@ These style rules are enforced by CircleCI *so please check your code locally be
 cp sample.env .env
 ```
 
-Fill in the blanks for `AUTHBROKER`
-
-```
-AUTHBROKER_CLIENT_ID=you_can_get_this
-AUTHBROKER_CLIENT_SECRET=from_webopp
-AUTHBROKER_URL=if_you_have_access
-```
-
 ### Set up and run the site:
 
 ```bash
