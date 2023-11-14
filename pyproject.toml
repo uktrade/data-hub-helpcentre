@@ -77,6 +77,7 @@ wand = "0.5.5"
 webencodings = "0.5.1"
 whitenoise = "^5.2.0"
 xlsxwriter = "1.2.8"
+gevent = "^23.9.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -88,9 +89,9 @@ flake8 = "^6.0.0"
 [tool.poetry.group.production.dependencies]
 elastic-apm = "^6.15.1"
 django-audit-log-middleware = "^0.0.4"
-gevent = "^22.10.2"
+gevent = ">=23.9.0"
 psycogreen = "^1.0.2"
-greenlet = "^2.0.2"
+greenlet = ">=2.0.2"
 
 [build-system]
 requires = ["poetry-core"]
