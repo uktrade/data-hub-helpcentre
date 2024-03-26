@@ -65,7 +65,7 @@ def authorise(request):
     """Raises a HawkFail if the passed request cannot be authenticated"""
     return Receiver(
         lookup_credentials,
-        request.META["HTTP_AUTHORIZATION"],
+        request.headers["authorization"],
         request.build_absolute_uri(),
         request.method,
         content=request.body,
@@ -91,7 +91,7 @@ class HawkAuthentication(BaseAuthentication):
         return self.authenticate_by_hawk(request)
 
     def authenticate_by_hawk(self, request):
-        if "HTTP_AUTHORIZATION" not in request.META:
+        if "authorization" not in request.headers:
             raise AuthenticationFailed(NO_CREDENTIALS_MESSAGE)
 
         try:
