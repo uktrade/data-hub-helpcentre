@@ -50,7 +50,7 @@ djangorestframework = "^3.11.2"
 docutils = "0.14"
 draftjs-exporter = "2.1.6"
 html5lib = "1.0.1"
-idna = "2.8"
+idna = "3.7"
 jmespath = "0.9.4"
 libsass = "^0.22.0"
 mohawk = "^1.1.0"
@@ -81,7 +81,7 @@ gevent = "^23.9.0"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
+black = "^24.3.0"
 coverage = "^7.2.3"
 freezegun = "^1.2.2"
 flake8 = "^6.0.0"
