@@ -12,7 +12,7 @@ click==8.1.7
 coverage==7.3.2
 defusedxml==0.7.1
 dj-database-url==0.5.0
-Django==4.2.14
+Django==4.2.15
 django-appconf==1.0.6
 django-compressor==4.4
 django-environ==0.4.5
