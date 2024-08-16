@@ -1,7 +1,9 @@
 import os
+import sys
 
 import dj_database_url
 import environ
+from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -248,42 +250,43 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "simple": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
+        "verbose": {"format": "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"},
+        "asim_formatter": {
+            "()": ASIMFormatter,
         },
     },
     "handlers": {
-        "stderr": {
+        "asim": {
             "class": "logging.StreamHandler",
-            "formatter": "simple",
+            "formatter": "asim_formatter",
+            "stream": sys.stdout,
         },
     },
     "root": {
-        "handlers": ["stderr"],
+        "handlers": ["asim"],
         "level": os.getenv("ROOT_LOG_LEVEL", "INFO"),
     },
     "loggers": {
         "django": {
             "handlers": [
-                "stderr",
+                "asim",
             ],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
-            "propagate": True,
+            "propagate": False,
         },
         "django.server": {
             "handlers": [
-                "stderr",
+                "asim",
             ],
             "level": os.getenv("DJANGO_SERVER_LOG_LEVEL", "INFO"),
             "propagate": False,
         },
         "django.db.backends": {
             "handlers": [
-                "stderr",
+                "asim",
             ],
             "level": os.getenv("DJANGO_DB_LOG_LEVEL", "INFO"),
-            "propagate": True,
+            "propagate": False,
         },
     },
 }
