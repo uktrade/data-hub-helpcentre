@@ -179,14 +179,14 @@ if "aws-s3-bucket" in VCAP_SERVICES:
     MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 
 FEEDBACK_URL = env.str("FEEDBACK_URL", "/")
-
+"""
 SENTRY_DSN = env.str("SENTRY_DSN", None)
 SENTRY_ENVIRONMENT = env.str("SENTRY_ENVIRONMENT", None)
 
-if SENTRY_DSN:
+if SENTRY_DSN is not None:
     RAVEN_CONFIG = {"dsn": SENTRY_DSN, "environment": SENTRY_ENVIRONMENT}
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
-
+"""
 SHOW_ENV_BANNER = env.bool("SHOW_ENV_BANNER", False)
 ENV_NAME = env.str("ENV_NAME", "")
 
@@ -290,5 +290,4 @@ LOGGING = {
         },
     },
 }
-
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
