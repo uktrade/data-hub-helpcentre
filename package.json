@@ -11,6 +11,7 @@
     "govuk-frontend": "^3.5.0"
   },
   "devDependencies": {
+    "cypress": "^13.13.3",
     "prettier": "^2.0.5"
   }
 }
