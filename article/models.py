@@ -17,6 +17,14 @@ from . import blocks
 
 logger = logging.getLogger(__name__)
 
+class Feedback(models.Model):
+    page = models.URLField()
+    feedback = models.CharField(max_length=3, choices=[('Yes', 'Yes'), ('No', 'No')])
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback: {self.feedback} on {self.page} at {self.submitted_at}"
+
 
 class ArticleIndexPage(Page):
     intro = models.CharField(max_length=250, blank=True, null=True)
@@ -157,3 +165,16 @@ class ArticleHomePage(Page):
         context["recent"] = recent
 
         return context
+    
+class TimeStampedModel(models.Model):
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+class UserInlineFeedbackSurvey(TimeStampedModel):
+    location = models.CharField(max_length=256)
+    was_this_page_helpful = models.BooleanField(null=False, blank=False)
+    inline_feedback_choices = models.TextField(null=True, blank=True)
+    more_detail = models.TextField(null=True, blank=True)
