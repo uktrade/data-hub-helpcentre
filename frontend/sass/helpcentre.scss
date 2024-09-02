@@ -3,7 +3,7 @@ $govuk-page-width: 1160px;
 
 $govuk-font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
   Roboto, "Helvetica Neue", Arial, sans-serif;
-@import "../../node_modules/govuk-frontend/dist/govuk/all";
+@import "../../node_modules/govuk-frontend/govuk/all.scss";
 
 @import "home";
 @import "richtext";

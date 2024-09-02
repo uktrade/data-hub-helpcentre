@@ -25,9 +25,10 @@ help:
 	@echo -e "$(COLOUR_YELLOW)make migrate$(COLOUR_NONE) : Run Django migrate"
 	@echo -e "$(COLOUR_YELLOW)make front-end$(COLOUR_NONE) : Generate front end for first use"
 
+
 run = docker-compose run --rm helpcentre
 poetry = $(run) poetry --quiet
-email = vyvyan.holland@email.com
+
 
 prettier:
 	docker run -it --rm -v node_modules:/app/node_modules -v "$(CURDIR):/app" node sh -c 'cd /app && npm i && npx prettier --check "frontend/sass/**/*.{scss,js}"'
@@ -74,7 +75,7 @@ migrate:
 	$(run) python manage.py migrate
 
 front-end:
-	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'npm install -g sass && npm install govuk-frontend && sass frontend/sass:frontend/sass'
+	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass'
 
 compilescss:
 	$(run) python manage.py compilescss

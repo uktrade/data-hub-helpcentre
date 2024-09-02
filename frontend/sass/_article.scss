@@ -52,8 +52,8 @@
       @extend .govuk-table__body !optional;
 
       tr {
-        @extend .govuk-table__row !optional;
-      }    
+        @extend .govuk-table__row;
+      }
 
       th {
         @extend .govuk-table__header;
