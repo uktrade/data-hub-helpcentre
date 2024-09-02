@@ -1,6 +1,6 @@
 from django.db import DatabaseError
-
 from wagtail.models import Site
+
 
 # Asserting that the db is available and that we have a default site
 class CheckDatabase:
@@ -8,7 +8,7 @@ class CheckDatabase:
 
     def check(self):
         try:
-            settings = Site.objects.get(is_default_site=True)
+            Site.objects.get(is_default_site=True)
             return True, ""
         except DatabaseError as e:
             return False, e
