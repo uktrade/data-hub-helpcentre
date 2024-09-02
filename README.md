@@ -32,6 +32,9 @@ make front-end
 make up
 ```
 
+### Superuser privileges
+These are needed to develop on the CMS site of the platform in Wagtail. Go to the user.user table in the helpcentre database (running in Postgres container locally) and change the value of 'is_superuser' to true on your test user (vyvyan.holland@email.com).
+
 ### Run website locally
 
 Browse the website at http://localhost:8000
@@ -55,3 +58,5 @@ make all-requirements
 ```bash
 make front-end
 ```
+
+## Accessing Wagtail Admin
