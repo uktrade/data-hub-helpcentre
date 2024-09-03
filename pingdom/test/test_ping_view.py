@@ -1,5 +1,6 @@
 from django.shortcuts import reverse
 from django.test import TestCase
+from unittest import skip
 
 
 @skip("This possibly needs re-working after we can confirm Pingdom works")
