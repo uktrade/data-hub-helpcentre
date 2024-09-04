@@ -45,11 +45,6 @@ black:
 black-change:
 	$(run) black .
 
-all-requirements:
-	$(poetry) export -f requirements.txt --output requirements/base.txt --without-hashes --without production,dev
-	$(poetry) export -f requirements.txt --output requirements/dev.txt --without-hashes --with dev --without production
-	$(poetry) export -f requirements.txt --output requirements/prod.txt --without-hashes --with production --without dev
-
 build:
 	docker-compose build
 
