@@ -28,7 +28,7 @@ django-staff-sso-client==4.2.1
 django-storages==1.11.1
 django-taggit==5.0.1
 django-treebeard==4.7
-djangorestframework==3.14.0
+djangorestframework==3.15.2
 docutils==0.14
 draftjs-exporter==2.1.6
 elastic-apm==6.19.0
@@ -63,7 +63,7 @@ python-dateutil==2.8.0
 pytz==2024.1
 raven==6.10.0
 rcssmin==1.1.1
-requests==2.31.0
+requests==2.32.0
 requests-oauthlib==1.2.0
 rjsmin==1.2.1
 s3transfer==0.4.2
@@ -73,8 +73,8 @@ soupsieve==2.0.1
 sqlparse==0.5.0
 telepath==0.3.1
 Unidecode==1.1.1
-urllib3==1.26.18
-wagtail==6.0.1
+urllib3==1.26.19
+wagtail==6.0.6
 wagtailcodeblock==1.29.0.1
 waitress==2.1.2
 Wand==0.5.5
