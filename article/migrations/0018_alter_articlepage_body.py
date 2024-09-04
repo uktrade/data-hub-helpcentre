@@ -59,12 +59,20 @@ class Migration(migrations.Migration):
                                         label="Language",
                                     ),
                                 ),
-                                ("code", wagtail.blocks.TextBlock(identifier="code", label="Code")),
+                                (
+                                    "code",
+                                    wagtail.blocks.TextBlock(
+                                        identifier="code", label="Code"
+                                    ),
+                                ),
                             ],
                             label="Code",
                         ),
                     ),
-                    ("table", wagtail.contrib.table_block.blocks.TableBlock(help_text="")),
+                    (
+                        "table",
+                        wagtail.contrib.table_block.blocks.TableBlock(help_text=""),
+                    ),
                     ("HTML", wagtail.blocks.RawHTMLBlock()),
                 ],
                 blank=True,

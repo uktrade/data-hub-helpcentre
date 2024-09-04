@@ -56,7 +56,10 @@ class Migration(migrations.Migration):
                     "body",
                     wagtail.fields.StreamField(
                         [
-                            ("heading", wagtail.blocks.CharBlock(classname="full title")),
+                            (
+                                "heading",
+                                wagtail.blocks.CharBlock(classname="full title"),
+                            ),
                             ("paragraph", wagtail.blocks.RichTextBlock()),
                             ("image", wagtail.images.blocks.ImageChooserBlock()),
                         ]
