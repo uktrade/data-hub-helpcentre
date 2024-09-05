@@ -29,9 +29,7 @@ class ChildArticleFeedView(APIView):
         limit = int(limit_query)
         logger.debug(f"limit: {limit}")
 
-        recent_articles = (
-            ArticlePage.objects.live().descendant_of(page).order_by("-date")[:limit]
-        )
+        recent_articles = ArticlePage.objects.live().descendant_of(page).order_by("-date")[:limit]
         site_root = Site.find_for_request(request).root_url
 
         count = len(recent_articles)
