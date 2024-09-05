@@ -13,7 +13,10 @@ class Migration(migrations.Migration):
             model_name="articleindexpage",
             name="children_order_by",
             field=models.CharField(
-                choices=[("-date", "Date with most recent first"), ("sequence", "Sequence")],
+                choices=[
+                    ("-date", "Date with most recent first"),
+                    ("sequence", "Sequence"),
+                ],
                 default="-date",
                 max_length=50,
             ),
