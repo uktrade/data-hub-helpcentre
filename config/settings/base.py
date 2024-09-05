@@ -169,7 +169,7 @@ print(app_bucket_creds)
 AWS_REGION = app_bucket_creds.get("aws_region")
 AWS_STORAGE_BUCKET_NAME = app_bucket_creds.get("bucket_name")
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
