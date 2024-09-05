@@ -53,10 +53,7 @@ class ArticleIndexPage(Page):
         siblings = ArticleIndexPage.objects.live().sibling_of(self).order_by("title")
 
         child_groups = (
-            ArticleIndexPage.objects.live()
-            .child_of(self)
-            .type(ArticleIndexPage)
-            .order_by("title")
+            ArticleIndexPage.objects.live().child_of(self).type(ArticleIndexPage).order_by("title")
         )
 
         child_groups_for_layout = convert_list_to_matrix(child_groups)
@@ -119,9 +116,7 @@ class ArticlePage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super(ArticlePage, self).get_context(request, *args, **kwargs)
         context["siblings"] = (
-            ArticlePage.objects.live()
-            .sibling_of(self, inclusive=False)
-            .order_by("title")
+            ArticlePage.objects.live().sibling_of(self, inclusive=False).order_by("title")
         )
 
         return context

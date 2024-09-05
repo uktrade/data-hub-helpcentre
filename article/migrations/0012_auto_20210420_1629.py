@@ -46,9 +46,7 @@ class Migration(migrations.Migration):
                                 ),
                                 (
                                     "code",
-                                    wagtail.blocks.TextBlock(
-                                        identifier="code", label="Code"
-                                    ),
+                                    wagtail.blocks.TextBlock(identifier="code", label="Code"),
                                 ),
                             ],
                             label="Code",

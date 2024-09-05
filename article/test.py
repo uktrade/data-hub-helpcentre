@@ -22,9 +22,7 @@ class ArticleIndexPageTests(WagtailPageTestCase):
         self.assertCanCreateAt(ArticleIndexPage, ArticlePage)
 
 
-test_url = "http://testserver" + reverse(
-    "child_article_feed", kwargs={"path": "data-hub/updates/"}
-)
+test_url = "http://testserver" + reverse("child_article_feed", kwargs={"path": "data-hub/updates/"})
 
 
 def hawk_auth_sender(
