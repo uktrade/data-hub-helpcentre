@@ -61,7 +61,7 @@ psycopg2==2.9.9
 pycodestyle==2.11.1
 pydantic-settings==2.4.0
 pyflakes==3.1.0
-python-dateutil==2.8.0
+python-dateutil>=2.8.0
 pytz==2024.1
 raven==6.10.0
 rcssmin==1.1.1
