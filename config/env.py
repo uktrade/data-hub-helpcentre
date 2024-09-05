@@ -87,6 +87,7 @@ class DBTPlatformEnvironment(BaseSettings):
 
         return {"aws_region": self.aws_region, "bucket_name": self.aws_storage_bucket_name}
 
+
 if is_copilot():
     if "BUILD_STEP" in environ:
         # When building use the fake settings in .env.circleci
@@ -98,4 +99,6 @@ if is_copilot():
         env = DBTPlatformEnvironment()  # type:ignore[call-arg]
 else:
     # Cloud Foundry environment
-    env = CloudFoundryEnvironment(_env_file=".env", _env_file_encoding="utf-8")  # type:ignore[call-arg]
+    env = CloudFoundryEnvironment(
+        _env_file=".env", _env_file_encoding="utf-8"
+    )  # type:ignore[call-arg]

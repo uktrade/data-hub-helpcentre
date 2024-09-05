@@ -1,6 +1,5 @@
 from typing import Annotated, Any, Optional
 
-from dbt_copilot_python.database import database_url_from_env
 import dj_database_url
 from pydantic import (
     BaseModel,
@@ -54,7 +53,9 @@ class CloudFoundryEnvironment(BaseSettings):
     authbroker_client_id: str = Field(alias="helpcentre_authbroker_client_id")
     authbroker_client_secret: str = Field(alias="helpcentre_authbroker_client_secret")
     authbroker_url: str = Field(alias="helpcentre_authbroker_url")
-    oauthlib_insecure_transport: int = Field(alias="helpcentre_oauthlib_insecure_transport", default=0)
+    oauthlib_insecure_transport: int = Field(
+        alias="helpcentre_oauthlib_insecure_transport", default=0
+    )
 
     feed_api_token: str = Field(alias="helpcentre_feed_api_token", default="")
     feedback_url: str = Field(alias="helpcentre_feedback_url", default="/")
@@ -87,7 +88,6 @@ class CloudFoundryEnvironment(BaseSettings):
     @property
     def database_config(self) -> dict:
         return {"default": dj_database_url.parse(str(self.database_url))}
-
 
     @computed_field  # type: ignore[misc]
     @property
