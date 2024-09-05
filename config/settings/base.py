@@ -2,20 +2,19 @@ import os
 import sys
 
 import dj_database_url
-import environ
+from dbt_copilot_python.utility import is_copilot
 from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
 
+from ..env import env
+
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, ".env"))
+DEBUG = env.django_debug
 
-DEBUG = env.bool("DJANGO_DEBUG", False)
+SECRET_KEY = env.secret_key
 
-SECRET_KEY = env.str("SECRET_KEY")
-
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.allowed_hosts_list
 
 INSTALLED_APPS = [
     "home",
@@ -160,41 +159,44 @@ WAGTAIL_SITE_NAME = "helpcentre"
 
 WAGTAILADMIN_BASE_URL = "http://helpcentre.datahub.gov.uk"
 
-AUTHBROKER_URL = env.str("AUTHBROKER_URL")
-AUTHBROKER_CLIENT_ID = env.str("AUTHBROKER_CLIENT_ID")
-AUTHBROKER_CLIENT_SECRET = env.str("AUTHBROKER_CLIENT_SECRET")
+AUTHBROKER_URL = env.authbroker_url
+AUTHBROKER_CLIENT_ID = env.authbroker_client_id
+AUTHBROKER_CLIENT_SECRET = env.authbroker_client_secret
 
-VCAP_SERVICES = env.json("VCAP_SERVICES", {})
+# AWS S3
+app_bucket_creds = env.s3_bucket_config
+print(app_bucket_creds)
+AWS_REGION = app_bucket_creds.get("aws_region")
+AWS_STORAGE_BUCKET_NAME = app_bucket_creds.get("bucket_name")
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-if "aws-s3-bucket" in VCAP_SERVICES:
-    AWS_DEFAULT_ACL = None
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-    s3 = VCAP_SERVICES["aws-s3-bucket"][0]["credentials"]
-    AWS_STORAGE_BUCKET_NAME = s3["bucket_name"]
-    AWS_ACCESS_KEY_ID = s3["aws_access_key_id"]
-    AWS_SECRET_ACCESS_KEY = s3["aws_secret_access_key"]
-    AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
 
-    MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
+if not is_copilot():
+    # Only required in Cloud Foundry.
+    AWS_ACCESS_KEY_ID = app_bucket_creds.get("aws_access_key_id")
+    AWS_SECRET_ACCESS_KEY = app_bucket_creds.get("aws_secret_access_key")
 
-FEEDBACK_URL = env.str("FEEDBACK_URL", "/")
+FEEDBACK_URL = env.feedback_url
 
-SENTRY_DSN = env.str("SENTRY_DSN", None)
-SENTRY_ENVIRONMENT = env.str("SENTRY_ENVIRONMENT", None)
+SENTRY_DSN = env.sentry_dsn
+SENTRY_ENVIRONMENT = env.sentry_environment
 
 if SENTRY_DSN is not None:
     RAVEN_CONFIG = {"dsn": SENTRY_DSN, "environment": SENTRY_ENVIRONMENT}
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
 
-SHOW_ENV_BANNER = env.bool("SHOW_ENV_BANNER", False)
-ENV_NAME = env.str("ENV_NAME", "")
+SHOW_ENV_BANNER = env.show_env_banner
+ENV_NAME = env.app_name
 
-GIT_BRANCH = env.str("GIT_BRANCH", "")
-GIT_COMMIT = env.str("GIT_COMMIT", "")
+GIT_BRANCH = env.git_branch
+GIT_COMMIT = env.git_commit
 
-HAWK_INCOMING_ACCESS_KEY = env.str("HAWK_INCOMING_ACCESS_KEY", "")
-HAWK_INCOMING_SECRET_KEY = env.str("HAWK_INCOMING_SECRET_KEY", "")
+HAWK_INCOMING_ACCESS_KEY = env.hawk_incoming_access_key
+HAWK_INCOMING_SECRET_KEY = env.hawk_incoming_secret_key
 
 AUTH_USER_MODEL = "user.User"
 

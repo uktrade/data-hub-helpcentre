@@ -59,7 +59,7 @@ oauthlib = "3.0.2"
 pillow = "10.3.0"
 psycopg2 = "^2.9.6"
 pycodestyle = "^2.10.0"
-python-dateutil = "2.8.0"
+python-dateutil = ">=2.8.0"
 pytz = "^2020.1"
 raven = "6.10.0"
 requests = "2.32.0"
@@ -79,6 +79,8 @@ webencodings = "0.5.1"
 whitenoise = "^5.2.0"
 xlsxwriter = "1.2.8"
 gevent = "^23.9.0"
+dbt-copilot-python = "0.2.0"
+pydantic-settings = "^2.4.0"
 
 
 
