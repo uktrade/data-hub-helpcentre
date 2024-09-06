@@ -165,7 +165,6 @@ AUTHBROKER_CLIENT_SECRET = env.authbroker_client_secret
 
 # AWS S3
 app_bucket_creds = env.s3_bucket_config
-print(app_bucket_creds)
 AWS_REGION = app_bucket_creds.get("aws_region")
 AWS_STORAGE_BUCKET_NAME = app_bucket_creds.get("bucket_name")
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"

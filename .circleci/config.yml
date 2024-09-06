@@ -61,7 +61,7 @@ jobs:
           HELPCENTRE_AUTHBROKER_CLIENT_ID: not_the_real_client_id
           HELPCENTRE_AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
           HELPCENTRE_AUTHBROKER_URL: https://url.to.sso
-          FHELPCENTRE_EED_API_TOKEN: test
+          HELPCENTRE_FEED_API_TOKEN: test
           HELPCENTRE_FEEDBACK_URL: http://path.to.feedback
           HELPCENTRE_DEBUG: True
       - image: postgres:12
