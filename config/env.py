@@ -104,6 +104,4 @@ if is_copilot():
         env = DBTPlatformEnvironment()  # type:ignore[call-arg]
 else:
     # Cloud Foundry environment
-    env = CloudFoundryEnvironment(
-        _env_file=".env", _env_file_encoding="utf-8"
-    )  # type:ignore[call-arg]
+    env = CloudFoundryEnvironment()  # type:ignore[call-arg]
