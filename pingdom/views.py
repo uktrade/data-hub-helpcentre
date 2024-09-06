@@ -17,7 +17,9 @@ def pingdom(request):
         checked[service.name] = service().check()
 
     if all(item[0] for item in checked.values()):
-        return HttpResponse(PINGDOM_TEMPLATE.format(status="OK"), content_type="text/xml")
+        return HttpResponse(
+            PINGDOM_TEMPLATE.format(status="OK"), content_type="text/xml"
+        )
     else:
         body = PINGDOM_TEMPLATE.format(status="FALSE")
         for service_result in filter(lambda x: x[0] is False, checked.values()):

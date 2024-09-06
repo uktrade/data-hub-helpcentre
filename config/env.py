@@ -74,7 +74,9 @@ class DBTPlatformEnvironment(BaseSettings):
             return {"default": {}}
 
         return {
-            "default": dj_database_url.parse(database_url_from_env("DATABASE_CREDENTIALS")),
+            "default": dj_database_url.parse(
+                database_url_from_env("DATABASE_CREDENTIALS")
+            ),
         }
 
     @computed_field  # type: ignore[misc]
@@ -85,7 +87,10 @@ class DBTPlatformEnvironment(BaseSettings):
         if self.build_step:
             return {"aws_region": "", "bucket_name": ""}
 
-        return {"aws_region": self.aws_region, "bucket_name": self.aws_storage_bucket_name}
+        return {
+            "aws_region": self.aws_region,
+            "bucket_name": self.aws_storage_bucket_name,
+        }
 
 
 if is_copilot():

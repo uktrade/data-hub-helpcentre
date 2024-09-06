@@ -21,6 +21,21 @@ def validate_postgres_dsn_str(val: str) -> PostgresDsn:
 CFPostgresDSN = Annotated[PostgresDsn, PlainValidator(validate_postgres_dsn_str)]
 
 
+class VCAPApplication(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    application_id: str
+    application_name: str
+    application_uris: list[str]
+    cf_api: str
+    limits: dict[str, Any]
+    name: str
+    organization_id: str
+    organization_name: str
+    space_id: str
+    uris: list[str]
+
+
 class VCAPServices(BaseModel):
     model_config = ConfigDict(extra="ignore")
     aws_s3_bucket: list[dict[str, Any]] = Field(alias="aws-s3-bucket")
@@ -43,6 +58,7 @@ class CloudFoundryEnvironment(BaseSettings):
     database_url: CFPostgresDSN
 
     # Cloud Foundry Environment Variables
+    vcap_application: VCAPApplication | None = None
     vcap_services: VCAPServices | None = None
 
     # Start of Environment Variables
@@ -62,11 +78,17 @@ class CloudFoundryEnvironment(BaseSettings):
 
     # Optional - url to sentry endpoint
     sentry_dsn: Optional[str] = Field(alias="helpcentre_sentry_dsn", default=None)
-    sentry_environment: Optional[str] = Field(alias="helpcentre_sentry_environment", default=None)
+    sentry_environment: Optional[str] = Field(
+        alias="helpcentre_sentry_environment", default=None
+    )
 
     # Hawk credentials
-    hawk_incoming_access_key: str = Field(alias="helpcentre_hawk_incoming_access_key", default="")
-    hawk_incoming_secret_key: str = Field(alias="helpcentre_hawk_incoming_secret_key", default="")
+    hawk_incoming_access_key: str = Field(
+        alias="helpcentre_hawk_incoming_access_key", default=""
+    )
+    hawk_incoming_secret_key: str = Field(
+        alias="helpcentre_hawk_incoming_secret_key", default=""
+    )
 
     # git
     git_branch: Optional[str] = Field(alias="helpcentre_git_branch", default="")
@@ -77,7 +99,9 @@ class CloudFoundryEnvironment(BaseSettings):
     aws_storage_bucket_name: str = Field(alias="aws_storage_bucket_name", default="")
 
     app_name: Optional[str] = Field(alias="helpcentre_app_name", default="")
-    show_env_banner: Optional[bool] = Field(alias="helpcentre_show_env_banner", default=False)
+    show_env_banner: Optional[bool] = Field(
+        alias="helpcentre_show_env_banner", default=False
+    )
 
     @computed_field  # type: ignore[misc]
     @property
