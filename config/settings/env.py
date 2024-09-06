@@ -1,3 +1,5 @@
+from os import environ
+
 from django_log_formatter_ecs import ECSFormatter
 
 from .base import *  # noqa
@@ -9,10 +11,10 @@ INSTALLED_APPS += [  # noqa F405
 
 ELASTIC_APM = {
     "SERVICE_NAME": "DataHub Help Centre",
-    "SECRET_TOKEN": env("ELASTIC_APM_SECRET_TOKEN"),  # noqa F405
-    "SERVER_URL": env("ELASTIC_APM_SERVER_URL"),  # noqa F405
-    "ENVIRONMENT": env("APP_ENV"),  # noqa F405
-    "SERVER_TIMEOUT": env("ELASTIC_APM_SERVER_TIMEOUT", default="20s"),  # noqa F405
+    "SECRET_TOKEN": environ("ELASTIC_APM_SECRET_TOKEN"),  # noqa F405
+    "SERVER_URL": environ("ELASTIC_APM_SERVER_URL"),  # noqa F405
+    "ENVIRONMENT": environ("APP_ENV"),  # noqa F405
+    "SERVER_TIMEOUT": environ("ELASTIC_APM_SERVER_TIMEOUT", default="20s"),  # noqa F405
 }
 
 

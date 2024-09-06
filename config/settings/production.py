@@ -1,20 +1,20 @@
 # flake8: noqa
-from .env import *  # noqa: F403, F401
+from ..env import env  # noqa: F403, F401
 from django.core.exceptions import ImproperlyConfigured
 
 DEBUG = False
 
-FEED_API_TOKEN = env.str("FEED_API_TOKEN")
+FEED_API_TOKEN = env.feed_api_token
 
 if not FEED_API_TOKEN:
     raise ImproperlyConfigured("The FEED_API_TOKEN must not be empty")
 
-MIDDLEWARE += [
+MIDDLEWARE = [
     "config.middlewares.RedirectDomainMiddleware",
     "django_audit_log_middleware.AuditLogMiddleware",
 ]
 
-INSTALLED_APPS += [
+INSTALLED_APPS = [
     "django_audit_log_middleware",
 ]
 

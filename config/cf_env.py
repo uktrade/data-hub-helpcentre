@@ -40,7 +40,6 @@ class VCAPServices(BaseModel):
     model_config = ConfigDict(extra="ignore")
     aws_s3_bucket: list[dict[str, Any]] = Field(alias="aws-s3-bucket")
     postgres: list[dict[str, Any]]
-    redis: list[dict[str, Any]]
 
 
 class CloudFoundryEnvironment(BaseSettings):
