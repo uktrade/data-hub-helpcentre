@@ -6,7 +6,7 @@ from dbt_copilot_python.utility import is_copilot
 from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
 
-from ..env import env
+from config.env import env
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 

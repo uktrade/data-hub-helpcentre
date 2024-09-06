@@ -1,5 +1,6 @@
 # flake8: noqa
-from ..env import env  # noqa: F403, F401
+from .env import *
+from config.env import env  # noqa: F403, F401
 from django.core.exceptions import ImproperlyConfigured
 
 DEBUG = False
