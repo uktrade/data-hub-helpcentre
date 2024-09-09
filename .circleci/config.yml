@@ -54,16 +54,16 @@ jobs:
     docker:
       - image: python:3.10
         environment:
-          HELPCENTRE_ALLOWED_HOSTS: '["*"]'
+          ALLOWED_HOSTS: '["*"]'
           DJANGO_SETTINGS_MODULE: config.settings.test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
-          HELPCENTRE_SECRET_KEY: test
-          HELPCENTRE_AUTHBROKER_CLIENT_ID: not_the_real_client_id
-          HELPCENTRE_AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
-          HELPCENTRE_AUTHBROKER_URL: https://url.to.sso
-          HELPCENTRE_FEED_API_TOKEN: test
-          HELPCENTRE_FEEDBACK_URL: http://path.to.feedback
-          HELPCENTRE_DEBUG: True
+          SECRET_KEY: test
+          AUTHBROKER_CLIENT_ID: not_the_real_client_id
+          AUTHBROKER_CLIENT_SECRET: not_the_real_client_secret
+          AUTHBROKER_URL: https://url.to.sso
+          FEED_API_TOKEN: test
+          FEEDBACK_URL: http://path.to.feedback
+          DEBUG: True
       - image: postgres:12
         environment:
           POSTGRES_DB: helpcentre

@@ -1,3 +1,4 @@
+import environ
 import os
 import sys
 
@@ -6,15 +7,18 @@ from dbt_copilot_python.utility import is_copilot
 from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
 
-from config.env import env
+from config.env import env as settings_env
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-DEBUG = env.django_debug
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env.secret_key
+DEBUG = settings_env.django_debug
 
-ALLOWED_HOSTS = env.allowed_hosts_list
+SECRET_KEY = settings_env.secret_key
+
+ALLOWED_HOSTS = settings_env.allowed_hosts_list
 
 INSTALLED_APPS = [
     "home",
@@ -159,12 +163,12 @@ WAGTAIL_SITE_NAME = "helpcentre"
 
 WAGTAILADMIN_BASE_URL = "http://helpcentre.datahub.gov.uk"
 
-AUTHBROKER_URL = env.authbroker_url
-AUTHBROKER_CLIENT_ID = env.authbroker_client_id
-AUTHBROKER_CLIENT_SECRET = env.authbroker_client_secret
+AUTHBROKER_URL = settings_env.authbroker_url
+AUTHBROKER_CLIENT_ID = settings_env.authbroker_client_id
+AUTHBROKER_CLIENT_SECRET = settings_env.authbroker_client_secret
 
 # AWS S3
-app_bucket_creds = env.s3_bucket_config
+app_bucket_creds = settings_env.s3_bucket_config
 AWS_REGION = app_bucket_creds.get("aws_region")
 AWS_STORAGE_BUCKET_NAME = app_bucket_creds.get("bucket_name")
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
@@ -179,23 +183,23 @@ if not is_copilot():
     AWS_ACCESS_KEY_ID = app_bucket_creds.get("aws_access_key_id")
     AWS_SECRET_ACCESS_KEY = app_bucket_creds.get("aws_secret_access_key")
 
-FEEDBACK_URL = env.feedback_url
+FEEDBACK_URL = settings_env.feedback_url
 
-SENTRY_DSN = env.sentry_dsn
-SENTRY_ENVIRONMENT = env.sentry_environment
+SENTRY_DSN = settings_env.sentry_dsn
+SENTRY_ENVIRONMENT = settings_env.sentry_environment
 
 if SENTRY_DSN is not None:
     RAVEN_CONFIG = {"dsn": SENTRY_DSN, "environment": SENTRY_ENVIRONMENT}
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
 
-SHOW_ENV_BANNER = env.show_env_banner
-ENV_NAME = env.app_name
+SHOW_ENV_BANNER = settings_env.show_env_banner
+ENV_NAME = settings_env.app_name
 
-GIT_BRANCH = env.git_branch
-GIT_COMMIT = env.git_commit
+GIT_BRANCH = settings_env.git_branch
+GIT_COMMIT = settings_env.git_commit
 
-HAWK_INCOMING_ACCESS_KEY = env.hawk_incoming_access_key
-HAWK_INCOMING_SECRET_KEY = env.hawk_incoming_secret_key
+HAWK_INCOMING_ACCESS_KEY = settings_env.hawk_incoming_access_key
+HAWK_INCOMING_SECRET_KEY = settings_env.hawk_incoming_secret_key
 
 AUTH_USER_MODEL = "user.User"
 
