@@ -27,7 +27,7 @@ class DBTPlatformEnvironment(BaseSettings):
     django_debug: bool
 
     secret_key: str
-    allowed_hosts: list[str]
+    allowed_hosts: list[str] | str
 
     authbroker_client_id: str
     authbroker_client_secret: str
@@ -59,6 +59,9 @@ class DBTPlatformEnvironment(BaseSettings):
     @computed_field  # type: ignore[misc]
     @property
     def allowed_hosts_list(self) -> list[str]:
+        if isinstance(self.allowed_hosts, str):
+            self.allowed_hosts = [self.allowed_hosts]
+
         if self.build_step:
             return self.allowed_hosts
 
@@ -93,7 +96,6 @@ class DBTPlatformEnvironment(BaseSettings):
 
 if is_copilot():
     if "BUILD_STEP" in environ:
-        # When building use the fake settings in .env.circleci
         env: DBTPlatformEnvironment | CloudFoundryEnvironment = DBTPlatformEnvironment(
             _env_file=".env", _env_file_encoding="utf-8"
         )  # type:ignore[call-arg]
@@ -102,4 +104,11 @@ if is_copilot():
         env = DBTPlatformEnvironment()  # type:ignore[call-arg]
 else:
     # Cloud Foundry environment
-    env = CloudFoundryEnvironment()  # type:ignore[call-arg]
+    if (
+        "local" in environ["DJANGO_SETTINGS_MODULE"]
+    ):  # local testing, see env var set in docker-compose.yml
+        env = CloudFoundryEnvironment(
+            _env_file=".env", _env_file_encoding="utf-8"
+        )  # type:ignore[call-arg]
+    else:
+        env = CloudFoundryEnvironment()  # type:ignore[call-arg]

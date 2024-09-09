@@ -62,13 +62,13 @@ class CloudFoundryEnvironment(BaseSettings):
 
     # Start of Environment Variables
     secret_key: str
-    allowed_hosts: list[str]
+    allowed_hosts: list[str] | str
     django_debug: bool = False
 
     authbroker_client_id: str
     authbroker_client_secret: str
     authbroker_url: str
-    oauthlib_insecure_transport: int = 0
+    oauthlib_insecure_transport: int = 1
 
     feed_api_token: str = ""
     feedback_url: str = "/"
@@ -95,6 +95,8 @@ class CloudFoundryEnvironment(BaseSettings):
     @computed_field  # type: ignore[misc]
     @property
     def allowed_hosts_list(self) -> list[str]:
+        if isinstance(self.allowed_hosts, str):
+            return [self.allowed_hosts]
         return self.allowed_hosts
 
     @computed_field  # type: ignore[misc]
