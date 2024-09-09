@@ -68,7 +68,10 @@ class CloudFoundryEnvironment(BaseSettings):
     authbroker_client_id: str
     authbroker_client_secret: str
     authbroker_url: str
-    oauthlib_insecure_transport: int = 1
+
+    elastic_apm_secret_token: str = ""
+    elastic_apm_server_timeout: str = "20s"
+    elastic_apm_server_url: str = ""
 
     feed_api_token: str = ""
     feedback_url: str = "/"
@@ -89,7 +92,7 @@ class CloudFoundryEnvironment(BaseSettings):
     aws_region: str = ""
     aws_storage_bucket_name: str = ""
 
-    app_name: Optional[str] = ""
+    app_env: Optional[str] = ""
     show_env_banner: Optional[bool] = False
 
     @computed_field  # type: ignore[misc]

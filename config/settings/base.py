@@ -1,4 +1,3 @@
-import environ
 import os
 import sys
 
@@ -11,8 +10,9 @@ from config.env import env as settings_env
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, ".env"))
+# some settings need to be found as env vars (e.g. by packages (OAUTHLIB))
+# env = environ.Env()
+# env.read_env(os.path.join(BASE_DIR, ".env"))
 
 DEBUG = settings_env.django_debug
 
@@ -193,7 +193,7 @@ if SENTRY_DSN is not None:
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
 
 SHOW_ENV_BANNER = settings_env.show_env_banner
-ENV_NAME = settings_env.app_name
+ENV_NAME = settings_env.app_env
 
 GIT_BRANCH = settings_env.git_branch
 GIT_COMMIT = settings_env.git_commit

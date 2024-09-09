@@ -26,6 +26,7 @@ services:
         condition: service_healthy
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
+      - OAUTHLIB_INSECURE_TRANSPORT=1
   helpcentre-sso.test:
     build: https://github.com/uktrade/mock-sso.git
     environment:

@@ -9,10 +9,10 @@ INSTALLED_APPS += [  # noqa F405
 
 ELASTIC_APM = {
     "SERVICE_NAME": "DataHub Help Centre",
-    "SECRET_TOKEN": env("ELASTIC_APM_SECRET_TOKEN"),  # noqa F405
-    "SERVER_URL": env("ELASTIC_APM_SERVER_URL"),  # noqa F405
-    "ENVIRONMENT": env("APP_ENV"),  # noqa F405
-    "SERVER_TIMEOUT": env("ELASTIC_APM_SERVER_TIMEOUT", default="20s"),  # noqa F405
+    "SECRET_TOKEN": settings_env.elastic_apm_secret_token,  # noqa F405
+    "SERVER_URL": settings_env.elastic_apm_server_url,  # noqa F405
+    "ENVIRONMENT": settings_env.app_env,  # noqa F405
+    "SERVER_TIMEOUT": settings_env.elastic_apm_server_timeout,  # noqa F405
 }
 
 

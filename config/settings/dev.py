@@ -1,4 +1,4 @@
-from config.env import *  # noqa: F403, F401
+from .env import *  # noqa: F403, F401
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
