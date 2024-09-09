@@ -61,46 +61,36 @@ class CloudFoundryEnvironment(BaseSettings):
     vcap_services: VCAPServices | None = None
 
     # Start of Environment Variables
-    secret_key: str = Field(alias="helpcentre_secret_key")
-    allowed_hosts: list[str] = Field(alias="helpcentre_allowed_hosts")
-    django_debug: bool = Field(alias="helpcentre_debug", default=False)
+    secret_key: str
+    allowed_hosts: list[str]
+    django_debug: bool = False
 
-    authbroker_client_id: str = Field(alias="helpcentre_authbroker_client_id")
-    authbroker_client_secret: str = Field(alias="helpcentre_authbroker_client_secret")
-    authbroker_url: str = Field(alias="helpcentre_authbroker_url")
-    oauthlib_insecure_transport: int = Field(
-        alias="helpcentre_oauthlib_insecure_transport", default=0
-    )
+    authbroker_client_id: str
+    authbroker_client_secret: str
+    authbroker_url: str
+    oauthlib_insecure_transport: int = 0
 
-    feed_api_token: str = Field(alias="helpcentre_feed_api_token", default="")
-    feedback_url: str = Field(alias="helpcentre_feedback_url", default="/")
+    feed_api_token: str = ""
+    feedback_url: str = "/"
 
     # Optional - url to sentry endpoint
-    sentry_dsn: Optional[str] = Field(alias="helpcentre_sentry_dsn", default=None)
-    sentry_environment: Optional[str] = Field(
-        alias="helpcentre_sentry_environment", default=None
-    )
+    sentry_dsn: Optional[str] = None
+    sentry_environment: Optional[str] = None
 
     # Hawk credentials
-    hawk_incoming_access_key: str = Field(
-        alias="helpcentre_hawk_incoming_access_key", default=""
-    )
-    hawk_incoming_secret_key: str = Field(
-        alias="helpcentre_hawk_incoming_secret_key", default=""
-    )
+    hawk_incoming_access_key: str = ""
+    hawk_incoming_secret_key: str = ""
 
     # git
-    git_branch: Optional[str] = Field(alias="helpcentre_git_branch", default="")
-    git_commit: Optional[str] = Field(alias="helpcentre_git_commit", default="")
+    git_branch: Optional[str] = ""
+    git_commit: Optional[str] = ""
 
     # S3 env vars
-    aws_region: str = Field(alias="aws_region", default="")
-    aws_storage_bucket_name: str = Field(alias="aws_storage_bucket_name", default="")
+    aws_region: str = ""
+    aws_storage_bucket_name: str = ""
 
-    app_name: Optional[str] = Field(alias="helpcentre_app_name", default="")
-    show_env_banner: Optional[bool] = Field(
-        alias="helpcentre_show_env_banner", default=False
-    )
+    app_name: Optional[str] = ""
+    show_env_banner: Optional[bool] = False
 
     @computed_field  # type: ignore[misc]
     @property

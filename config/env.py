@@ -14,12 +14,10 @@ from .cf_env import CloudFoundryEnvironment
 class DBTPlatformEnvironment(BaseSettings):
     """Class holding all environment variables for HELPCENTRE.
 
-    Environment variables all have a prefix of "HELPCENTRE_"
-    e.g. HELPCENTRE_DJANGO_DEBUG == DBTPlatformEnvironment.django_debug (not case-sensitive)
+    Environment variables are not case-sensitive.
     """
 
     model_config = SettingsConfigDict(
-        env_prefix="HELPCENTRE_",
         extra="ignore",
         validate_default=False,
     )
