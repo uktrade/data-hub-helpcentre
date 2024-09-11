@@ -1,11 +1,10 @@
 # flake8: noqa
 from .env import *
-from config.env import env  # noqa: F403, F401
 from django.core.exceptions import ImproperlyConfigured
 
 DEBUG = False
 
-FEED_API_TOKEN = env.feed_api_token
+FEED_API_TOKEN = settings_env.feed_api_token
 
 if not FEED_API_TOKEN:
     raise ImproperlyConfigured("The FEED_API_TOKEN must not be empty")

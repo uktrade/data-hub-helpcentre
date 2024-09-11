@@ -10,15 +10,11 @@ from config.env import env as settings_env
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
-# some settings need to be found as env vars (e.g. by packages (OAUTHLIB))
-# env = environ.Env()
-# env.read_env(os.path.join(BASE_DIR, ".env"))
-
 DEBUG = settings_env.django_debug
 
 SECRET_KEY = settings_env.secret_key
 
-ALLOWED_HOSTS = settings_env.allowed_hosts_list
+ALLOWED_HOSTS = "*"
 
 INSTALLED_APPS = [
     "home",

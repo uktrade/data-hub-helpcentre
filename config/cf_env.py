@@ -98,8 +98,8 @@ class CloudFoundryEnvironment(BaseSettings):
     @computed_field  # type: ignore[misc]
     @property
     def allowed_hosts_list(self) -> list[str]:
-        if isinstance(self.allowed_hosts, str):
-            return [self.allowed_hosts]
+        # if isinstance(self.allowed_hosts, str):
+        #    return [self.allowed_hosts]
         return self.allowed_hosts
 
     @computed_field  # type: ignore[misc]
