@@ -14,7 +14,8 @@ DEBUG = settings_env.django_debug
 
 SECRET_KEY = settings_env.secret_key
 
-ALLOWED_HOSTS = "*"
+ALLOWED_HOSTS = settings_env.allowed_hosts_list
+print(ALLOWED_HOSTS)
 
 INSTALLED_APPS = [
     "home",
