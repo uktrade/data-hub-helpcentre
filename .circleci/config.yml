@@ -54,7 +54,7 @@ jobs:
     docker:
       - image: python:3.10
         environment:
-          ALLOWED_HOSTS: "*"
+          ALLOWED_HOSTS: '["*"]'
           DJANGO_SETTINGS_MODULE: config.settings.test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
           SECRET_KEY: test

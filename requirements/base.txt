@@ -9,6 +9,7 @@ chardet==3.0.4
 charset-normalizer==3.3.2
 click==8.1.7
 coverage==7.3.2
+dbt-copilot-python==0.2.0
 defusedxml==0.7.1
 dj-database-url==0.5.0
 Django==4.2.15
@@ -58,8 +59,9 @@ pillow-heif==0.13.1
 platformdirs==3.11.0
 psycopg2==2.9.9
 pycodestyle==2.11.1
+pydantic-settings==2.4.0
 pyflakes==3.1.0
-python-dateutil==2.8.0
+python-dateutil>=2.8.0
 pytz==2024.1
 raven==6.10.0
 rcssmin==1.1.1
