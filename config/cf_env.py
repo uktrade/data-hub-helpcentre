@@ -99,8 +99,10 @@ class CloudFoundryEnvironment(BaseSettings):
     @property
     def allowed_hosts_list(self) -> list[str]:
         if isinstance(self.allowed_hosts, str):
-            return [host.strip() for host in self.allowed_hosts.split(",") if host.strip()]
-        return  self.allowed_hosts
+            return [
+                host.strip() for host in self.allowed_hosts.split(",") if host.strip()
+            ]
+        return self.allowed_hosts
 
     @computed_field  # type: ignore[misc]
     @property
