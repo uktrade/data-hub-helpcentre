@@ -64,7 +64,7 @@ jobs:
           FEED_API_TOKEN: test
           FEEDBACK_URL: http://path.to.feedback
           DEBUG: True
-      - image: postgres:12
+      - image: postgres:16
         environment:
           POSTGRES_DB: helpcentre
           POSTGRES_HOST_AUTH_METHOD: trust
