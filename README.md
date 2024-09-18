@@ -24,6 +24,9 @@ These style rules are enforced by CircleCI *so please check your code locally be
 cp sample.env .env
 ```
 
+### Add entry to hosts
+Append entry `127.0.0.1       data-workspace-sso.test` to hosts file (probably located at /etc/hosts).
+
 ### Set up and run the site:
 
 ```bash
