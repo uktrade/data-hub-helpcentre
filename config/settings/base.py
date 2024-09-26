@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "authbroker_client",
     "article",
     "storages",
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     "user",
     "sass_processor",
     "rest_framework",
+    "api_v1",
 ]
 
 MIDDLEWARE = [
