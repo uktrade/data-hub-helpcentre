@@ -10,6 +10,7 @@ from authbroker_client import urls as authbroker_client_urls
 
 from article import urls as article_urls
 from search import views as search_views
+from api_v1 import urls as apiv1_urls
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -19,6 +20,7 @@ urlpatterns = [
     path("auth/", include(authbroker_client_urls)),
     path("pingdom/", include("pingdom.urls")),
     path("api/feeds/", include(article_urls)),
+    path("api/v1/", include(apiv1_urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
