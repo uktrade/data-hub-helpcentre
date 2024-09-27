@@ -9,6 +9,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from authbroker_client import urls as authbroker_client_urls
 
 from article import urls as article_urls
+from api_pipeline import urls as api_pipeline_urls
 from search import views as search_views
 from api_v1 import urls as apiv1_urls
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path("pingdom/", include("pingdom.urls")),
     path("api/feeds/", include(article_urls)),
     path("api/v1/", include(apiv1_urls)),
+    path("api/pipeline/", include(api_pipeline_urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:

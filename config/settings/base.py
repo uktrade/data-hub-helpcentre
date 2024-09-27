@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "sass_processor",
     "rest_framework",
     "api_v1",
+    "api_pipeline",
 ]
 
 MIDDLEWARE = [

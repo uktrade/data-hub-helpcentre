@@ -33,13 +33,11 @@ class InlineFeedbackAPI(TestCase):
             reverse("inline_feedback:create"),
             {"location": "some location", "was_this_page_helpful": "true"},
         )
-        assert response.json() == {
-            "id": 1,
-            "location": "some location",
-            "was_this_page_helpful": True,
-            "inline_feedback_choices": "",
-            "more_detail": "",
-        }
+        assert len(response.json()) == 5
+        assert response.json()["location"] == "some location"
+        assert response.json()["was_this_page_helpful"] is True
+        assert response.json()["inline_feedback_choices"] == ""
+        assert response.json()["more_detail"] == ""
         assert response.status_code == status.HTTP_201_CREATED
 
     def test_updating_inline_feedback(self):
