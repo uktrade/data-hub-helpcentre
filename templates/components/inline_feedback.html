@@ -1,1 +1,20 @@
-Moo
+<script>
+    addEventListener("DOMContentLoaded", (event) => {
+    const form = document.getElementById("feed-back");
+    const submitter = document.querySelector("button[value=submit]");
+    const formData = new FormData(form, submitter);
+    for (const [key, value] of formData) {
+        console.log(`${key}: ${value}\n`);
+    }
+    })
+</script>
+
+<div id="data-catalogue-feedback">
+  <div>
+    <form id="feed-back">
+      <h2>Was this page helpful?</h2>
+      <button type="submit" value="yes" onclick="postInitialFeedback()">Yes</button>
+      <button type="submit" value="no">No</button>
+    </form>
+  </div>
+</div>
