@@ -35,6 +35,7 @@
         );
         this.initialFeedbackButtons =
           this.initialFeedbackContainer.querySelectorAll("button");
+        this.cancelLinks = this.initialFeedbackContainer.querySelectorAll("a");
         this.postInitialFeedbackContainer = document.getElementById(
           "post-initial-feedback-container"
         );
@@ -67,21 +68,16 @@
           this.isHelpful = data.was_this_page_helpful;
           this.loading(false);
           status = response.status;
-          if(isComplete){
-            this.closeForm()
-          }else{
-          this.showPostInitialFeedbackForm(this.id, this.isHelpful);
+          if (isComplete) {
+            this.closeForm();
+          } else {
+            this.showPostInitialFeedbackForm(this.id, this.isHelpful);
           }
         } catch (error) {
           data = { message: "Something went wrong", error: error };
           status = 500;
         }
         return { data, status };
-      }
-
-      closeForm(){
-        this.positiveFeedbackForm.style.display = "none"
-        this.negativeFeedbackForm.style.display = "none"
       }
 
       async postInitialFeedback(initial) {
@@ -134,12 +130,31 @@
         };
       }
 
+      closeForm() {
+        this.positiveFeedbackForm.style.display = "none";
+        this.negativeFeedbackForm.style.display = "none";
+      }
+
+      resetForm() {
+        console.log('ahhhhhh')
+        this.id = null;
+        this.isHelpful = null;
+        this.closeForm();
+      }
+
       init() {
         Array.from(this.initialFeedbackButtons).map((button) => {
           button.addEventListener("click", (event) => {
             event.preventDefault();
-            const initialfeedback = event.target.value;
-            InlineFeedbackForm.postInitialFeedback(initialfeedback);
+            InlineFeedbackForm.postInitialFeedback(event.target.value);
+          });
+        });
+
+        console.log('this.cancelLinks', this.cancelLinks)
+        Array.from(this.cancelLinks).map((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            this.resetForm()
           });
         });
       }
