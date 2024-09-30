@@ -1,20 +1,169 @@
 <script>
-    addEventListener("DOMContentLoaded", (event) => {
-    const form = document.getElementById("feed-back");
-    const submitter = document.querySelector("button[value=submit]");
-    const formData = new FormData(form, submitter);
-    for (const [key, value] of formData) {
-        console.log(`${key}: ${value}\n`);
+  addEventListener("DOMContentLoaded", (event) => {
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
     }
-    })
+    token = getCookie("csrftoken");
+
+    class FeedbackForm {
+      constructor(baseUrl, token) {
+        this.id = null;
+        this.baseUrl = baseUrl;
+        this.token = token;
+        this.isHelpful = null;
+        this.headers = {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Csrftoken": this.token,
+        };
+        this.location = new URL(window.location.href);
+        this.isInitialComplete = false;
+        this.initialFeedbackContainer = document.getElementById(
+          "initial-feedback-container"
+        );
+        this.initialFeedbackButtons =
+          this.initialFeedbackContainer.querySelectorAll("button");
+        this.postInitialFeedbackContainer = document.getElementById(
+          "post-initial-feedback-container"
+        );
+        this.positiveFeedbackForm =
+          document.getElementById("positive-feedback");
+        this.negativeFeedbackForm =
+          document.getElementById("negative-feedback");
+        this.positiveFeedbackForm.style.display = "none";
+        this.negativeFeedbackForm.style.display = "none";
+        this.postInitialFeedbackContainer.style.display = "none";
+        this.loadingEl = document.querySelector(".loading");
+        this.loadingEl.style.display = "none";
+      }
+
+      loading(loading) {
+        this.loadingEl.style.display = loading ? "block" : "none";
+      }
+
+      async handleFetch(endpoint, requestOptions, isComplete = false) {
+        let data = {};
+        let status = 500;
+        try {
+          this.loading(true);
+          const response = await fetch(
+            `${this.baseUrl}${endpoint}`,
+            requestOptions
+          );
+          data = await response.json();
+          this.id = data.id;
+          this.isHelpful = data.was_this_page_helpful;
+          this.loading(false);
+          status = response.status;
+          if(isComplete){
+            this.closeForm()
+          }else{
+          this.showPostInitialFeedbackForm(this.id, this.isHelpful);
+          }
+        } catch (error) {
+          data = { message: "Something went wrong", error: error };
+          status = 500;
+        }
+        return { data, status };
+      }
+
+      closeForm(){
+        this.positiveFeedbackForm.style.display = "none"
+        this.negativeFeedbackForm.style.display = "none"
+      }
+
+      async postInitialFeedback(initial) {
+        const response = await this.handleFetch("/api/v1/inline_feedback", {
+          method: "POST",
+          body: JSON.stringify({
+            was_this_page_helpful: initial,
+            location: this.location.pathname,
+          }),
+          headers: {
+            ...this.headers,
+          },
+        });
+      }
+
+      async updateInitialFeedback(payload) {
+        const response = await this.handleFetch(
+          `/api/v1/inline_feedback/${this.id}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({
+              inline_feedback_choices: payload.choices,
+              more_detail: payload.moreDetail,
+            }),
+            headers: {
+              ...this.headers,
+            },
+          },
+          true
+        );
+      }
+
+      showPostInitialFeedbackForm(id, isHelpful) {
+        this.initialFeedbackContainer.style.display = "none";
+        this.postInitialFeedbackContainer.style.display = "block";
+        isHelpful
+          ? (this.positiveFeedbackForm.style.display = "block")
+          : (this.negativeFeedbackForm.style.display = "block");
+        const formType = isHelpful ? "positive-feedback" : "negative-feedback";
+        document.getElementById(formType).onsubmit = (event) => {
+          event.preventDefault();
+          const Form = new FormData(document.getElementById(formType));
+          const choices = Form.getAll("choices").join(",");
+          const moreDetail = Form.get("more-detail");
+          const payload = {
+            choices,
+            moreDetail,
+          };
+          this.updateInitialFeedback(payload);
+        };
+      }
+
+      init() {
+        Array.from(this.initialFeedbackButtons).map((button) => {
+          button.addEventListener("click", (event) => {
+            event.preventDefault();
+            const initialfeedback = event.target.value;
+            InlineFeedbackForm.postInitialFeedback(initialfeedback);
+          });
+        });
+      }
+    }
+
+    const InlineFeedbackForm = new FeedbackForm(
+      new URL(window.location.origin),
+      token
+    );
+    InlineFeedbackForm.init();
+  });
 </script>
 
 <div id="data-catalogue-feedback">
-  <div>
-    <form id="feed-back">
-      <h2>Was this page helpful?</h2>
-      <button type="submit" value="yes" onclick="postInitialFeedback()">Yes</button>
-      <button type="submit" value="no">No</button>
-    </form>
+  <div class="loading hide">loading....</div>
+  <div id="initial-feedback-container">
+    <h2 class="govuk-heading-m">Was this page helpful?</h2>
+    <button type="submit" name="yes" value="yes">Yes</button>
+    <button type="submit" name="no" value="no">No</button>
+  </div>
+  <div id="post-initial-feedback-container">
+    <h2 class="govuk-heading-m">
+      Thanks for letting us know, your response has been recorded.
+    </h2>
+    {% include './positive_feedback_form.html' %} {% include './negative_feedback_form.html' %}
   </div>
 </div>
