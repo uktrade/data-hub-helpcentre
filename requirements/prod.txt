@@ -71,13 +71,13 @@ sqlparse==0.5.0
 telepath==0.3.1
 Unidecode==1.1.1
 urllib3==1.26.19
-wagtail==6.0.6
-wagtailcodeblock==1.29.0.1
+wagtail==6.2.2
+wagtailcodeblock==1.29.0.2
 waitress==2.1.2
 Wand==0.5.5
 webencodings==0.5.1
 whitenoise==5.3.0
-Willow==1.6.2
+Willow==1.8.0
 wrapt==1.14.1
 XlsxWriter==1.2.8
 zope.event==5.0
