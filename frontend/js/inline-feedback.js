@@ -28,17 +28,21 @@ addEventListener("DOMContentLoaded", () => {
         "X-Csrftoken": this.token,
       };
       this.location = new URL(window.location.href);
+      this.feedbackFormContainer = document.querySelector(".inline-feedback");
       this.feedbackForm = document.getElementById("feedback-form");
       this.initialFeedbackContainer = document.getElementById(
         "initial-feedback-container"
       );
-      this.initialFeedbackButtons =
-        this.initialFeedbackContainer.querySelectorAll("button");
+      this.initialFeedbackButtons = this.initialFeedbackContainer.querySelectorAll(
+        "button"
+      );
       this.postInitialFeedbackContainer = document.getElementById(
         "post-initial-feedback-container"
       );
       this.positiveFeedbackForm = document.getElementById("positive-feedback");
       this.negativeFeedbackForm = document.getElementById("negative-feedback");
+
+      this.feedbackFormContainer.classList.remove("feedback-complete");
       this.positiveFeedbackForm.style.display = "none";
       this.negativeFeedbackForm.style.display = "none";
       this.postInitialFeedbackContainer.style.display = "none";
@@ -48,6 +52,10 @@ addEventListener("DOMContentLoaded", () => {
 
     loading(loading) {
       this.loadingEl.style.display = loading ? "block" : "none";
+    }
+
+    handleError(response) {
+      this.initialFeedbackContainer.innerHTML = `<p class="govuk-body inline-feedback__error">${response.message}: ${response.error}</p>`;
     }
 
     async handleFetch(endpoint, requestOptions, isComplete = false) {
@@ -64,13 +72,16 @@ addEventListener("DOMContentLoaded", () => {
         this.isHelpful = data.was_this_page_helpful;
         this.loading(false);
         status = response.status;
+        if (status === 403) {
+          throw "403 forbidden";
+        }
         if (isComplete) {
           this.closeForm();
         } else {
           this.showPostInitialFeedbackForm(this.id, this.isHelpful);
         }
       } catch (error) {
-        data = { message: "Something went wrong", error: error };
+        data = { message: "Error", error: error };
         status = 500;
       }
       return { data, status };
@@ -87,6 +98,10 @@ addEventListener("DOMContentLoaded", () => {
           ...this.headers,
         },
       });
+      if (response.data.error) {
+        this.handleError(response.data);
+        return;
+      }
     }
 
     async updateInitialFeedback(payload) {
@@ -104,6 +119,11 @@ addEventListener("DOMContentLoaded", () => {
         },
         true
       );
+      if (response.data.error) {
+        this.handleError(response.data);
+        return;
+      }
+      this.feedbackFormContainer.classList.add("feedback-complete");
     }
 
     showPostInitialFeedbackForm(id, isHelpful) {
@@ -118,7 +138,9 @@ addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         const Form = new FormData(this.feedbackForm);
         const choices = Form.getAll("choices").join(",");
-        const moreDetail = Form.get("more-detail");
+        const moreDetail = isHelpful
+          ? Form.getAll("more-detail")[0]
+          : Form.getAll("more-detail")[1];
         const payload = {
           choices,
           moreDetail,

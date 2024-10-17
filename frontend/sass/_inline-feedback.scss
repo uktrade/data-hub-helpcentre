@@ -28,3 +28,17 @@
     font-size: 19px;
   }
 }
+
+.inline-feedback__confirmation-header {
+  margin-bottom: 30px;
+}
+
+.feedback-complete .inline-feedback__confirmation-header {
+  margin-bottom: 0;
+}
+
+.inline-feedback__error {
+  color: #d4351c;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
