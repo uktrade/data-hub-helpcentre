@@ -217,6 +217,8 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("yaml", "YAML"),
 )
 
+WAGTAIL_CODE_BLOCK_THEME = None
+
 # Add a custom provider
 # Your custom provider must support oEmbed for this to work. You should be
 # able to find these details in the provider's documentation.

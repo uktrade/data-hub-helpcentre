@@ -1,8 +1,12 @@
 {
   "name": "data-hub-helpcentre",
   "version": "1.0.2",
+  "type": "module",
   "description": "simple helpcentre cms for datahub",
   "main": "index.js",
+  "scripts": {
+    "build:css": "npx gulp sass:watch"
+  },
   "repository": "git@github.com:uktrade/data-hub-helpcentre.git",
   "author": "mark.higham@digital.trade.gov.uk",
   "license": "MIT",
@@ -11,6 +15,12 @@
     "govuk-frontend": "^3.5.0"
   },
   "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "path": "^0.12.7",
+    "sass": "^1.79.5",
+    "del": "^8.0.0",
     "prettier": "^2.0.5"
   }
 }
