@@ -1,0 +1,30 @@
+.inline-feedback {
+  border-top: 1px solid #b1b4b6;
+  padding-top: 40px;
+  legend {
+    margin-bottom: 15px;
+  }
+}
+
+.inline-feedback__initial-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.inline-feedback__initial-form__header,
+.inline-feedback__initial-form__button {
+  margin-bottom: 0;
+}
+
+.inline-feedback__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  button {
+    margin-bottom: 0;
+  }
+  a {
+    font-size: 19px;
+  }
+}

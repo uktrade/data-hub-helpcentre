@@ -1,0 +1,58 @@
+<div class="inline-feedback">
+  <div class="govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+      <div class="loading">{% include './loading-indicator.html' %}</div>
+        <div
+          id="initial-feedback-container"
+          class="inline-feedback__initial-form"
+        >
+          <h2 class="govuk-heading-m inline-feedback__initial-form__header">
+            Was this page helpful?
+          </h2>
+          <button
+            type="submit"
+            class="govuk-button govuk-button--secondary inline-feedback__initial-form__button"
+            name="yes"
+            value="yes"
+          >
+            Yes
+          </button>
+          <button
+            type="submit"
+            class="govuk-button govuk-button--secondary inline-feedback__initial-form__button"
+            name="no"
+            value="no"
+          >
+            No
+          </button>
+        </div>
+        <div id="post-initial-feedback-container">
+          <h2 class="govuk-heading-m">
+            Thanks for letting us know, your response has been recorded.
+          </h2>
+          <form id="feedback-form">
+            <div id="positive-feedback">
+              {% include './positive_feedback_form.html' %}
+            </div>
+            <div id="negative-feedback">
+              {% include './negative_feedback_form.html' %}
+            </div>
+            <div class="govuk-button-group inline-feedback__actions">
+              <button
+                type="submit"
+                class="govuk-button"
+                data-module="govuk-button"
+              >
+                Send feedback
+              </button>
+              <a class="govuk-link" href="#" id="cancel-link">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+     </div>
+    </div>
+  </div>
+</div>
