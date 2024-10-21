@@ -43,7 +43,9 @@ def breadcrumbs(context):
 @register.inclusion_tag("tags/order_article_list.html", takes_context=True)
 def ordered_article_list(context, parent_object):
     children = (
-        ArticlePage.objects.live().child_of(parent_object).order_by(parent_object.children_order_by)
+        ArticlePage.objects.live()
+        .child_of(parent_object)
+        .order_by(parent_object.children_order_by)
     )
 
     return {"children": children}
@@ -51,7 +53,8 @@ def ordered_article_list(context, parent_object):
 
 @register.inclusion_tag("tags/search.html")
 def search_box(
-    placeholder="Type your search phrase and click the magnifying glass. " "Or press the enter key",
+    placeholder="Type your search phrase and click the magnifying glass. "
+    "Or press the enter key",
     query_text="",
 ):
     return {"placeholder": placeholder, "query_text": query_text}

@@ -37,7 +37,9 @@ class Command(BaseCommand):
             sso_user.save()
             self.stdout.write(
                 self.style.SUCCESS(
-                    "Successfully elevated user permission for user {0}".format(sso_user.email)
+                    "Successfully elevated user permission for user {0}".format(
+                        sso_user.email
+                    )
                 )
             )
         else:
