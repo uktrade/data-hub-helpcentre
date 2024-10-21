@@ -70,7 +70,7 @@ migrate:
 	$(run) python manage.py migrate
 
 front-end:
-	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && npm i && sass'
+	docker run -w /app/ -it --rm --name frontend -v `pwd`:/app node bash -c 'cd /app && yarn && yarn sass'
 
 compilescss:
 	$(run) python manage.py compilescss
