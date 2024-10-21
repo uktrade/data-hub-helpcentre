@@ -13,6 +13,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - data-infrastructure-shared-network
   helpcentre:
     build:
        context: .
@@ -27,6 +29,8 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
       - OAUTHLIB_INSECURE_TRANSPORT=1
+    networks:
+      - data-infrastructure-shared-network
   helpcentre-sso.test:
     build: https://github.com/uktrade/mock-sso.git
     environment:
@@ -35,4 +39,10 @@ services:
       - MOCK_SSO_CODE=fizz
     ports:
       - "8081:8081"
+    networks:
+      - data-infrastructure-shared-network
 
+networks:
+  data-infrastructure-shared-network:
+    name: data-infrastructure-shared-network
+    driver: bridge
