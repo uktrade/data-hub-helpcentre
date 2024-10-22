@@ -251,7 +251,11 @@ WAGTAILEMBEDS_FINDERS = [
     }
 ]
 
-AUTHBROKER_ANONYMOUS_PATHS = ("check", "/api/feeds/data-hub/updates/")
+AUTHBROKER_ANONYMOUS_PATHS = (
+    "check",
+    "/api/feeds/data-hub/updates/",
+    "/api/pipeline/user-inline-feedback-survey",
+)
 
 LOGGING = {
     "version": 1,
