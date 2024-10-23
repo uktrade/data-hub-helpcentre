@@ -93,7 +93,9 @@ class HawkAuthentication(BaseAuthentication):
     def authenticate_by_hawk(self, request):
         if "authorization" not in request.headers:
             raise AuthenticationFailed(NO_CREDENTIALS_MESSAGE)
-
+        print(request)
+        print(request.META)
+        print(request.headers)
         try:
             hawk_receiver = authorise(request)
         except HawkFail as e:
