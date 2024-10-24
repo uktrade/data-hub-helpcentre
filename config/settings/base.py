@@ -217,6 +217,8 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ("yaml", "YAML"),
 )
 
+WAGTAIL_CODE_BLOCK_THEME = None
+
 # Add a custom provider
 # Your custom provider must support oEmbed for this to work. You should be
 # able to find these details in the provider's documentation.
@@ -249,7 +251,11 @@ WAGTAILEMBEDS_FINDERS = [
     }
 ]
 
-AUTHBROKER_ANONYMOUS_PATHS = ("check", "/api/feeds/data-hub/updates/")
+AUTHBROKER_ANONYMOUS_PATHS = (
+    "check",
+    "/api/feeds/data-hub/updates/",
+    "/api/pipeline/user-inline-feedback-survey",
+)
 
 LOGGING = {
     "version": 1,
