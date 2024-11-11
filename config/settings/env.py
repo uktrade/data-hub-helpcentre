@@ -3,19 +3,6 @@ from django_log_formatter_ecs import ECSFormatter
 from .base import *  # noqa
 
 
-INSTALLED_APPS += [  # noqa F405
-    "elasticapm.contrib.django",
-]
-
-ELASTIC_APM = {
-    "SERVICE_NAME": "DataHub Help Centre",
-    "SECRET_TOKEN": settings_env.elastic_apm_secret_token,  # noqa F405
-    "SERVER_URL": settings_env.elastic_apm_server_url,  # noqa F405
-    "ENVIRONMENT": settings_env.app_env,  # noqa F405
-    "SERVER_TIMEOUT": settings_env.elastic_apm_server_timeout,  # noqa F405
-}
-
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
