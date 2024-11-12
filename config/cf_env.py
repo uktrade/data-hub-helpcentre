@@ -69,10 +69,6 @@ class CloudFoundryEnvironment(BaseSettings):
     authbroker_client_secret: str
     authbroker_url: str
 
-    elastic_apm_secret_token: str = ""
-    elastic_apm_server_timeout: str = "20s"
-    elastic_apm_server_url: str = ""
-
     feed_api_token: str = ""
     feedback_url: str = "/"
 
