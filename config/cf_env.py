@@ -63,6 +63,7 @@ class CloudFoundryEnvironment(BaseSettings):
     # Start of Environment Variables
     secret_key: str
     allowed_hosts: list[str] | str
+    csrf_trusted_origins: list[str] | str
     django_debug: bool = False
 
     authbroker_client_id: str

@@ -16,6 +16,8 @@ SECRET_KEY = settings_env.secret_key
 
 ALLOWED_HOSTS = settings_env.allowed_hosts_list
 
+CSRF_TRUSTED_ORIGINS = settings_env.csrf_trusted_origins
+
 INSTALLED_APPS = [
     "home",
     "search",
