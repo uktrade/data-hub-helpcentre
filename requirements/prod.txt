@@ -41,7 +41,6 @@ celery==5.4.0
 certifi==2024.7.4
     # via
     #   -r requirements/prod.in
-    #   elastic-apm
     #   requests
     #   sentry-sdk
 cfgv==3.4.0
@@ -160,10 +159,6 @@ draftjs-exporter==2.1.6
     #   -r requirements/prod.in
     #   wagtail
 ecs-logging==2.1.0
-    # via
-    #   -r requirements/prod.in
-    #   elastic-apm
-elastic-apm==6.19.0
     # via -r requirements/prod.in
 et-xmlfile==1.1.0
     # via
@@ -410,7 +405,6 @@ urllib3==1.26.19
     # via
     #   -r requirements/prod.in
     #   botocore
-    #   elastic-apm
     #   requests
     #   sentry-sdk
 vine==5.1.0
@@ -446,7 +440,6 @@ wrapt==1.14.1
     # via
     #   -r requirements/prod.in
     #   deprecated
-    #   elastic-apm
     #   opentelemetry-instrumentation
 xlsxwriter==1.2.8
     # via -r requirements/prod.in

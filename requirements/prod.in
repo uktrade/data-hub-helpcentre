@@ -33,7 +33,6 @@ djangorestframework
 docutils
 draftjs-exporter
 ecs-logging
-elastic-apm
 et-xmlfile
 factory-boy
 filetype

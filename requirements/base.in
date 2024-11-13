@@ -33,7 +33,6 @@ django-treebeard
 djangorestframework
 docutils
 draftjs-exporter
-elastic-apm
 et-xmlfile
 factory-boy
 filetype
