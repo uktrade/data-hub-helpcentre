@@ -88,7 +88,7 @@ addEventListener("DOMContentLoaded", () => {
     }
 
     async postInitialFeedback(initial) {
-      const response = await this.handleFetch("/api/v1/inline_feedback", {
+      const response = await this.handleFetch("api/v1/inline_feedback", {
         method: "POST",
         body: JSON.stringify({
           was_this_page_helpful: initial,
@@ -106,7 +106,7 @@ addEventListener("DOMContentLoaded", () => {
 
     async updateInitialFeedback(payload) {
       const response = await this.handleFetch(
-        `/api/v1/inline_feedback/${this.id}`,
+        `api/v1/inline_feedback/${this.id}`,
         {
           method: "PATCH",
           body: JSON.stringify({

@@ -28,6 +28,7 @@ class DBTPlatformEnvironment(BaseSettings):
 
     secret_key: str
     allowed_hosts: list[str] | str
+    csrf_trusted_origins: list[str] | str
 
     authbroker_client_id: str
     authbroker_client_secret: str
