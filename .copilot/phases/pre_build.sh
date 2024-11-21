@@ -21,3 +21,6 @@ else
 fi
 
 # Add commands below to run as part of the pre_build phase
+
+python manage.py compilescss
+python manage.py collectstatic --noinput
