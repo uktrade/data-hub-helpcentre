@@ -44,10 +44,32 @@ _Click the Article Page..._
 
 **Check this 'Was this page helpful?' widget renders** [x]
 
+### 3. Checking article pages cannot be created from the Homepage
+ - Access the admin area.
+
 ### 3. Deleting articles on HelpCentre
 - Access the admin area.
 - Find the article page you have created in `#1`.
 - Select delete when clicking 'action'.
-- Confirm the delete.
+- Confirm deletion.
 
 **Check the page no longer appears in the index** [x]
+
+### 5. Feedback is submitted to Data-flow
+- Go to an article page, and submit the feedback form by clicking 'Yes' at the heading 'Was this page helpful?', make sure to give a reason when prompted as 'Test'.
+- Access Data-flow and find the DAG `DataHubHelpCentreInlineFeedbackPipeline`, there should be an input with the placeholder _Search DAGS_.
+- There should be a 'Play' button in the right-hand corner to run the DAG, click this to manually run the DAG and consume the feedback data from the helpcentre.
+- You should see a 'Success' run with a dark green bar in the left-hand side chart like the image below:
+
+_Access data-flow having submitted feedback_
+
+![alt text](img/test_data-flow.png "Test data-flow feedback accepted by pipeline")
+
+**Check that Data-flow can talk to helpcentre and that the DAG run is successful having submitted feedback** [x]
+
+### 6. DataHub can access articles via API
+- Get to `https://datahub.trade.gov.uk/`
+
+_from the dataHub home page..._
+
+**Check HelpCentre articles appear under the heading _What's new?_** [x]
