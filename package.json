@@ -5,6 +5,7 @@
   "description": "simple helpcentre cms for datahub",
   "main": "index.js",
   "scripts": {
+    "build": "echo build",
     "build:css": "npx gulp sass:watch"
   },
   "repository": "git@github.com:uktrade/data-hub-helpcentre.git",
@@ -22,5 +23,8 @@
     "sass": "^1.79.5",
     "del": "^8.0.0",
     "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": "20.15.0"
   }
 }
