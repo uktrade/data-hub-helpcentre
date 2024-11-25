@@ -6,7 +6,7 @@ Documents manual testing against the new platform to ensure all business as usua
 
 ### 1. Adding articles to HelpCentre
 - Access the admin area of the CMS (Content Management Service) at `/admin`.
-- Click the icon 'Page', this sould take you to the page 'Home'.
+- Click the icon 'Page', this should take you to the page 'Home'.
 - CLick the plus icon at the top of the page (next to the title 'Home'). It should have the tooltip 'Add child page'.
 - Click 'Article index page', fill out the fields and then click 'Publish' below (default is 'Save draft').
 ![alt text](img/test_index.png "Test Index Article")
