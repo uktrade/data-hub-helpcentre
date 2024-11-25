@@ -2,11 +2,6 @@
 
 # Exit early if something goes wrong
 set -e
-export COPILOT_ENVIRONMENT_NAME='staging'
-export COPILOT_APPLICATION_NAME='dshc'
-export BUILD_STEP='True'
-export DJANGO_SETTINGS_MODULE='config.settings.base'
-
 if [ -f "./.gitmodules" ]; then
   echo ".gitmodules file exists. Modifying URLs..."
     account_id=$(echo $CODESTAR_CONNECTION_ARN | cut -d':' -f5)
@@ -26,6 +21,6 @@ fi
 
 
 # Add commands below to run as part of the pre_build phase
-pip install -r requirements.txt
-python manage.py compilescss
-python manage.py collectstatic --noinput
+# pip install -r requirements.txt
+# python manage.py compilescss
+# python manage.py collectstatic --noinput
