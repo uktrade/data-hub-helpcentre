@@ -98,13 +98,16 @@ class DBTPlatformEnvironment(BaseSettings):
 
 if is_copilot():
     if "BUILD_STEP" in environ:
+        print("COPLIOT HAS BUILD STEP")
         env: DBTPlatformEnvironment | CloudFoundryEnvironment = DBTPlatformEnvironment(
             _env_file=".env", _env_file_encoding="utf-8"
         )  # type:ignore[call-arg]
     else:
+        print("COPLIOT HAS NO BUILD STEP")
         # When deployed read values from environment variables
         env = DBTPlatformEnvironment()  # type:ignore[call-arg]
 else:
+    print("CLOUDFOUNDRY ENV")
     # Cloud Foundry environment
     if (
         "local" in environ["DJANGO_SETTINGS_MODULE"]
