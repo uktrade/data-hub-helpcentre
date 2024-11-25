@@ -19,8 +19,4 @@ else
   echo ".gitmodules file does not exist. No URLs to update."
 fi
 
-
 # Add commands below to run as part of the pre_build phase
-# pip install -r requirements.txt
-# python manage.py compilescss
-# python manage.py collectstatic --noinput
