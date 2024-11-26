@@ -2,6 +2,7 @@
 
 # Exit early if something goes wrong
 set -e
+
 # Taken from circle ci config 
 export ALLOWED_HOSTS='["*"]'
 export CSRF_TRUSTED_ORIGINS='["https://*"]'
@@ -14,8 +15,7 @@ export AUTHBROKER_URL="https://url.to.sso"
 export FEED_API_TOKEN="test"
 export FEEDBACK_URL="http://path.to.feedback"
 export DEBUG="True"
+
 python manage.py compilescss
 python manage.py collectstatic --noinput
 # Add commands below to run inside the container after all the other buildpacks have been applied
-python manage.py compilescss
-python manage.py collectstatic --noinput
