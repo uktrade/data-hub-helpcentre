@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import gulp from "gulp";
 import gulpSass from "gulp-sass";
-import sourcemaps from "gulp-sourcemaps";
 import { deleteAsync } from "del";
 import dartSass from "sass";
 const sass = gulpSass(dartSass)
@@ -47,9 +46,7 @@ gulp.task("copy-govuk-js", function () {
 gulp.task("sass:compile", function () {
   return gulp
     .src(SASS_FILES)
-    .pipe(sourcemaps.init())
     .pipe(sass(sassOptions))
-    .pipe(sourcemaps.write("./maps"))
     .pipe(gulp.dest(CSS_DIR));
 });
 
