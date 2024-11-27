@@ -2,7 +2,7 @@ from os import environ
 from typing import Optional
 
 import dj_database_url
-from dbt_copilot_python.database import database_url_from_env
+from dbt_copilot_python.database import database_from_env
 from dbt_copilot_python.network import setup_allowed_hosts
 from dbt_copilot_python.utility import is_copilot
 from pydantic import Field, computed_field
@@ -74,12 +74,9 @@ class DBTPlatformEnvironment(BaseSettings):
     def database_config(self) -> dict:
         if self.build_step:
             return {"default": {}}
-
-        return {
-            "default": dj_database_url.parse(
-                database_url_from_env("DATABASE_CREDENTIALS").replace('postgres://', 'postgresql://')
-            ),
-        }
+        db_config = database_from_env("DATABASE_CREDENTIALS")
+        db_config["ENGINE"] = "django.db.backends.postgresql"
+        return {"default": db_config}
 
     @computed_field  # type: ignore[misc]
     @property
