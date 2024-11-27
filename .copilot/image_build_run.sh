@@ -3,8 +3,8 @@
 # Exit early if something goes wrong
 set -e
 # Taken from circle ci config 
-export ALLOWED_HOSTS="'[\"*\"]'"
-export CSRF_TRUSTED_ORIGINS="'[\"https://*\"]'"
+export ALLOWED_HOSTS='["*"]'
+export CSRF_TRUSTED_ORIGINS='["https://*"]'
 export DJANGO_SETTINGS_MODULE="config.settings.test"
 export DATABASE_URL="postgres://postgres:postgres@localhost:5432/helpcentre"
 export SECRET_KEY="test"
