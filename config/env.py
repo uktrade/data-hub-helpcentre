@@ -77,7 +77,7 @@ class DBTPlatformEnvironment(BaseSettings):
 
         return {
             "default": dj_database_url.parse(
-                database_url_from_env("DATABASE_CREDENTIALS")
+                database_url_from_env("DATABASE_CREDENTIALS").replace('postgres://', 'postgresql://')
             ),
         }
 
