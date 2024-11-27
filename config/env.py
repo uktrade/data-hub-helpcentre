@@ -25,7 +25,7 @@ class DBTPlatformEnvironment(BaseSettings):
     build_step: bool = Field(alias="build_step", default=False)
 
     django_debug: bool
-
+    app_env: str
     secret_key: str
     allowed_hosts: list[str] | str
     csrf_trusted_origins: list[str] | str
