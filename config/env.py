@@ -1,3 +1,4 @@
+import copy
 from os import environ
 from typing import Optional
 
@@ -78,6 +79,11 @@ class DBTPlatformEnvironment(BaseSettings):
             return {"default": {}}
         db_config = database_from_env("DATABASE_CREDENTIALS")
         db_config["default"]["ENGINE"] = "django.db.backends.postgresql"
+
+        db_printable = copy.deepcopy(db_config)
+        db_printable["default"]["PASSWORD"] = "nope"
+        print(db_printable)
+
         return db_config
 
     @computed_field  # type: ignore[misc]
