@@ -105,11 +105,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://postgres:postgres@not-postgres:5432/helpcentre"  # /PS-IGNORE
-    )
-}
+DATABASES = settings_env.database_config
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

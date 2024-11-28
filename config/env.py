@@ -74,9 +74,11 @@ class DBTPlatformEnvironment(BaseSettings):
     @property
     def database_config(self) -> dict:
         if self.build_step:
+            print("is in build step")
             return {"default": {}}
         db_config = database_from_env("DATABASE_CREDENTIALS")
         db_config["ENGINE"] = "django.db.backends.postgresql"
+        print(f"DB NAME: {db_config.get('NAME', 'NAME_KEY_NOT_FOUND')}")
         return {"default": db_config}
 
     @computed_field  # type: ignore[misc]
