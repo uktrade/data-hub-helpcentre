@@ -1,7 +1,6 @@
 import os
 import sys
 
-import dj_database_url
 from dbt_copilot_python.utility import is_copilot
 from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
@@ -258,6 +257,7 @@ AUTHBROKER_ANONYMOUS_PATHS = (
     "check",
     "/api/feeds/data-hub/updates/",
     "/api/pipeline/user-inline-feedback-survey",
+    "/pingdom/ping.xml",
 )
 
 LOGGING = {
