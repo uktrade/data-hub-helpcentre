@@ -257,7 +257,7 @@ AUTHBROKER_ANONYMOUS_PATHS = (
     "check",
     "/api/feeds/data-hub/updates/",
     "/api/pipeline/user-inline-feedback-survey",
-    "/pingdom/ping.xml"
+    "/pingdom/ping.xml",
 )
 
 LOGGING = {
