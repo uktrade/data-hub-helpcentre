@@ -68,8 +68,8 @@ _Access data-flow having submitted feedback_
 **Check that Data-flow can talk to helpcentre and that the DAG run is successful having submitted feedback** [x]
 
 ### 6. DataHub can access articles via API
-- Get to `https://datahub.trade.gov.uk/`
+- Get to `https://staging.datahub.uktrade.digital/`
 
-_from the dataHub home page..._
+_from the DataHub home page..._
 
 **Check HelpCentre articles appear under the heading _What's new?_** [x]
