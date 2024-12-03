@@ -188,10 +188,11 @@ if not is_copilot():
 FEEDBACK_URL = settings_env.feedback_url
 
 SENTRY_DSN = settings_env.sentry_dsn
+SENTRY_SAMPLE_RATE = settings_env.sentry_sample_rate
 SENTRY_ENVIRONMENT = settings_env.sentry_environment
 
 if SENTRY_DSN is not None:
-    RAVEN_CONFIG = {"dsn": SENTRY_DSN, "environment": SENTRY_ENVIRONMENT}
+    RAVEN_CONFIG = {"dsn": SENTRY_DSN, "environment": SENTRY_ENVIRONMENT, "sample_rate": SENTRY_SAMPLE_RATE}
     INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
 
 SHOW_ENV_BANNER = settings_env.show_env_banner
