@@ -47,7 +47,7 @@ _Click the Article Page..._
 ### 3. Checking article pages cannot be created from the Homepage
  - Access the admin area.
 
-### 3. Deleting articles on HelpCentre
+### 4. Deleting articles on HelpCentre
 - Access the admin area.
 - Find the article page you have created in `#1`.
 - Select delete when clicking 'action'.
