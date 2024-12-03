@@ -61,5 +61,3 @@ make all-requirements
 ```bash
 make front-end
 ```
-
-## Accessing Wagtail Admin
