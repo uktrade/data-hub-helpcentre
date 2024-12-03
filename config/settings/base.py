@@ -75,7 +75,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_URL = reverse_lazy("authbroker_client:login")
-LOGIN_REDIRECT_URL = "search"
+LOGIN_REDIRECT_URL = "/"
 ROOT_URLCONF = "config.urls"
 
 WAGTAIL_FRONTEND_LOGIN_URL = reverse_lazy("authbroker_client:login")
