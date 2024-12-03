@@ -40,6 +40,7 @@ class DBTPlatformEnvironment(BaseSettings):
 
     # Optional - url to sentry endpoint
     sentry_dsn: Optional[str] = None
+    sentry_sample_rate: Optional[str] = None
     sentry_environment: Optional[str] = None
 
     # Hawk credentials
