@@ -10,4 +10,4 @@ if [[ -z "$COPILOT_ENVIRONMENT_NAME" ]]; then
   python manage.py collectstatic --noinput
 fi
 
-waitress-serve --port=$PORT config.wsgi:application
+waitress-serve --ident='' --trusted-proxy '*' --trusted-proxy-headers 'x-forwarded-proto' --port=$PORT config.wsgi:application
