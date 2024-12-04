@@ -26,7 +26,7 @@ help:
 	@echo -e "$(COLOUR_YELLOW)make front-end$(COLOUR_NONE) : Generate front end for first use"
 
 
-run = docker-compose run --rm helpcentre
+run = docker compose run --rm helpcentre
 poetry = $(run) poetry --quiet
 
 
@@ -46,13 +46,13 @@ black-change:
 	$(run) black .
 
 build:
-	docker-compose build
+	docker compose build
 
 up:
-	docker-compose up
+	docker compose up
 
 down:
-	docker-compose down
+	docker compose down
 
 shell:
 	$(run) python manage.py shell
