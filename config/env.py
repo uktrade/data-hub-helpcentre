@@ -1,8 +1,7 @@
 from os import environ
 from typing import Optional
 
-import dj_database_url
-from dbt_copilot_python.database import database_url_from_env
+from dbt_copilot_python.database import database_from_env
 from dbt_copilot_python.network import setup_allowed_hosts
 from dbt_copilot_python.utility import is_copilot
 from pydantic import Field, computed_field
@@ -25,7 +24,7 @@ class DBTPlatformEnvironment(BaseSettings):
     build_step: bool = Field(alias="build_step", default=False)
 
     django_debug: bool
-
+    app_env: str
     secret_key: str
     allowed_hosts: list[str] | str
     csrf_trusted_origins: list[str] | str
@@ -74,13 +73,11 @@ class DBTPlatformEnvironment(BaseSettings):
     @property
     def database_config(self) -> dict:
         if self.build_step:
+            print("is in build step")
             return {"default": {}}
-
-        return {
-            "default": dj_database_url.parse(
-                database_url_from_env("DATABASE_CREDENTIALS")
-            ),
-        }
+        db_config = database_from_env("DATABASE_CREDENTIALS")
+        db_config["default"]["ENGINE"] = "django.db.backends.postgresql"
+        return db_config
 
     @computed_field  # type: ignore[misc]
     @property

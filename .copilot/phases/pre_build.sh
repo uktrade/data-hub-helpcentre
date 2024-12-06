@@ -2,7 +2,6 @@
 
 # Exit early if something goes wrong
 set -e
-
 if [ -f "./.gitmodules" ]; then
   echo ".gitmodules file exists. Modifying URLs..."
     account_id=$(echo $CODESTAR_CONNECTION_ARN | cut -d':' -f5)
@@ -21,6 +20,3 @@ else
 fi
 
 # Add commands below to run as part of the pre_build phase
-
-python manage.py compilescss
-python manage.py collectstatic --noinput
