@@ -1,7 +1,6 @@
 import os
 import sys
 
-import dj_database_url
 from dbt_copilot_python.utility import is_copilot
 from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
@@ -105,11 +104,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://postgres:postgres@postgres:5432/helpcentre"  # /PS-IGNORE
-    )
-}
+DATABASES = settings_env.database_config
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -173,7 +168,7 @@ AUTHBROKER_CLIENT_SECRET = settings_env.authbroker_client_secret
 app_bucket_creds = settings_env.s3_bucket_config
 AWS_REGION = app_bucket_creds.get("aws_region")
 AWS_STORAGE_BUCKET_NAME = app_bucket_creds.get("bucket_name")
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}"
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
@@ -262,6 +257,7 @@ AUTHBROKER_ANONYMOUS_PATHS = (
     "check",
     "/api/feeds/data-hub/updates/",
     "/api/pipeline/user-inline-feedback-survey",
+    "/pingdom/ping.xml",
 )
 
 LOGGING = {
