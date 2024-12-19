@@ -363,7 +363,7 @@ s3transfer==0.4.2
     # via
     #   -r requirements/prod.in
     #   boto3
-sentry-sdk==1.14.0
+sentry-sdk==2.8.0
     # via -r requirements/prod.in
 six==1.16.0
     # via

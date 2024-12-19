@@ -17,7 +17,7 @@ services:
   helpcentre:
     build:
        context: .
-    command: python manage.py runserver 0.0.0.0:8000
+    entrypoint: bash entrypoint-local.sh 
     volumes:
       - ./:/app/
     ports:
@@ -25,9 +25,12 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
       - OAUTHLIB_INSECURE_TRANSPORT=1
+      - COPILOT_ENVIRONMENT_NAME=local
   helpcentre-sso.test:
     build: https://github.com/uktrade/mock-sso.git
     environment:
