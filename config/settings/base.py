@@ -192,12 +192,11 @@ SENTRY_ENVIRONMENT = settings_env.sentry_environment
 if SENTRY_DSN:
     import sentry_sdk
     from sentry_sdk.integrations.django import DjangoIntegration
-    from sentry_sdk.integrations.redis import RedisIntegration
 
     sentry_kwargs = {
         "dsn": SENTRY_DSN,
         "environment": SENTRY_ENVIRONMENT,
-        "integrations": [DjangoIntegration(), RedisIntegration()],
+        "integrations": [DjangoIntegration()],
         "traces_sample_rate": SENTRY_SAMPLE_RATE,
     }
     if "shell" in sys.argv or "shell_plus" in sys.argv:
