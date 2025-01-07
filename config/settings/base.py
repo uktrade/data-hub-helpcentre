@@ -189,13 +189,24 @@ SENTRY_DSN = settings_env.sentry_dsn
 SENTRY_SAMPLE_RATE = settings_env.sentry_sample_rate
 SENTRY_ENVIRONMENT = settings_env.sentry_environment
 
-if SENTRY_DSN is not None:
-    RAVEN_CONFIG = {
+if SENTRY_DSN:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+    from sentry_sdk.integrations.redis import RedisIntegration
+
+    sentry_kwargs = {
         "dsn": SENTRY_DSN,
         "environment": SENTRY_ENVIRONMENT,
-        "sample_rate": SENTRY_SAMPLE_RATE,
+        "integrations": [DjangoIntegration(), RedisIntegration()],
+        "traces_sample_rate": SENTRY_SAMPLE_RATE,
     }
-    INSTALLED_APPS += ["raven.contrib.django.raven_compat"]
+    if "shell" in sys.argv or "shell_plus" in sys.argv:
+        sentry_kwargs["before_send"] = lambda event, hint: None
+
+    if os.getenv("GIT_COMMIT"):
+        sentry_kwargs["release"] = os.getenv("GIT_COMMIT")
+
+    sentry_sdk.init(**sentry_kwargs)
 
 SHOW_ENV_BANNER = settings_env.show_env_banner
 ENV_NAME = settings_env.app_env

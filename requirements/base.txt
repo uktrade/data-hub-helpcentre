@@ -354,8 +354,6 @@ pytz==2024.1
     #   l18n
 pyyaml==6.0.2
     # via pre-commit
-raven==6.10.0
-    # via -r requirements/base.in
 rcssmin==1.1.1
     # via
     #   -r requirements/base.in
