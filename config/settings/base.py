@@ -196,6 +196,7 @@ if SENTRY_DSN:
     sentry_kwargs = {
         "dsn": SENTRY_DSN,
         "environment": SENTRY_ENVIRONMENT,
+        "enable_tracing": True,
         "integrations": [DjangoIntegration()],
         "traces_sample_rate": SENTRY_SAMPLE_RATE,
     }
