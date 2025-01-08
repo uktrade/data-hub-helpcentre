@@ -198,7 +198,7 @@ if SENTRY_DSN:
         "environment": SENTRY_ENVIRONMENT,
         "enable_tracing": True,
         "integrations": [DjangoIntegration()],
-        "traces_sample_rate": SENTRY_SAMPLE_RATE,
+        "traces_sample_rate": float(SENTRY_SAMPLE_RATE),
     }
     if "shell" in sys.argv or "shell_plus" in sys.argv:
         sentry_kwargs["before_send"] = lambda event, hint: None
