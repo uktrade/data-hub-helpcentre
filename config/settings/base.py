@@ -186,8 +186,12 @@ if not is_copilot():
 FEEDBACK_URL = settings_env.feedback_url
 
 SENTRY_DSN = settings_env.sentry_dsn
-SENTRY_SAMPLE_RATE = settings_env.sentry_sample_rate
 SENTRY_ENVIRONMENT = settings_env.sentry_environment
+
+try:
+    SENTRY_SAMPLE_RATE = float(settings_env.sentry_sample_rate)
+except ValueError:
+    SENTRY_SAMPLE_RATE = 0.2
 
 if SENTRY_DSN:
     import sentry_sdk
@@ -198,7 +202,7 @@ if SENTRY_DSN:
         "environment": SENTRY_ENVIRONMENT,
         "enable_tracing": True,
         "integrations": [DjangoIntegration()],
-        "traces_sample_rate": float(SENTRY_SAMPLE_RATE),
+        "traces_sample_rate": SENTRY_SAMPLE_RATE,
     }
     if "shell" in sys.argv or "shell_plus" in sys.argv:
         sentry_kwargs["before_send"] = lambda event, hint: None
