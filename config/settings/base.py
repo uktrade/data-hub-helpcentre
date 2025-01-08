@@ -190,7 +190,7 @@ SENTRY_ENVIRONMENT = settings_env.sentry_environment
 
 try:
     SENTRY_SAMPLE_RATE = float(settings_env.sentry_sample_rate)
-except ValueError:
+except (ValueError, TypeError):
     SENTRY_SAMPLE_RATE = 0.2
 
 if SENTRY_DSN:
