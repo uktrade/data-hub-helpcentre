@@ -13,6 +13,7 @@ from api_pipeline import urls as api_pipeline_urls
 from search import views as search_views
 from api_v1 import urls as apiv1_urls
 
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),

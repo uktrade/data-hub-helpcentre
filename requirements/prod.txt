@@ -337,8 +337,6 @@ pytz==2022.4
     #   l18n
 pyyaml==6.0.2
     # via pre-commit
-raven==6.10.0
-    # via -r requirements/prod.in
 rcssmin==1.1.1
     # via
     #   -r requirements/prod.in

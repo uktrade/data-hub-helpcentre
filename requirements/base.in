@@ -64,7 +64,6 @@ pydantic-settings
 pyflakes
 python-dateutil
 pytz
-raven
 rcssmin
 requests
 requests-oauthlib
