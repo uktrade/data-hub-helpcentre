@@ -24,7 +24,7 @@ urlpatterns = [
     path("api/feeds/", include(article_urls)),
     path("api/v1/", include(apiv1_urls)),
     path("api/pipeline/", include(api_pipeline_urls)),
-    path("fail/", server_error)
+    path("fail/", server_error),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
