@@ -55,7 +55,9 @@ jobs:
       - image: python:3.10
         environment:
           ALLOWED_HOSTS: '["*"]'
+          APP_ENV: test
           CSRF_TRUSTED_ORIGINS: '["https://*"]'
+          DJANGO_DEBUG: True
           DJANGO_SETTINGS_MODULE: config.settings.test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
           SECRET_KEY: test
