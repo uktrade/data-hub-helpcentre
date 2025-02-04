@@ -1,6 +1,7 @@
 # flake8: noqa
-from .env import *
 from django.core.exceptions import ImproperlyConfigured
+
+from .env import *
 
 DEBUG = False
 

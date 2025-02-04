@@ -1,17 +1,15 @@
+from authbroker_client import urls as authbroker_client_urls
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path, include
-
-from wagtail.admin import urls as wagtailadmin_urls
+from django.urls import include, path
 from wagtail import urls as wagtail_urls
+from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
-from authbroker_client import urls as authbroker_client_urls
-
-from article import urls as article_urls
 from api_pipeline import urls as api_pipeline_urls
-from search import views as search_views
 from api_v1 import urls as apiv1_urls
+from article import urls as article_urls
+from search import views as search_views
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),

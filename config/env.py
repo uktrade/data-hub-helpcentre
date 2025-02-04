@@ -3,11 +3,8 @@ from typing import Optional
 
 from dbt_copilot_python.database import database_from_env
 from dbt_copilot_python.network import setup_allowed_hosts
-from dbt_copilot_python.utility import is_copilot
 from pydantic import Field, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-from .cf_env import CloudFoundryEnvironment
 
 
 class DBTPlatformEnvironment(BaseSettings):
@@ -93,21 +90,10 @@ class DBTPlatformEnvironment(BaseSettings):
         }
 
 
-if is_copilot():
-    if "BUILD_STEP" in environ:
-        env: DBTPlatformEnvironment | CloudFoundryEnvironment = DBTPlatformEnvironment(
-            _env_file=".env", _env_file_encoding="utf-8"
-        )  # type:ignore[call-arg]
-    else:
-        # When deployed read values from environment variables
-        env = DBTPlatformEnvironment()  # type:ignore[call-arg]
+if "BUILD_STEP" in environ:
+    env = DBTPlatformEnvironment(
+        _env_file=".env", _env_file_encoding="utf-8"
+    )  # type:ignore[call-arg]
 else:
-    # Cloud Foundry environment
-    if (
-        "local" in environ["DJANGO_SETTINGS_MODULE"]
-    ):  # local testing, see env var set in docker-compose.yml
-        env = CloudFoundryEnvironment(
-            _env_file=".env", _env_file_encoding="utf-8"
-        )  # type:ignore[call-arg]
-    else:
-        env = CloudFoundryEnvironment()  # type:ignore[call-arg]
+    # When deployed read values from environment variables
+    env = DBTPlatformEnvironment()  # type:ignore[call-arg]

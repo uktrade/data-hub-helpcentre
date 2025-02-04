@@ -1,9 +1,8 @@
 import os
 import sys
 
-from dbt_copilot_python.utility import is_copilot
-from django_log_formatter_asim import ASIMFormatter
 from django.urls import reverse_lazy
+from django_log_formatter_asim import ASIMFormatter
 
 from config.env import env as settings_env
 
@@ -173,15 +172,6 @@ MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-
-if not is_copilot():
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-
-
-if not is_copilot():
-    # Only required in Cloud Foundry.
-    AWS_ACCESS_KEY_ID = app_bucket_creds.get("aws_access_key_id")
-    AWS_SECRET_ACCESS_KEY = app_bucket_creds.get("aws_secret_access_key")
 
 FEEDBACK_URL = settings_env.feedback_url
 
