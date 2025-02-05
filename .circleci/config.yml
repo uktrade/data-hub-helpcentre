@@ -56,8 +56,8 @@ jobs:
         environment:
           ALLOWED_HOSTS: '["*"]'
           APP_ENV: test
+          BUILD_STEP: True
           CSRF_TRUSTED_ORIGINS: '["https://*"]'
-          DATABASE_CREDENTIALS: '{"engine": "postgres", "username": "postgres", "password": "postgres", "host": "postgres", "port": "5432", "dbname": "helpcentre"}'
           DJANGO_DEBUG: True
           DJANGO_SETTINGS_MODULE: config.settings.test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/helpcentre
