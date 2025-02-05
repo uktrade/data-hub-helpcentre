@@ -1,6 +1,7 @@
 from os import environ
 from typing import Optional
 
+import dj_database_url
 from dbt_copilot_python.database import database_from_env
 from dbt_copilot_python.network import setup_allowed_hosts
 from pydantic import Field, computed_field
@@ -72,6 +73,8 @@ class DBTPlatformEnvironment(BaseSettings):
         if self.build_step:
             print("is in build step")
             return {"default": {}}
+        elif self.app_env == "test:
+            return {"default": dj_database_url.parse(str(self.database_url))}
         db_config = database_from_env("DATABASE_CREDENTIALS")
         db_config["default"]["ENGINE"] = "django.db.backends.postgresql"
         return db_config
