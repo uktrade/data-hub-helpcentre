@@ -74,7 +74,7 @@ class DBTPlatformEnvironment(BaseSettings):
             print("is in build step")
             return {"default": {}}
         elif self.app_env == "test":
-            return {"default": dj_database_url.parse(str(self.database_url))}
+            return {"default": dj_database_url.parse(str(environ["database_url"]))}
         db_config = database_from_env("DATABASE_CREDENTIALS")
         db_config["default"]["ENGINE"] = "django.db.backends.postgresql"
         return db_config
