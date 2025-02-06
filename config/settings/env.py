@@ -2,7 +2,6 @@ from django_log_formatter_ecs import ECSFormatter
 
 from .base import *  # noqa
 
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,

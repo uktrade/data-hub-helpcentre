@@ -5,7 +5,10 @@ set -e
 
 # Taken from circle ci config 
 export ALLOWED_HOSTS='["*"]'
+export APP_ENV="test"
+export BUILD_STEP="True"
 export CSRF_TRUSTED_ORIGINS='["https://*"]'
+export DJANGO_DEBuG="True"
 export DJANGO_SETTINGS_MODULE="config.settings.test"
 export DATABASE_URL="postgres://postgres:postgres@localhost:5432/helpcentre"
 export SECRET_KEY="test"
